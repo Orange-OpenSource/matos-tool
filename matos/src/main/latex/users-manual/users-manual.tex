@@ -1,0 +1,141 @@
+%HEVEA \def \footertext {}
+\documentclass[a4paper]{book}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage{array}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[unicode]{hyperref}
+% \usepackage[frenchb]{babel}
+\usepackage{times}
+\usepackage{courier}
+\usepackage{helvet}
+\usepackage{alltt}
+\usepackage{graphicx}
+\usepackage{xspace}
+\usepackage{ifthen}
+% \usepackage{floatflt}
+\usepackage{verbatim}
+\input{version}
+
+\newcommand{\sbs}[1]{\(\mbox{}_{#1}\)}
+\newcommand{\ordre}{\sqsubseteq}
+\newcommand{\labels}{\mathbf{Lab}}
+
+\newcommand{\class}[1]{\textbf{\textsf{#1}}}
+\newcommand{\package}[1]{\textit{\textsf{#1}}}
+\newcommand{\method}[1]{\textsf{#1}}
+\newcommand{\ma}{Mobile Applications Analyser\xspace}
+\newcommand{\Gallery}{true}
+
+%TODO: MAJ toutes les references Hevea!
+
+
+%HEVEA \title{Matos - Manuel de l'administrateur - Version \matosversion}
+%HEVEA \author{France Telecom - R\&D - MAPS/AMS}
+%HEVEA \maketitle
+
+\begin{document}
+\begin{titlepage}
+\begin{center}
+
+\begin{tabular}{p{211pt}p{211pt}}
+\includegraphics[width=20mm]{figures/orange} &
+\begin{minipage}[b]{200pt} 
+\begin{flushright}
+\textbf{\large France Telecom} \\
+\textbf{\large Research \& Development} \\
+\textbf{MAPS}\\[0.5cm]
+\mbox{}
+\end{flushright}
+\end{minipage}
+\end{tabular}
+
+%\the\textwidth
+
+\huge
+
+\vfill 
+
+\textbf{\textsf{User's Guide to the}} \\ 
+\textbf{{\textsf{MOBILE APPLICATIONS ANALYSER}}} \\ 
+\vspace{1cm}
+\Large
+\textsf{Version \matosversion}\\
+\textsf{Revision \matosrevision}\\
+\vspace{1cm}
+
+\vfill
+
+\end{center}
+
+\vfill 
+
+December 2010
+
+\end{titlepage} 
+
+%===========================================================================
+\chapter*{Preface}
+
+\section*{Legal Notice}
+The \ma was designed and developed at France
+Telecom Research \& Development. Copyright (C) France Telecom
+2004-2012. Any reproduction or reuse of all or part of the content of
+this software (including documentation) in any form or using any media 
+is strictly prohibited. Failure to respect these terms shall be considered a
+breach of intellectual property and may be punishable by law.
+
+The \ma makes use of the following libraries or software:
+\begin{itemize}
+\item Soot 2.3 - Copyright Sable Group, Mc Gill University, Montreal -
+GNU Library General Public License. 
+\item NSIS - Copyright (C) 1999-2003 NullSoft, Inc (Zlib licence).
+\item BCEL 5.2 - Copyright (C) Apache Software Foundation - Apache License 2.0
+\item POI - Copyright (C) 2002-2003 Apache Software Foundation - Apache License
+2.0
+\item JFreeChart - Copyright (C) 1991-1999 Free Software Foundation, Inc -
+GNU Lesser General Public License.
+\item Sqlite-jdbc - Copyright (C) 2007-2012 Taro L. Saito - Apache License 2.0
+\item commons-io, commons-fileupload, commons-lang - Copyright (C) Apache Software Foundation - Apache License 2.0
+\end{itemize}
+
+\section*{Typographic Conventions}
+The following typographic conventions are used in this manual:
+\begin{itemize}
+\item The first time an important term is introduced, it is presented
+  in \emph{italics}.
+\item Commands, file names and paths, and Java functions, are presented in \texttt{fixed font}.
+\end{itemize}
+
+\section*{System Requirements} \label{SysReqs} 
+\ma runs under Windows XP and Linux systems (tested under a Mandriva
+distribution) and requires a Java Runtime Environment 1.6 (tested with Sun JRE).
+%(versions 1.3.1 up to 1.5.0).
+
+\section*{Contact the Support Team!}
+Feel free to contact us for any information or trouble using the
+\ma.
+\begin{itemize}
+\item E-mail: \texttt{\textbf{matosteam@orange-ftgroup.com}}
+\end{itemize}
+
+
+%===========================================================================
+\tableofcontents
+%===========================================================================
+\input{Introduction}
+%===========================================================================
+\input{Installation}
+%===========================================================================
+\input{GettingStarted}
+%===========================================================================
+\input{AnalysisProcess}
+%===========================================================================
+\input{BasicUsage}
+%===========================================================================
+\input{AdvancedUsage}
+%===========================================================================
+\input{Glossary}
+
+\end{document}

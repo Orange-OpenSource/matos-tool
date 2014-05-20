@@ -1,0 +1,57 @@
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+
+
+France Telecom's \ma is a framework to perform various analyses
+on Android applications or MIDlet suite. 
+Its main purpose is to check that mobile applications conform to a well
+defined \emph{security policy}. Typically, a security policy may forbid the application to send short messages (SMS), open datagram or HTTP connections, or read a given system property. The \ma verifies whether the mobile application makes use (and how) of a  set of given
+features. This is the purpose of the main phase of the overall
+\emph{analysis process}, introduced as Features Usage phase below.
+To achieve this, the \ma works on the main files that make up an
+application: for example, for a MIDlet, the JAR, which contains the application
+executable code, and the JAD, which is a readable descriptor of the application.
+
+Though the analysis process is partly hard-coded in the tool, the \ma
+is mainly guided by an \emph{analysis profile}, a document that
+describes what is to be checked on the application. The analysis profile basically
+defines the instructions to give to the \ma. 
+There are mainly two kinds: what is to be observed, and
+what reaction must be taken (in particular, what to report, pass or
+fail, etc.) according to the observations done. 
+When launching the analysis process, the user must specify which profile is
+used for this analysis.
+
+The analysis process is a sequence of \emph{phases} applied one after
+another on the target application, each phase being specialized in a
+specific treatment.
+
+Currently, three phases are defined:
+\begin{description}
+  \item[The Class Identification phase:] that isolates midlets and checks that
+  some system class are not reimplemented by the application and isolates some
+  specific objects (as Views in Android).
+  \item[The Descriptor Conformity phase:] checks the correctness of descriptors, namely 
+  the JAD file, and the manifest file located into the JAR. This phase is
+  applied at the level of the MIDlet suite. For Android applications, this phase
+  extract some relevant information from the Android Manifest.
+  \item[The Features Usage phase:] checks the way some
+  well-identified Java features are used by the MIDlet(s) of the JAR or the
+  components of the DEX file, by analysing what values can be taken by their
+  arguments during all possible executions of the application. 
+  This phase is applied to each MIDlet contained in the MIDlet suite but it is
+  usually global for the components of the android application.
+\end{description}
+
+A \emph{MIDlet suite} is a Java application using the MIDP platform (with J2ME
+CLDC configuration). It is composed of individual component (often only one)
+called \emph{MIDlets}. An android application is made of different components
+(namely activities, services, content providers and broadcast receivers) defined
+in a single package known as the APK file (Android package). The APK file
+contains an Android Manifest that is the equivalent of the JAD file, some
+arbitrary resources and a code file known as the DEX file. It corresponds to the
+JAR file.
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Users-manual"
+%%% End: 

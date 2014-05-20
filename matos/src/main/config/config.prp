@@ -1,0 +1,31 @@
+proxyset: true
+proxyhost: proxy
+proxyport: 3128
+httpMaxConnectionTime: 10
+httpMaxDownloadTime: 300
+descriptorsChecking.enabled: true
+anasoot.printNodes: false
+anasoot.enabled: true
+anasoot.reportPseudo: true
+anasoot.treatConcatenation: true
+anasoot.treatStringBuffer: true
+anasoot.treatValueOf: true
+anasoot.treatProperties: true
+anasoot.treatStringOperation: true
+anasoot.treatFunctions: true
+anasoot.treatSpyReturn: true
+anasoot.treatSpyParameter: true
+anasoot.treatSpyField: true
+anasoot.callbackAnalysis: false
+anasoot.androidDatabase: database.db
+anasoot.midp-classpath: %LIB%/annotations.jar:%LIB%/base.jar:%LIB%/midp/*
+anasoot.android-classpath:%LIB%/annotations.jar:%LIB%/base.jar:%LIB%/android/*
+anasoot.rules: profiles
+anasoot.ruleDefaultFile: Android
+anasoot.throwCode: false
+matos.xmlFormat: false
+matos.cssFile: style.css
+matos.considerSameName: false
+descriptor.jad.endline: \r\n,\n
+descriptor.jar.endline: \r\n,\r,\n
+

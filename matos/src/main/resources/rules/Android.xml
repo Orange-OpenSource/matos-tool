@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<!DOCTYPE matos SYSTEM "../com/orange/matos/matos.dtd" [
+  <!ENTITY overrides SYSTEM "android/android-overrides.xml">
+  <!ENTITY automaticRules SYSTEM "misc/android-rules.xml">
+  <!ENTITY handwrittenRules SYSTEM "android/class-rules.xml">
+  <!ENTITY options SYSTEM "android/options.xml">
+  <!ENTITY score SYSTEM "android/score.xml">
+  <!ENTITY manifest SYSTEM "android/security-manifest.xml">
+  <!ENTITY custom SYSTEM "android/security-custom.xml">
+  <!ENTITY javascript SYSTEM "android/javascript-support.xml">
+  <!ENTITY nfc SYSTEM "android/nfc.xml">
+  <!ENTITY telephony SYSTEM "android/telephony.xml">
+  <!ENTITY location SYSTEM "android/location.xml">
+  <!ENTITY providers SYSTEM "android/providers.xml">
+  <!ENTITY system SYSTEM "android/system.xml">
+  <!ENTITY files SYSTEM "android/file-handling.xml">
+  <!ENTITY uris SYSTEM "android/uris.xml">
+  <!ENTITY intents SYSTEM "android/intents.xml">
+  <!ENTITY netweb SYSTEM "android/net-web.xml">
+  <!ENTITY netip SYSTEM "android/net-ip.xml">
+  <!ENTITY netphy SYSTEM "android/net-phy.xml">
+  <!ENTITY security SYSTEM "android/security.xml">
+  <!ENTITY system SYSTEM "android/system.xml">
+  <!ENTITY hardware SYSTEM "android/hardware.xml">
+  <!ENTITY java SYSTEM "android/java.xml">
+  <!ENTITY components SYSTEM "android/components.xml">
+  <!ENTITY log SYSTEM "android/log.xml">    
+]>
+<matos name="Android" description="Agnostic profile for Android"
+	version="1.5" date="29.02.2012">
+	
+	&options;
+	&manifest;
+	&score;
+	
+	<custom name="com.orange.analysis.custom.generic.android.SMSSenderAnalysis"/>
+	<custom name="com.orange.analysis.custom.generic.android.AbortedBroadcastReceiver"/>
+	
+	<structure>
+		&javascript;
+		&custom;
+		&telephony;
+		&location;
+		&netweb;
+		&netip;
+		&netphy;
+		&providers;
+		&java;
+		&log;
+		&system;
+		&nfc;
+		&hardware;
+		&security;
+		&components;
+		<sdiv>
+			<h2>Useful objects</h2>
+			&intents;
+			&uris;
+			&files;
+		</sdiv>
+		<sdiv>
+			<h2> Other rules </h2>
+			<callRef name="*" />
+		</sdiv>
+		<nodes/>
+	</structure>
+	&overrides;
+	&automaticRules;
+	&handwrittenRules;	
+	
+</matos>
+
+

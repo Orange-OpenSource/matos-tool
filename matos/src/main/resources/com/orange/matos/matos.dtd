@@ -1,0 +1,354 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<!--
+    Modified version of Sun sample DTD of a mini subset of XHTML (provided
+    with JAXP examples). Modifications are on fonts and code elements.
+    Only minimal support for tables and images is provided.
+    There is no support for forms and no reason to do so.
+-->
+
+<!--Just what can be found inside an element. correspond to character tags.-->
+<!ENTITY % inline "font|code|em|b|i|a|img|br|h1|h2|h3|h4|h5|h6|p|ul|ol|table|tr|td|center|div|prop|li|if|loop|matos|script">
+
+<!ENTITY % inlines "(#PCDATA|font|code|em|b|i|a|img|br|h1|h2|h3|h4|h5|h6|ul|p|ol|table|tr|td|center|div|prop|li|if|loop|matos|script)*" >
+
+
+<!--emphasized element-->
+<!ELEMENT em %inlines;>
+<!--italic element-->
+<!ELEMENT i %inlines;>
+<!--bold element-->
+<!ELEMENT b %inlines;>
+<!--anchor element-->
+<!ELEMENT a %inlines;>
+<!-- limited anchor attributes -->
+<!ATTLIST a
+    href	CDATA	#IMPLIED
+    name	CDATA	#IMPLIED
+>
+<!-- break -->
+<!ELEMENT br EMPTY>
+<!-- font change -->
+<!ELEMENT font %inlines; >
+<!-- attributes mainly used for color -->
+<!ATTLIST font
+    color       CDATA   #IMPLIED
+    face        CDATA   #IMPLIED
+    size        CDATA   #IMPLIED
+>
+
+<!-- insert an image tag -->
+<!ELEMENT img EMPTY>
+<!ATTLIST img
+    alt		CDATA	#IMPLIED
+    border	CDATA	#IMPLIED
+    height	CDATA	#IMPLIED
+    src		CDATA	#REQUIRED
+    width	CDATA	#IMPLIED
+>
+
+<!ELEMENT p %inlines;>
+<!ELEMENT code %inlines;>
+<!ELEMENT h1 %inlines;>
+<!ELEMENT h2 %inlines;>
+<!ELEMENT h3 %inlines;>
+<!ELEMENT h4 %inlines;>
+<!ELEMENT h5 %inlines;>
+<!ELEMENT h6 %inlines;>
+<!ELEMENT div %inlines;>
+
+<!ELEMENT ul %inlines;>
+<!ELEMENT ol %inlines;>
+<!ELEMENT li %inlines;>
+<!ATTLIST div
+    class   CDATA       #IMPLIED
+>
+<!ENTITY script "#PCDATA">
+<!ATTLIST script
+    type    CDATA #IMPLIED
+>
+<!ELEMENT table (tr+)>
+<!ATTLIST table
+    height	CDATA			#IMPLIED
+    width	CDATA			#IMPLIED
+    align	(left|center|right)	#IMPLIED
+    cellspacing	CDATA			#IMPLIED
+>
+<!ELEMENT tr (td+)>
+<!ATTLIST tr
+    align	(left|center|right)		#IMPLIED
+    valign	(top|center|bottom|baseline)	#IMPLIED
+>
+<!ELEMENT td %inlines;>
+<!ATTLIST td
+    height	CDATA				#IMPLIED
+    width	CDATA				#IMPLIED
+    align	(left|center|right)		#IMPLIED
+    valign	(top|center|bottom|baseline)	#IMPLIED
+    rowspan	CDATA				#IMPLIED
+    colspan	CDATA				#IMPLIED
+    class   CDATA               #IMPLIED
+>
+
+<!ELEMENT center %inlines; >
+
+<!--  MATOS elements definition. This is the root element -->
+<!ELEMENT matos (option|report|rule|description|lcdui|loop|androidManifest)*>
+
+<!--One must give a name to the result and it should have  a description a version and a date.-->
+<!ATTLIST matos
+    name CDATA #IMPLIED
+    description CDATA #IMPLIED
+    version CDATA #IMPLIED
+    date CDATA #IMPLIED
+>
+<!ELEMENT option (description?)>
+<!ATTLIST option
+    name CDATA #REQUIRED
+    value CDATA #REQUIRED
+>
+
+<!ELEMENT lcdui ((callback|check)*,description?)>
+
+
+<!ELEMENT check EMPTY>
+<!ATTLIST check
+    method CDATA #REQUIRED
+>
+
+<!ELEMENT report (description?,(conjunction|pseudoConstant|pseudoString|forbiddenMethod|message))>
+<!ATTLIST report
+    name CDATA #REQUIRED
+    alias CDATA #IMPLIED
+>
+
+<!ELEMENT message %inlines;>
+
+<!ELEMENT pseudoConstant (pass,fail)>
+<!ELEMENT pass %inlines;>
+<!ELEMENT fail %inlines;>
+
+<!ELEMENT pseudoString (filter*,default?)>
+<!ATTLIST pseudoString
+    global CDATA #IMPLIED
+>
+
+<!ELEMENT filter %inlines;>
+<!ATTLIST filter
+    pattern CDATA #REQUIRED
+>
+<!ATTLIST filter 
+    name    CDATA #IMPLIED
+    verdict (PASSED|FAILED) "PASSED"
+>
+
+<!ELEMENT default %inlines;>
+<!ATTLIST default 
+    verdict (PASSED|FAILED) "PASSED"
+>
+
+<!ELEMENT conjunction (ref)*>
+
+<!ELEMENT ref EMPTY>
+<!ATTLIST ref
+    name CDATA #REQUIRED
+    pos CDATA #IMPLIED
+>
+
+
+<!ELEMENT forbiddenMethod %inlines;>
+
+<!ELEMENT rule ((args|return|field|use)?, description?)>
+<!ATTLIST rule
+   name  CDATA #REQUIRED
+>
+
+<!ELEMENT args (argument)*>
+<!ATTLIST args
+   class CDATA #REQUIRED
+   signature CDATA #REQUIRED
+   report CDATA "terse"
+>
+<!ELEMENT argument EMPTY>
+<!ATTLIST argument
+  position CDATA #REQUIRED
+>
+
+<!ELEMENT field EMPTY>
+<!ATTLIST field
+   class CDATA #REQUIRED
+   type CDATA #REQUIRED
+   report CDATA "terse"
+>
+
+<!ELEMENT return EMPTY>
+<!ATTLIST return
+   class CDATA #REQUIRED
+   signature CDATA #REQUIRED
+>
+
+<!ELEMENT use EMPTY>
+<!--A rule specifying how to follow the use of a method must specify the method through its class and signature and a report to present ty 
+the result.-->
+<!ATTLIST use
+   class CDATA #REQUIRED
+   signature CDATA #REQUIRED
+   report CDATA #IMPLIED
+>
+
+<!ELEMENT description %inlines;>
+
+<!ELEMENT loopSpec (translation|callback|critical)*>
+<!ELEMENT translation (caller, callee, through*)>
+<!ATTLIST translation
+    index	CDATA	#IMPLIED
+    message	CDATA	#IMPLIED
+>
+
+<!ELEMENT caller EMPTY>
+<!ATTLIST caller
+     class	CDATA   #IMPLIED
+     signature	CDATA   #IMPLIED
+>
+
+<!ELEMENT through EMPTY>
+<!ATTLIST through
+     class	CDATA   #IMPLIED
+     signature	CDATA   #IMPLIED
+     from	CDATA   #IMPLIED
+     to 	CDATA   #IMPLIED
+>
+
+<!ELEMENT callee EMPTY>
+<!ATTLIST callee
+     signature        CDATA   #IMPLIED
+>
+
+<!ELEMENT critical EMPTY>
+<!ATTLIST critical 
+     class      CDATA   #IMPLIED
+     signature  CDATA   #IMPLIED
+     message 	CDATA   #IMPLIED
+>
+
+<!ELEMENT callback EMPTY>
+<!ATTLIST callback 
+     class       CDATA   #IMPLIED
+     signature   CDATA   #IMPLIED
+     message     CDATA  #IMPLIED
+>
+
+
+<!ELEMENT structure (#PCDATA|callRef|fieldRef|nodes|sdiv|customOutput|%inline;)*>
+<!ELEMENT nodes EMPTY>
+<!ELEMENT callRef EMPTY>
+<!ATTLIST callRef
+	name	CDATA #REQUIRED
+>
+
+<!ELEMENT fieldRef EMPTY>
+<!ATTLIST fieldRef
+	name	CDATA #REQUIRED
+>
+
+<!ELEMENT sdiv (#PCDATA|callRef|sdiv|fieldRef|nodes|font|code|em|b|i|a|img|br|h1|h2|h3|h4|h5|h6|ul|ol|table|tr|td|center|div|customOutput)*>
+<!ATTLIST sdiv
+	name	CDATA #IMPLIED
+>
+
+<!ELEMENT score (#PCDATA|stringmatch|rulematch|any-of|all-of|permission|catcher|p|h1|h2|h3|h4|h5|h6|ul|ol|table|center|div)*>
+<!ATTLIST score 
+     threshold       CDATA   #REQUIRED
+>
+
+<!ELEMENT stringmatch EMPTY>
+<!ATTLIST stringmatch
+	name	CDATA #REQUIRED
+	score	CDATA #IMPLIED
+	message CDATA #IMPLIED
+	pattern CDATA #REQUIRED
+>
+
+<!ELEMENT rulematch (rule)*>
+<!ATTLIST rulematch
+	name	CDATA #REQUIRED
+	score	CDATA #IMPLIED
+	message CDATA #IMPLIED
+>
+
+<!ELEMENT element EMPTY>
+<!ATTLIST element
+	name	CDATA #REQUIRED
+>
+
+<!ELEMENT any-of (element)*>
+<!ATTLIST any-of
+	name	CDATA #REQUIRED
+	score	CDATA #IMPLIED
+	message CDATA #IMPLIED
+>
+
+<!ELEMENT all-of (element)*>
+<!ATTLIST all-of
+	name	CDATA #REQUIRED
+	score	CDATA #IMPLIED
+	message CDATA #IMPLIED
+>
+
+<!ELEMENT permission EMPTY>
+<!ATTLIST permission
+	name	CDATA #REQUIRED
+	id		CDATA #REQUIRED
+	score	CDATA #IMPLIED
+	message CDATA #IMPLIED
+>
+
+<!ELEMENT catcher EMPTY>
+<!ATTLIST catcher
+	message	CDATA #REQUIRED
+	pattern	CDATA #REQUIRED
+>
+
+<!ELEMENT prop EMPTY>
+<!ATTLIST prop
+    name CDATA #REQUIRED
+    rel  CDATA #IMPLIED
+>
+
+<!ELEMENT if (then?|else?)>
+<!ATTLIST if
+    name CDATA #REQUIRED
+>
+<!ELEMENT then %inlines;>
+<!ELEMENT else %inlines;>
+
+<!ELEMENT loop %inlines;>
+<!ATTLIST loop
+    index CDATA #REQUIRED
+>
+<!ELEMENT customOutput %inlines;>
+
+<!ELEMENT androidManifest (class|output)*>
+<!ELEMENT class EMPTY>
+<!ATTLIST class
+    name CDATA #REQUIRED
+>
+
+<!ELEMENT output %inlines;>

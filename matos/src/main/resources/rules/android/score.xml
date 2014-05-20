@@ -1,0 +1,223 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<score threshold="20">
+	<h2> Captures the access to the internet.</h2>
+	<permission name="Internet" id="android.permission.INTERNET"/>
+	<permission name="ReceiveSMS" id="android.permission.RECEIVE_SMS"/>
+	<permission name="ReceiveMMS" id="android.permission.RECEIVE_MMS"/>
+	
+	<permission score="3" name="Boot" message="Service started at boot time" id="android.permission.RECEIVE_BOOT_COMPLETED"/>
+	<permission name="Accounts" id="android.permission.GET_ACCOUNTS"/>
+	<permission name="FineLocation" id="android.permission.ACCESS_FINE_LOCATION"/>
+	<permission name="CoarseLocation" id="android.permission.ACCESS_COARSE_LOCATION"/>
+	<permission name="PhoneState" id="android.permission.READ_PHONE_STATE"/>
+	<permission name="WriteSD" id="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	
+	
+	<all-of name="Privacy" score="10" message="Privacy (multiple queries)">
+		<element name="LocationTracking"/>
+		<element name="PhonePrivacy"/>
+		<element name="Accounts"/>
+	</all-of>
+	<stringmatch score="20" name="privacy-id" message="Explicit privacy leak in URL" pattern="PRIVACY LEAK:"/> 
+	
+	<h2> On-line advertisers.</h2>
+	<stringmatch score="5" name="admob" message="Advertising ADMOB" pattern="admob" />
+	<stringmatch score="5" name="adsense" message="Advertising AdSense" pattern="googlesyndication.com" />
+	<stringmatch score="5" name="mobclix" message="Advertising MOBCLIX" pattern="mobclix" />
+	<stringmatch score="5" name="qw" message="Advertising QUATTRO WIRELESS" pattern="qwapi" />
+	<stringmatch score="5" name="millenial" message="Advertising MILLENNIAL MEDIA" pattern="millennialmedia" />
+	<stringmatch score="5" name="adwhirl" message="Advertising ADWHIRL" pattern="adwhirl" />
+	<stringmatch score="5" name="linksynergy" message="Advertising LinkSynergy" pattern="linksynergy" />
+	<stringmatch score="5" name="mpression" message="Advertising (4th Screeen Adv.)" pattern="net.mpression" />
+	<stringmatch score="5" name="clickservice" message="Advertising Afiliate Commerce (Google)" pattern="clickservice.cc-dt.com" />
+	<h2> Statistical usage analysis.</h2>
+	<stringmatch score="5" name="flurry" message="Analytics FLURRY" pattern="flurry" />
+	<stringmatch score="5" name="localytics" message="Analytics LOCALYTICS" pattern="localytics" />
+	<stringmatch score="5" name="google-analytics" message="Analytics Google-analytics" pattern="google-analytics.com" />
+	<h2> Markets, on-line payment, etc.</h2>
+	<stringmatch score="5" name="paypal" message="Payment Paypal" pattern="paypal.com" />
+	<stringmatch score="5" name="market" message="Google Marketplace" pattern="market.android.com|market://" />
+	<stringmatch score="5" name="skyhook" message="Location (Skyhook)" pattern="skyhookwireless" />
+	<h2> Social networks </h2>
+	<stringmatch score="3" name="twitter" message="Social network (Twitter)" pattern="twitter\.com" />
+	<stringmatch score="3" name="facebook" message="Social network (Facebook)" pattern="facebook\.com" />
+	<h2> URL Shortener </h2>
+	<stringmatch score="2" name="bitly" message="URL Abbreviator (Bit.ly)" pattern="bit.ly" />
+	<stringmatch score="2" name="tinyurl" message="URL Abbreviator (Tinyurl)" pattern="tinyurl.com" />
+	<h2> Phone calls </h2>
+	<stringmatch score="5" name="phonecall" message="Doing a phone call" pattern="tel:[+0-9]" />
+	<rulematch score="3" name="Telephony" message="Using telephony APIs">
+		<rule name="TelephonyGroup" />
+	</rulematch>
+	<rulematch score="5" name="PhonePrivacy" message="Telephony privacy">	  	
+	  <rule name="TelephonyManager.getDeviceId"/>
+	  <rule name="TelephonyManager.getLine1Number"/>
+	  <rule name="TelephonyManager.getSubscriberId"/>
+	</rulematch>
+	  
+	<rulematch score="5" name="SIP" message="Using SIP Service">
+		<rule name="SIPGroup" />
+	</rulematch>
+	
+	<rulematch score="3" name="IMSI" message="Using the subscriber ID (IMSI)">
+		<rule name="TelephonyManager.getSuscriberId" />
+	</rulematch>
+	<rulematch score="3" name="Telephony Listener" message="Listening to call state (check if 32)">
+		<rule name="TelephonyManager.listen" />
+	</rulematch>
+	<h2>Content providers</h2>		
+	<any-of name="Contacts" score="3" message="Accessing the contacts">
+		<element name="ContactsURI"/>
+		<element name="ContactsAPI"/>
+		<element name="ContactsDirect"/>
+	</any-of>
+	
+	<any-of name="Calendars" score="3" message="Accessing the calendars">
+		<element name="CalendarsURI"/>
+		<element name="CalendarsAPI"/>
+		<element name="CalendarsDirect"/>
+	</any-of>
+
+	<any-of name="CallLog" score="5" message="Accessing the call-logs">
+		<element name="CalllogURI"/>
+		<element name="CalllogAPI"/>
+		<element name="CalllogDirect"/>
+	</any-of>
+
+	<any-of name="APN management" score="5" message="Playing with APN settings">
+		<element name="APNDirect"/>
+	</any-of>
+	
+	<any-of name="SmsProvider" score="3" message="Accessing the SMS/MMS folders">
+		<element name="SmsURI"/>
+		<element name="SmsDirect"/>
+		<element name="SmsBoxAPI"/>
+	</any-of>
+	<div> The following captures sending SMS without much control</div>
+	<stringmatch score="20" name="sms.delayed" message="SMS sending seems delayed : weird" pattern="\[DELAYED SMS\]" />
+	<stringmatch score="10" name="sms.nocontrol" message="SMS sending may be not under user control" pattern="\[NOCONTROL SMS\]" />
+	<stringmatch score="20" name="sms.discard" message="Application may discard SMS" pattern="\[SMS INTERCEPTION\]" />
+	
+	<div> The following captures a mix of internet access and reading private data</div>
+	<all-of name="MixInternetContacts" score="3" message="Internet access and contacts">
+		<element name="Internet"/>
+		<element name="Contacts"/>
+	</all-of>
+	
+	<all-of name="MixInternetSMS" score="3" message="Internet access and contacts">
+		<element name="Internet"/>
+		<element name="SmsProvider"/>
+	</all-of>
+	<stringmatch name="ShortSMSCodes" pattern="short SMS number" score="20" message="Short SMS numbers" />
+	<stringmatch name="SuExec" pattern="Explicit su call" score="20" message="Explicit su!" />
+	<div> The following capture explicit URL refering to content providers</div>
+	<stringmatch name="ContactsDirect" pattern="content://contacts" />
+	<stringmatch name="CalllogDirect" pattern="content://call-log" />
+	<stringmatch name="CalendarsDirect" pattern="content://calendar" />
+	<stringmatch name="SmsDirect" pattern="content://[ms]ms" />
+	<stringmatch name="APNDirect" pattern="content://telephony/carriers" />
+	<div> The following captures the use of URI stored in the Android profile</div>
+	<stringmatch name="ApplicationURI" pattern="ApplicationURI"/>
+	<stringmatch name="browserURI" pattern="BrowserBookmarksURI|BrowserInlineURI"/>
+	<stringmatch name="CalendarsURI" pattern="CalendarExtendedPropertiesURI|CalendarCalendarAlertsURI|CalendarCalendarAlertsInstanceURI|CalendarRemindersURI|CalendarBusyBitsURI|CalendarInstancesURI|CalendarInstancesByDayURI|CalendarEventsURI|CalendarEventsDeletedURI|CalendarAttendeesURI|CalendarCalendarsURI|CalendarCalendarURI" />
+	<stringmatch name="CalllogURI" pattern="CallLogURI" />
+	<stringmatch name="CheckinURI" pattern="CheckinCrashesURI|CheckinPropertiesURI|CheckinStatsURI|CheckinEventsURI" />
+	<stringmatch name="ContactsURI" pattern="ContactsContractSettingsURI|ContactsContractAggregationExceptionsURI|ContactsContractGroupsURI|ContactsContractStructuredPostalURI|ContactsContractEmailURI|ContactsContractEmailLookupURI|ContactsContractEmailFilterURI|ContactsContractPhoneURI|ContactsContractPhoneFilterURI|ContactsContractStatusUpdatesURI|ContactsContractRawContactsEntityURI|ContactsContractDataURI|ContactsContractRawContactsURI|ContactsContractContactsURI|ContactsContractContactsLookupURI|ContactsContractContactsVcardURI|ContactsContractContactsFilterURI|ContactsContractContactsStrequentURI|ContactsContractContactsStrequentFilterURI|ContactsContractContactsGroupURI|ContactsContractSyncStateURI|ContactsExtensionsURI|ContactsPhotosURI|ContactsOrganizationsURI|ContactsPresenceURI|ContactsContactMethodsURI|ContactsContactMethodsEmailURI|ContactsGroupMembershipURI|ContactsGroupMembershipRawURI|ContactsPhonesURI|ContactsPhonesFilterURI|ContactsGroupsURI|ContactsGroupsDeletedURI|ContactsPeopleURI|ContactsPeopleFilterURI|ContactsPeopleDeletedURI|ContactsPeopleEmailIMFilterURI|ContactsSettingsURI|ContactsContactsURI"/>
+	<stringmatch name="SettingsURI" pattern="BookmarksURI|GServicesURI|SecureURI|SystemURI"/>
+	<stringmatch name="SmsURI" pattern="CarriersURI|PendingMessagesURI|MmsSmsURI|MmsSmsConversationsURI|MmsSmsFilterByPhoneURI|MmsSmsUndeliveredURI|MmsSmsDraftURI|MmsSmsLockedURI|MmsSmsSearchURI|MmsScrapSpaceURI|MmsRateURI|MmsOutboxURI|MmsDraftURI|MmsSentURI|MmsInboxURI|MmsURI|MmsReportRequestURI|MmsReportStatusURI|ThreadsURI|ObsoleteThreadsURI|SmsConversationsURI|SmsOutboxURI|SmsDraftURI|SmsSentURI|SmsInboxURI|SmsURI"/>
+	<stringmatch name="dcim" pattern="DCIM/Camera"/>
+	
+	<all-of name="Dcim_Write" score="10" message="Risk of photo tampering">
+		<element name="WriteSD"/>
+		<element name="dcim"/>
+	</all-of>
+
+	<div> The following captures the use of high level android api to access content providers</div>
+	<rulematch name="CalendarsAPI"> <rule name="CalendarGroup" /> </rulematch>
+	<rulematch name="ContactsAPI"> <rule name="ContactGroup" /> </rulematch>
+	<rulematch name="CalllogAPI">  <rule name="CallLogGroup" /> </rulematch>
+	<rulematch name="SmsBoxAPI">   <rule name="SmsBoxGroup" /> </rulematch>
+
+	<h2> Sending SMS</h2>
+	<rulematch score="3" name="SMSsender" message="Sending SMS" >
+		<rule name="SmsSendGroup" />
+	</rulematch>
+	<h2> Receiving SMS</h2>
+	<any-of score="5" name="SMSreceiver" message="Receiving SMS/MMS" >
+		<element name="ReceiveSMS" />
+		<element name="ReceiveMMS" />
+	</any-of>
+	<h2> Location tracking </h2>
+	<rulematch score="5" name="LocationTracking" message="Using geo-localization APIs">
+		<rule name="LocationGroup" />
+		<rule name="Telephony.getCellLocation"/>
+	</rulematch>
+	<h2> System management </h2>
+	<rulematch score="5" name="NFC" message="Using NFC Service">
+		<rule name="NFCGroup" />
+	</rulematch>
+	<rulematch score="5" name="dm" message="Device management">
+		<rule name="DMGroup" />
+	</rulematch>
+	<rulematch score="5" name="Keys" message="Key management (key store)">
+		<rule name="KeyGroup" />
+	</rulematch>
+	
+	<rulematch score="3" name="NetMan" message="Network management">
+		<rule name="BTGroup" />
+		<rule name="WifiGroup"/>
+		<rule name="NetworkGroup"/>
+	</rulematch>
+	<rulematch score="7" name="socket" message="Low-level network access">
+		<rule name="SocketsGroup"/>
+	</rulematch>
+	<rulematch score="5" name="JavaScript" message="Java/JavaScript bridge">
+		<rule name="WebView.addJavaScriptInterface"/>
+	</rulematch>
+	<h2> Java low level APIs </h2>
+	<stringmatch score="20" name="elf" message="ELF in APK" pattern="\[ELF IN APK\]" />
+	<stringmatch score="20" name="apk" message="APK in APK" pattern="\[APK IN APK\]" />
+	<rulematch score="10" name="unsafe" message="Untyped code">
+		<rule name="UnsafeGroup" />
+	</rulematch>
+	<rulematch score="5" name="exec" message="Exec applications on the handset">
+		<rule name="exec"/>
+	</rulematch>
+	<rulematch score="5" name="native" message="Native libraries used">
+		<rule name="System.load"/>
+		<rule name="System.loadLibrary"/>
+	</rulematch>
+	<rulematch score="5" name="dexLoad" message="Dynamic Dex loading">
+		<rule name="dynLoad"/>
+	</rulematch>
+	<rulematch score="3" name="javaLoad" message="Dynamic Java class loading">
+		<rule name="classloader"/>
+	</rulematch>
+			
+	<rulematch score="5" name="Reflection" message="Invocation of methods through reflection">
+		<rule name="Method.invoke"/>
+	</rulematch>
+	<rulematch score="2" name="Alarms" message="Setting alarms to wake-up an app.">
+		<rule name="alarm"/>
+	</rulematch>		
+	<h2> Displaying the URLs </h2>				
+	<catcher message="URL used in the application" pattern="http[s]?://[^/&#34;]*"/>
+</score>

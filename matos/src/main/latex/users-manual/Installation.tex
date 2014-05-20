@@ -1,0 +1,154 @@
+\chapter{Installation}
+
+
+Make sure you have a Java Runtime Environment installed first
+(cf. System Requirements, page \pageref{SysReqs}).
+
+\section{Windows Version}
+Run the \texttt{setup.exe} file provided in your \ma distribution. The
+installer works as a very classical Windows application installer,
+just keep all default settings and press \texttt{Next} twice then
+\texttt{Install}. A more detailed explanation follows:
+\begin{itemize}
+\item The first screen lets you select if you want to install the menu shortcuts in the main Startup menu. The answer is usually yes
+\item The second screen lets you select the default destination folder. Consider the next warning if you are not using Windows XP
+%\item The third screen lets you define a folder where the results of your
+analysis will be stored. By default it is in the matos folder.
+\item The last screen installs the tool. The complete installation requires around 5Mbytes.
+\item An ``uninstaller'' is provided with the tool.
+\end{itemize}
+
+Warning: we cannot guarantee that this software is compatible with either
+Windows Vista or Windows 7. Nevetheless, it is written as a pure Java
+application and should work on those newer operating systems.
+
+%\paragraph{Warning if you are not using XP} 
+% \begin{itemize}
+% \item Space characters in paths are badly handled. So, you must install the
+%   \ma at the root level of the C: volume for example, rather than in
+%   the traditional \texttt{Program Files} directory.
+% \item The \texttt{matos.wsf} script is the one used to
+% start the tool in interactive mode. This launcher makes use of the
+% VBScript language, for which Windows XP has a built-in interpretor;
+% for the NT4 version however, install the scripting languages package from
+% Microsoft called \emph{Windows Script}. Check-out
+% http://www.microsoft.com/downloads. The file you need is known as 
+% \texttt{scr56en.exe}. 
+% \end{itemize}
+
+\subsection*{Warning about changes in your Java configuration}
+If you install the \ma \emph{then later} change the installation directory
+of your Java environment, the \ma won't find the new place by itself. It is
+necessary to update the \texttt{matos.bat} launch script accordingly; this update
+can be done automatically by executing the \texttt{initlauncher.wsf} script.
+
+\section{Linux Version}
+The software is provided as a kind of configurable and self-extractable archive
+implemented as a shell-script. Open a terminal window and launch the
+\texttt{./linux-installer} command in the directory where you put it.
+
+The installer will perform the following step:
+\begin{itemize}
+\item it checks if all the shell commands it needs are available
+\item it tries to find a java executable on your machine using simple 
+heuristics
+\item it proposes paths for the executable and the \ma library
+\item it installs the software itself
+\item it offers the possibility to configure a work repository where all the
+results of analysis will be stored.
+\end{itemize}
+
+The installer tries to guess reasonable values for the installation paths. Just
+type return if they are correct, otherwise, type in the right value.
+
+Depending on whether you are logged as the super-user (root) or not, the 
+installer will attempt a multi-user or a single user installation and
+change the default settings.
+
+The installation process has been tested on Mandrake/Mandriva and RedHat 
+distributions. It relies on fairly standard tools and should work on 
+other Linux distributions. Contact the support
+team if you encounter any problem during the installation phase.
+
+Make sure the \texttt{bin} folder of your installation directory
+is included in your \texttt{PATH} environment variable, so that the
+main command \texttt{matos} can be found.
+
+\section{Adding Your License File} \label{AddingLicenseYourFile}
+
+When you purchased the \ma, you received a license file. All you need to do
+is to copy that file to the \texttt{license} folder that you'll find
+in your installation directory on Windows (\texttt{lib/matos/license}
+folder on Linux). To avoid problems when you update your version of the \ma, we
+recommend that you keep a copy of that file in a safe place and never modify it. Contact the support
+team if you encounter any problem related to the license.
+
+\ifthenelse{\equal{\Gallery}{true}}{
+\section{Creating database} \label{CreatingDatabase}
+\textbf{If you do not plan to use this feature, please skip this section.}
+
+There are different modes of operations of the \ma. In some of them, it is
+useful to back-up your results in a real database. 
+The \ma tool is able to use a SQL database to store CID files and to
+manage the results  of analysis that have been performed on MIDlets.
+
+
+The installation procedure is specific to the kind of database that will be used. 
+We give here an example of a such installation for a MySQL \footnote{Although
+the SQL commands issued by Coverity are pure standard SQL commands, we
+recommend to use this database engine.} database, on a Windows system:
+
+\begin{itemize}
+  \item First, you need to install the database management system itself (if it
+  is not already installed on the computer). An easy way to do so is to download
+  and install EasyPHP (http://www.easyphp.org/).
+
+  \item Second, you need to create the database, a user and the necessary
+  tables that the \ma will use. To launch the database administration tool,
+  rigth click on EasyPHP's tray icon and choose 'Administration', then click on 
+  the 'Manage Database' link, and then click on the SQL icon on the left frame
+  to open a query window. 
+%  Click on 'Import file' and browse to select the file named
+%  \texttt{initdb.sql} that comes with the installation files and click on 'Go'.  
+  Select the 'mysql' database, copy paste the following mysql script into the text area and click on 'Go'
+\end{itemize}
+  \verbatiminput{initdb.txt} 
+
+  By default, the database can only be accessed by the local computer.
+  If you want it to be accessible from other computers, you have to:
+  	\begin{itemize}
+	    \item Set a root password (for security reasons):
+		\begin{itemize}
+			\item Launch the phpMyAdmin (rigth click on EasyPHP's tray icon and choose
+			'Administration') and click on 'Manage Database' then on 'Privileges' and
+			edit privileges of the root user. Set the password and click on the 'Go' 
+			button.
+			\item Edit the C:$\backslash$Program Files$\backslash$EasyPHP1.8$\backslash$phpmyadmin$\backslash$config.inc.php and
+			put the new password for the root user:
+			\newline \texttt{\$cfg['Servers'][\$i]['user'] = 'root';}
+ 			\newline \texttt{\$cfg['Servers'][\$i]['password'] ='the-new-password-4-root';} 
+ 			\newline Save the file.
+	    \end{itemize}
+	    \item Configure the database to allow distant access:
+	    Rigth click on EasyPHP's tray icon and choose the menu entry
+	    \texttt{Configuration->MySQL} to open the \texttt{my.ini} configuration
+	    file and add a semi column (;) before the line defining the binding address
+	    to comment it out:\newline
+	    \texttt{bind-address=127.0.0.1} 
+	    \newline Save the file.
+	\end{itemize}
+
+Use the following parameters to configure the \ma tool to connect to this
+newly created database (using menu Tools->Databse Management
+Tool->Edit->Database properties\ldots):
+  	\begin{itemize}
+        \item \texttt{\textbf{matos.dbUrl=jdbc:mysql://localhost/matos}} ,
+        \item \texttt{\textbf{matos.dbLogin=matos\_user}} ,
+	    \item \texttt{\textbf{matos.dbPasswd=matosPassword}} 
+    \end{itemize}
+
+}{}
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "Users-manual"
+%%% End: 

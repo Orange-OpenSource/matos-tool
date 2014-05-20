@@ -1,0 +1,190 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<matos>
+<!-- Overrides the display of phone numbers to warn when short codes are used -->
+<report name="OVER-PHONE-NUMBER">
+  <pseudoString>	
+    <filter name="SMS-ADDRESS-1" pattern="^[0-9][0-9][0-9][0-9]?[0-9]?[0-9]?$" verdict="PASSED">
+      <tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">[short SMS number]</font></td></tr>&#13;
+    </filter>
+    <filter name="SMS-ADDRESS-3" pattern="(.*)$" verdict="PASSED">
+      <tr><td class="head">Argument 1:</td><td class="result">%r</td></tr>&#13;
+    </filter>
+  </pseudoString>
+</report>
+
+<report name="SmsManager.sendTextMessage-0">
+  <conjunction> <ref name="OVER-PHONE-NUMBER" pos="0"/> </conjunction>
+</report>
+
+<report name="SmsManager.sendMultiparTextMessage-0">
+  <conjunction> <ref name="OVER-PHONE-NUMBER" pos="0"/> </conjunction>
+</report>
+
+<report name="SmsManager.sendDataMessage-0">
+  <conjunction> <ref name="OVER-PHONE-NUMBER" pos="0"/> </conjunction>
+</report>
+
+<report name="Runtime.exec-4-0">
+  <pseudoString>	
+    <filter name="EXEC-1" pattern="^su( .*)?$" verdict="PASSED">
+      <tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">[Explicit su call]</font></td></tr>&#13;
+    </filter>
+    <filter name="EXEC-2" pattern="(.*)$" verdict="PASSED">
+      <tr><td class="head">Argument 1:</td><td class="result">%r</td></tr>&#13;
+    </filter>
+  </pseudoString>
+</report>
+
+<report name="URL-PRIVACY-BEGIN">
+	<message>&lt;tr&gt;<td class="head">URL:</td>&lt;td class="result"&gt;%r</message>
+</report>
+
+<report name="URL-PRIVACY-TELEPHONY">
+  <pseudoString global="true">	
+    <filter name="URL-PRIVACY-T1" pattern=".*android.telephony.TelephonyManager.get(Line1Number|DeviceId|SubscriberId).*" verdict="PASSED"> <font color="red">[PRIVACY LEAK: IDENTITY]</font></filter>
+    <filter name="URL-PRIVACY-T2" pattern="(.*)$" verdict="PASSED"> </filter>
+  </pseudoString>
+</report>
+
+<report name="URL-PRIVACY-LOCATION">
+  <pseudoString global="true">
+    <filter name="URL-PRIVACY-L1" pattern=".*android.location.Location.get.*" verdict="PASSED"> <font color="red">[PRIVACY LEAK: LOCATION]</font></filter>
+    <filter name="URL-PRIVACY-L2" pattern="(.*)$" verdict="PASSED"> </filter>
+  </pseudoString>
+</report>
+
+<report name="URL-PRIVACY-EMAIL">
+  <pseudoString global="true">
+    <filter name="URL-PRIVACY-E1" pattern=".*android.accounts.Account.name.*" verdict="PASSED"> <font color="red">[PRIVACY LEAK: EMAIL]</font></filter>
+    <filter name="URL-PRIVACY-E2" pattern="(.*)$" verdict="PASSED"> </filter>
+  </pseudoString>
+</report>
+
+<report name="URL-PRIVACY-END">
+	<message>&lt;/td&gt;&lt;/tr&gt;&#13;</message>
+</report>
+
+<report name="URL-PRIVACY">
+  <conjunction> 
+  	<ref name="URL-PRIVACY-BEGIN" />
+  	<ref name="URL-PRIVACY-TELEPHONY" />
+  	<ref name="URL-PRIVACY-LOCATION" />
+  	<ref name="URL-PRIVACY-EMAIL" />
+  	<ref name="URL-PRIVACY-END" /> 
+  </conjunction>
+</report>
+
+<report name="net.URL-1-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="net.URL-2-2">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="net.URL-3-2">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="net.URL-4-3">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="net.URL-5-4">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="net.URL-6-4">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="URI-1-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="URI-2-3">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="URI-3-5">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="URI-3-6">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="URI-3-7">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="URI-4-3">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="URI-4-4">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="URI-5-4">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="URI-5-5">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="Uri.builder.path-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="Uri.builder.appendPath-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="Uri.builder.appendEncodedPath-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="android.Uri.parse-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="HttpHead-2-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="HttpPut-2-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="HttpGet-2-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="HttpPost-2-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+
+<report name="HttpTrace-2-1">
+  <conjunction> <ref name="URL-PRIVACY"/> </conjunction>
+</report>
+</matos>

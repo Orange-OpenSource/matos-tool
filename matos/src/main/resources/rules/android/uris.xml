@@ -1,0 +1,64 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h3>URI</h3>
+	<div class="AuxFoldBox">
+		There are two systems of Uri classes in Android. Standard Java Uri (named URI
+		 or URL) are used by low level connections. Android Uri (Uri class) are used
+		 by intents, content resolvers and other high level Android mechanisms. The
+		 first ones are only necessary for rather low level connections (that can be source
+		 of problems).
+	</div>
+	<div class="FoldBox">
+		On distingue deux niveaux d'URI. Ceux de Java (URI ou URL) et utilisés par
+		les connexions de bas niveau et ceux d'Android (Uri). Les premiers
+		n'apparaissent que si on a besoin de connexions de bas niveau
+		donc potentiellement à problèmes.
+	</div>
+	<callRef name="Uri.Builder.path" />
+	<callRef name="Uri.Builder.build" />
+	<callRef name="Uri.Builder.scheme" />
+	<callRef name="Uri.Builder.appendEncodedPath" />
+	<callRef name="Uri.Builder.appendPath" />
+	<callRef name="Uri.Builder.encodedPath" />
+
+	<callRef name="android.Uri.parse" />
+	<callRef name="android.Uri.fromFile" />
+	<callRef name="android.Uri.fromParts" />
+	<callRef name="URI-1" />
+	<callRef name="URI-2" />
+	<callRef name="URI-3" />
+	<callRef name="URI-4" />
+	<callRef name="URI-5" />
+	<callRef name="net.URL-1" />
+	<callRef name="net.URL-2" />
+	<callRef name="net.URL-3" />
+	<callRef name="net.URL-4" />
+	<callRef name="net.URL-5" />
+	<callRef name="net.URL-6" />
+	<callRef name="URLConnection.getInputStream" />
+	<callRef name="URL.openStream" />
+	<callRef name="URL.toURI" />
+	<callRef name="WebAddress"/>
+	<callRef name="WebAddress.setHost"/>
+	<callRef name="WebAddress.setPath"/>
+	<callRef name="WebAddress.setScheme"/>
+	
+</sdiv>

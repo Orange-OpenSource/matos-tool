@@ -1,0 +1,153 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+<sdiv name="ContentProviderGroup">
+	<h2> Content Providers</h2>
+	<div class="AuxFoldBox">
+		These methods can be used to acess (query or modify) any content provider whether
+		they belong to the system or an application. 
+ 	</div>
+	<div class="FoldBox">
+		Ces différentes APIs permettent d'accéder à un content provider et d'interoger
+		ou modifier les tables qu'il contient. 
+ 	</div>
+	<callRef name="ContentResolver.query" />
+	<callRef name="ContentResolver.insert" />
+	<callRef name="ContentResolver.update" />
+	<callRef name="ContentResolver.delete" />
+	<callRef name="ContentResolver.bulkInsert" />
+	<callRef name="ContentResolver.registerContentObserver" />
+	<callRef name="ContentResolver.openInputStream" />
+	<callRef name="ContentResolver.openOutputStream" />
+	<callRef name="ContentResolver.openOutputStream-2" />
+	<callRef name="ContentProvider.acquireProvider-1" />
+	<callRef name="ContentProvider.acquireProvider-2" />
+	<callRef name="ContentProvider.notifyChange-1" />
+	<callRef name="ContentProvider.notifyChange-2" />
+	<callRef name="ContentProvider.acquireContentProviderClient-1" />
+	<callRef name="ContentProvider.acquireContentProviderClient-2" />
+	<callRef name="ContentProviderOperation.newAssertQuery" />
+	<callRef name="ContentProviderOperation.newDelete" />
+	<callRef name="ContentProviderOperation.newInsert" />
+	<callRef name="ContentProviderOperation.newUpdate" />
+	<callRef name="CursorLoader"/>
+	<callRef name="CursorLoader.setProjection"/>
+	<callRef name="CursorLoader.setSelection"/>
+	<callRef name="CursorLoader.setSelectionArgs"/>
+	<callRef name="CursorLoader.setUri"/>
+	<sdiv>
+		<h3>Content Values</h3>
+		<div class="AuxFoldBox">
+			These values are used for setting content providers. It is the android equivalent
+			of values group as used in insert statement.
+		</div>
+		<div class="FoldBox">
+			On utilise les Content values pour mettre à jour des content providers. Ce sont les
+			équivalents Android des groupes Values dans la syntaxe SQL.
+		</div>
+		<callRef name="ContentValues.put-1"/>
+		<callRef name="ContentValues.put-2"/>
+		<callRef name="ContentValues.put-3"/>
+		<callRef name="ContentValues.put-4"/>
+		<callRef name="ContentValues.put-5"/>
+		<callRef name="ContentValues.put-6"/>
+		<callRef name="ContentValues.put-7"/>
+		<callRef name="ContentValues.put-8"/>
+		<callRef name="ContentValues.put-9"/>
+	</sdiv>
+</sdiv>
+<sdiv>
+	<h2>Personal information</h2>
+	<div class="AuxFoldBox">
+		The APIs listed here are the high level APIs of the system 
+		content-providers giving access to personal information. It is always
+		possible to access content providers directly either with a URI exposed by the
+		Android system or with a hand-crafted URI.
+	</div>
+	<div class="FoldBox">
+		Les APIs listées ici sont les accès de haut niveau aux Content
+		Providers systèmes contenant des informations personnelles. 
+		Il est toujours possible d'y accéder
+		via	les URI de base comme des providers génériques.
+	</div>
+
+	<sdiv name="CalendarGroup">
+		<h3>Calendar</h3>
+		<callRef name="Calendar.Events.query-1" />
+		<callRef name="Calendar.Events.query-2" />
+		<callRef name="Calendar.Events.insertVEvent" />
+		<callRef name="Calendar.Instances.query-1" />
+		<callRef name="Calendar.Instances.query-2" />
+		<callRef name="Calendar.BusyBits.query" />
+		<callRef name="Calendar.CalendarAlerts.insert" />
+		<callRef name="Calendar.CalendarAlerts.scheduleAlarm"/>
+		<callRef name="Calendar.CalendarAlerts.query" />
+		<callRef name="Calendar.CalendarAlerts.scheduleAlarm"/>
+		<callRef name="Calendar.Calendars.query" />
+		<callRef name="Calendar.EventDays.query"/>
+		<callRef name="Calendar.Calendars.deleteCalendarsForAccount"/>
+		<callRef name="Calendar.Attendees.query"/>
+		<callRef name="Calendar.Instances.query1"/>
+		<callRef name="Calendar.Instances.query2"/>
+		<callRef name="Calendar.Reminders.query"/>
+	</sdiv>
+	<sdiv name="ContactGroup">
+		<h3>Contacts</h3>
+		<callRef name="Contacts.People.addToGroup-1" />
+		<callRef name="Contacts.People.addToGroup-2" />
+		<callRef name="Contacts.People.createPersonInMyContactsGroup" />
+		<callRef name="Contacts.People.queryGroups" />
+		<callRef name="Contacts.People.setPhotoData" />
+		<callRef name="Contacts.People.loadContactPhoto" />
+		<callRef name="Contacts.People.addToMyContactsGroup" />
+		<callRef name="Contacts.getLookupUri"/>
+		<callRef name="Contacts.getLookupUri-2"/>
+		<callRef name="Contacts.lookupContact"/>
+		<callRef name="Contacts.openContactPhotoInputStream"/>
+	</sdiv>
+</sdiv>
+<sdiv>
+	<h2>Various content providers</h2>
+		<div class="AuxFoldBox">
+			Various content providers.
+  			</div>
+		<div class="FoldBox">
+			Des content providers divers.
+		</div>
+	<callRef name="Applications.search"/>
+	<!-- It is a setting API, not a PIM api -->
+	<callRef name="Contacts.Settings.getSettings"/>
+	<callRef name="Contacts.Settings.setSettings"/>
+	<callRef name="DrmStore.addDrmFile-1"/>
+	<callRef name="DrmStore.addDrmFile-2"/>
+	<callRef name="Media.query-1"/>
+	<callRef name="Media.query-2"/>
+	<callRef name="Media.query-3"/>
+	<callRef name="Video.query"/>
+	<callRef name="SearchRecentSugestions"/>
+	<callRef name="SearchRecentSugestions.clearHistory"/>
+	<callRef name="SearchRecentSugestions.truncateHistory"/>
+	<callRef name="SearchRecentSugestions.saveRecentQuery"/>
+	<callRef name="UserDictionary.addWord"/>
+	<callRef name="MediaStore.query-1"/>
+	<callRef name="MediaStore.query-2"/>
+	<callRef name="MediaStore.query-3"/>
+</sdiv>
+</sdiv>

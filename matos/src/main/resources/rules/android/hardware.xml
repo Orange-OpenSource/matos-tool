@@ -1,0 +1,148 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h2>Hardware</h2>
+	<sdiv name="SoundGroup">
+		<h3>Sound management</h3>
+		<div class="AuxFoldBox">
+			Used to modify sound parameters. There is no real security risks but their use
+			can be a bother. 
+		</div>
+		<div class="FoldBox">
+			Modfication des paramètres de gestion du son.
+		</div>
+		<callRef name="AudioManager.setParameter" />
+		<callRef name="AudioManager.setMode" />
+		<callRef name="AudioManager.setParameters" />
+		<callRef name="AudioManager.setRouting" />
+		<callRef name="AudioManager.setRingerMode" />
+		<callRef name="AudioManager.setStreamVolume" />
+		<callRef name="AudioManager.adjustStreamVolume" />
+		<callRef name="AudioManager.adjustVolume" />
+		<callRef name="AudioManager.adjustSuggestedStreamVolume" />
+		<callRef name="AudioManager.setStreamSolo" />
+		<callRef name="AudioManager.setStreamMute" />
+		<callRef name="AudioManager.setVibrateSettings" />
+		<callRef name="AudioManager.setSpeakerphoneOn" />
+		<callRef name="AudioManager.setBluetoothScoOn" />
+		<callRef name="AudioManager.setBluetoothA2dpOn" />
+		<callRef name="AudioManager.startBluetoothSco"/>
+		<callRef name="AudioManager.stopBluetoothSco"/>
+		<callRef name="AudioManager.setWiredHeadsetOn" />
+		<callRef name="AudioManager.setMicrophoneMute" />
+	</sdiv>
+	<sdiv name="PowerGroup">
+		<h3> Shutdown </h3>
+		<div class="AuxFoldBox">
+		APIs that can restart the handset (protected). 
+		</div>
+		<div class="FoldBox">
+		APIs utilisées pour arrêter ou redémarrer le terminal (protégées).
+		</div>
+		<callRef name="Power.shutdown" />
+		<callRef name="Power.reboot" />
+		<callRef name="PowerManager.reboot"/>
+	</sdiv>
+	<sdiv name="PMGroup">
+		<h3> Power Management</h3>
+		<div class="AuxFoldBox">
+			WakeLock can be used to prevent the terminal from turning off. They
+			are dangerous if badly used because they drain the batterie. Unfortunately
+			static analysis can only detect their use not when they are used and if they
+			are correctly released.
+		</div>
+		<div class="FoldBox">
+			Les WaveLock permettent de vérouiller la mise en veille du terminal.
+			Elles sont dangereuses
+			si utilisées à mauvais essient (vident la batterie). Malheureusement,
+			on ne peut que constater
+			l'utilisation de l'API et pas déterminer quand elle est utilisée et en
+			particulier si
+			le verrou est correctement relâché.
+		</div>
+		<callRef name="Power.acquireWakeLock" />
+		<callRef name="Power.releaseWakeLock" />
+		<callRef name="PowerManager.goToSleep" />
+		<callRef name="PowerManager.userActivity" />
+		<callRef name="PowerManager.newWakeLock" />
+		<callRef name="WakeLock.acquire-1" />
+		<callRef name="WakeLock.acquire-2" />
+		<callRef name="WakeLock.release-1" />
+		<callRef name="WakeLock.release-2" />
+		<callRef name="MulticastLock.acquire" />
+		<callRef name="MulticastLock.release" />
+		<callRef name="WifiLock.acquire" />
+		<callRef name="WifiLock.release" />
+	</sdiv>
+	<sdiv name="PhotoGroup">
+		<h3>Taking pictures</h3>
+		<div class="AuxFoldBox">
+		APIs to take picture or opening a preview.
+		</div>
+		<div class="FoldBox">
+		APIs pour prendre des photos.
+		</div>
+		<callRef name="Camera.startPreview" />
+		<callRef name="Camera.takePicture-1" />
+		<callRef name="Camera.takePicture-2" />
+	</sdiv>
+	<sdiv name="SensorGroup">
+		<h3>Using sensors</h3>
+		<div class="AuxFoldBox">
+		APIs to use sensors. Very aggressive and smart use of it can leak privacy information.
+		</div>
+		<div class="FoldBox">
+		APIs de contrôle des capteurs. Leur utilisation peut réveller dans des cas extrêmes des informations
+		personnelles. 
+		</div>
+		<callRef name="SensorManager.getAltitude"/>
+		<callRef name="SensorManager.getDefaultSensor"/>
+		<callRef name="SensorManager.getInclination"/>
+		<callRef name="SensorManager.getOrientation"/>
+		<callRef name="SensorManager.registerListener-1"/>
+		<callRef name="SensorManager.registerListener-2"/>
+		<callRef name="SensorManager.registerListener-3"/>
+		<callRef name="SensorManager.registerListener-4"/>
+	</sdiv>
+	<sdiv name="USBGroup">
+		<h3>USB</h3>
+		<callRef name="UsbManager.getAccessoryList"/>
+		<callRef name="UsbManager.getDeviceList"/>
+		<callRef name="UsbManager.openAccessory"/>
+		<callRef name="UsbManager.openDevice"/>
+	</sdiv>	
+	<sdiv name="VBGroup">
+		<h3>Vibrator</h3>
+		<callRef name="Vibrator.cancel" />
+		<callRef name="Vibrator.vibrate-1" />
+		<callRef name="Vibrator.vibrate-2" />
+	</sdiv>
+	<sdiv name="KBGroup">
+		<h3>Keyboard</h3>
+		<div class="AuxFoldBox">
+			With <code>disableKeyguard</code>, an application can disable the keyboard.
+		</div>
+		<div class="FoldBox">
+			Il est possible de bloquer l'utilisation du clavier avec
+			<code>disableKeyguard</code>
+		</div>
+		<callRef name="KeyguardManager.disableKeyguard" />
+	</sdiv>
+</sdiv>

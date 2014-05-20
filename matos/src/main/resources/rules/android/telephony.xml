@@ -1,0 +1,213 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h2>Telephony</h2>
+	<sdiv name="TelephonyGroup">
+		<h3> Gestion du téléphone </h3>
+		<div class="AuxFoldBox">
+			These rules control the telephony service. Most applications have
+			no
+			reason to access to these services. The most common uses are:
+			<ul>
+				<li>
+					Stalking the phone using
+					<code> getDeviceId </code>
+					or worse
+					<code> getLineNumber1 </code>
+				</li>
+				<li> Identify the country, operator and if you are roaming </li>
+				Identify changes
+				<li>
+					phone user with
+					<code> listen </code>
+					. The integer
+					given is the sum of the following flags:
+					<ul>
+						<li> 1 - state of the service (GSM) </li>
+						<li> 2 or 256 - signal strength </li>
+						<li> 4 - message waiting indicator </li>
+						<li> 8 - indicating call forwarding </li>
+						<li> 16 - location of cells </li>
+						<li> 32 - handset status </li>
+						<li> 64 - line status data </li>
+						<li> 128 - network activity data </li>
+					</ul>
+				</li>
+			</ul>
+			In particular, mode 32 (CALL_STATE) provides a way to access all
+			the numbers called.
+		</div>
+		<div class="FoldBox">
+			Ces règles contrôlent le service de téléphonie. La plupart des
+			applications n'ont aucune
+			raison d'accéder à ces services. Les utilisations les plus fréquentes
+			sont:
+			<ul>
+				<li>
+					Traquer le téléphone en utilisant
+					<code>getDeviceId</code>
+					ou pire
+					<code>getLineNumber1</code>
+				</li>
+				<li> Identifier le pays, l'opérateur et si on est en roaming </li>
+				<li>
+					Repérer des changements d'utilisation du téléphone avec
+					<code>listen</code>
+					. L'entier
+					passé est la somme des drapeaux suivants :
+					<ul>
+						<li> 1 - état du service (GSM) </li>
+						<li> 2 ou 256 - force du signal </li>
+						<li> 4 - indicateur de message en attente </li>
+						<li> 8 - indication de transfert d'appel </li>
+						<li> 16- localisation des cellules </li>
+						<li> 32 - état du combiné  </li>
+						<li> 64 - état de la ligne data </li>
+						<li> 128 - activité réseau data </li>
+					</ul>
+				</li>
+			</ul>
+			En particulier, le mode 32 (CALL_STATE) permet d'obtenir tous les
+			numéros appelés.
+		</div>
+		<callRef name="TelephonyManager.listen" />
+		<callRef name="TelephonyManager.getVoiceMailNumber" />
+		<callRef name="TelephonyManager.getDeviceId" />
+		<callRef name="TelephonyManager.getCellLocation" />
+		<callRef name="TelephonyManager.getSuscriberId" />
+		<callRef name="TelephonyManager.getLine1Number" />
+		<callRef name="TelephonyManager.getNeighbouringCellInfo" />
+		<callRef name="TelephonyManager.getCallState" />
+		<callRef name="TelephonyManager.getDataActivity" />
+		<callRef name="TelephonyManager.getDataState" />
+		<callRef name="TelephonyManager.isNetworkRoaming" />
+		<callRef name="TelephonyManager.getSimState" />
+		<callRef name="TelephonyManager.getNetworkOperatorName" />
+		<callRef name="TelephonyManager.getNetworkOperator" />
+		<callRef name="TelephonyManager.getNetworkCountryIso" />
+		<callRef name="TelephonyManager.getSimOperator" />
+		<callRef name="TelephonyManager.getSimOperatorName" />
+		<callRef name="TelephonyManager.getSimCountryIso" />
+		<callRef name="TelephonyManager.getSimSerialNumber" />
+	</sdiv>
+	<sdiv name="SmsSendGroup">
+		<h3> Sending SMS </h3>
+		<div class="AuxFoldBox">
+			These functions allow you to send SMS or manipulate messages between the
+			SIM and the mobile.
+
+			For an SMS, it must, if possible, identify the target number. This is
+			just one of the
+			two possible approaches for sending an SMS. The other, cleaner and
+			simpler is to send
+			an Intent to the manager's native SMS.
+
+			The use of message management functions (copy, delete, update, getAll
+			Message) is legitimate
+			only in an application dedicated to this task. 
+		</div>
+		<div class="FoldBox">
+			Ces fonctions permettent d'envoyer des SMS ou de manipuler les
+			messages entre la SIM et
+			mobile.
+
+			En cas d'envoi de SMS, il faut si possible, identifier le numéro
+			cible. Ce n'est qu'une des
+			deux approches possibles pour envoyer un SMS. L'autre, plus propre et
+			plus simple consiste
+			à envoyer un Intent au gestionnaire natif de SMS.
+
+			Les fonctions de gestion de message (copy, delete, update, getAll
+			Message)
+			ne sont légitimes que dans une application dédiée à cette tâche. 
+		</div>
+		<callRef name="SmsManager.sendTextMessage" />
+		<callRef name="SmsManager.sendMultiparTextMessage" />
+		<callRef name="SmsManager.sendDataMessage" />
+		<callRef name="SmsManager.copyMessageToIcc" />
+		<callRef name="SmsManager.deleteMessageFromIcc" />
+		<callRef name="SmsManager.updateMessageOnIcc" />
+		<callRef name="SmsManager.getAllMessagesFromIcc" />
+
+		<callRef name="Telephony.Sms.Outbox.addMessage" />
+		<callRef name="gsm.SMSManager.sendTextMessage" />
+		<callRef name="gsm.SMSManager.sendMultipartTextMessage" />
+		<callRef name="gsm.SMSManager.sendDataMessage" />
+		<callRef name="gsm.SMSManager.copyMessageToSim" />
+		<callRef name="gsm.SMSManager.deleteMessageFromSim" />
+		<callRef name="gsm.SMSManager.updateMessageOnSim" />
+		<callRef name="gsm.SMSManager.getAllMessagesFromSim" />
+	</sdiv>
+
+	<sdiv name="SmsBoxGroup">
+		<h3> Management of the SMS inbox </h3>
+		<div class="AuxFoldBox">
+			Handling of received SMS. This is legitimate only if it the main task of
+			the application.
+			Those methods are the high level API of the telephony content provider
+			but it is possible
+			to use it directly bypassing those APIs (see the content provider
+			section if any).
+		</div>
+		<div class="FoldBox">
+			Manipulation des SMS reçus. Cela n'est légitime que si c'est la tâche
+			principale de l'application. Ces méthodes fournissent une API de
+			haut niveau sur
+			le provider correspondant à la téléphonie mais il est possible
+			d'utiliser directement
+			ce provider.
+  			</div>
+		<callRef name="Telephony.Sms.query-1" />
+		<callRef name="Telephony.Sms.query-2" />
+		<callRef name="Telephony.Sms.addMessageToUri-1" />
+		<callRef name="Telephony.Sms.addMessageToUri-2" />
+		<callRef name="Telephony.Sms.Inbox.addMessage" />
+		<callRef name="Telephony.Sms.Sent.addMessage" />
+		<callRef name="Telephony.Sms.Draft.addMessage" />
+		<callRef name="Telephony.Sms.Outbox.addMessage" />
+		<callRef name="Mms.query-1" />
+		<callRef name="Mms.query-2" />
+		<callRef name="Telephony.Sms.Inbox.addMessage" />
+	</sdiv>
+
+	<sdiv name="CallLogGroup">
+		<h3> Call-log management </h3>
+		<div class="AuxFoldBox">
+			The calllog is the list of calls made on the phone. The use of this
+			method must be
+			justified by the purpose of the application as it can jeopardize the privacy
+			of the
+			user. An application that sends data on the network and that use this
+			provider may
+			try to send confidential data to an external target.
+		</div>
+		<div class="FoldBox">
+			Le calllog est constitué de la liste des appels passés. L'usage d'une
+			telle fonction
+			doit être justifié par la destination de l'application. Une application
+			utilisant
+			directement le réseau pour son fonctionnement (par opposition à le gérant) et
+			utilisant
+			ce provider doit être regardée avec suspicion.
+   		</div>
+		<callRef name="CallLog.Calls.addCall" />
+		<callRef name="CallLog.Calls.getLastOutgoingCall"/>
+	</sdiv>
+</sdiv>

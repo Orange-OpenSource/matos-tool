@@ -1,0 +1,102 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h2>Network IP level</h2>
+	<sdiv name="SocketsGroup">
+		<h3>Network socket</h3>
+		<div class="AuxFoldBox">
+			These are the standard Java methods to create network sockets (either TCP or UDP).
+			There are little compeling reasons to use them in a regular Android application
+			except to reimplement a low level network protocol. Some standard ports that
+			we may want to survey are:
+			<ul>
+			<li>5060 - UDP - SIP signaling</li>
+			<li>5004 - UDP - RTP payload (Real Time Protocol)</li>
+			<li>10000 - UDP - STUN (UDP tunnel through NAT)</li>
+			<li>1718,1719,1720,1731 - Various H323 ports </li>
+			</ul>
+		</div>
+		<div class="FoldBox">
+			Il s'agit des méthodes standard de Java pour créer des sockets
+			réseaux (TCP/UDP). Il y a peu de raison pour utiliser ces méthodes dans une 
+			application Android sauf à réimplanter un protocole réseau.
+			Quelques numéros de ports standards que l'on peut vouloir surveiller:
+			<ul>
+			<li>5060 - UDP - signalisation SIP</li>
+			<li>5004 - UDP - RTP payload (Real Time Protocol)</li>
+			<li>10000 - UDP - STUN (UDP tunnel through NAT)</li>
+			<li>1718,1719,1720,1731 - Various H323 ports </li>
+			</ul>
+		</div>
+		<callRef name="MulticastSocket-1" />
+		<callRef name="MulticastSocket-2" />
+		<callRef name="MulticastSocket-3" />
+		<callRef name="MulticastSocket.joinGroup-1" />
+		<callRef name="MulticastSocket.joinGroup-2" />
+		<callRef name="MulticastSocket.joinGroup-3" />
+		<callRef name="MulticastSocket.joinGroup-4" />
+		<callRef name="ServerSocket-1" />
+		<callRef name="ServerSocket-2" />
+		<callRef name="ServerSocket-3" />
+		<callRef name="ServerSocket-4" />
+		<callRef name="ServerSocket.bind-1" />
+		<callRef name="ServerSocket.bind-2" />
+		<callRef name="ServerSocket.getInetAddress" />
+		<callRef name="ServerSocket.getLocalSocketAddress" />
+		<callRef name="Socket-1" />
+		<callRef name="Socket-2" />
+		<callRef name="Socket-3" />
+		<callRef name="Socket-4" />
+		<callRef name="Socket-5" />
+		<callRef name="Socket-6" />
+		<callRef name="Socket-7" />
+		<callRef name="Socket-8" />
+		<callRef name="Socket.connect-1" />
+		<callRef name="Socket.connect-2" />
+		<callRef name="Socket.getInetAddress" />
+		<callRef name="Socket.getInputStream" />
+		<callRef name="Socket.getLocalSocketAddress" />
+		<callRef name="Socket.getOutputStream" />
+		<callRef name="Datagram.bind" />
+		<callRef name="Datagram.connect-1" />
+		<callRef name="Datagram.connect-2" />
+		<callRef name="Datagram.getInetAddress" />
+		<callRef name="Datagram.getLocalAddress" />
+		<callRef name="Datagram.getRemoteSocketAddress" />
+		<callRef name="DatagramSocket-1" />
+		<callRef name="DatagramSocket-2" />
+		<callRef name="DatagramSocket-3" />
+		<callRef name="DatagramSocket-4" />
+		<callRef name="InetAddress.getByAddress-1" />
+		<callRef name="InetAddress.getByAddress-2" />
+		
+		<callRef name="MultihomePlainSocketFactory.connectSocket-1"/>
+		<callRef name="MultihomePlainSocketFactory.createSocket-2"/>
+		<callRef name="MultihomePlainSocketFactory.connectSocket-2"/>
+		<callRef name="MultihomePlainSocketFactory.createSocket-1"/>
+		<callRef name="PlainSocketFactory.createSocket-1"/>
+		<callRef name="PlainSocketFactory.createSocket-2"/>
+		<callRef name="SSLSocketFactory.connectSocket"/>
+		<callRef name="SSLSocketFactory.createSocket-1"/>
+		<callRef name="SSLSocketFactory.createSocket-2"/>
+		<callRef name="scheme.Scheme"/>
+	</sdiv>
+</sdiv>
+	

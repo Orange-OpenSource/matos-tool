@@ -1,0 +1,87 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<customOutput>
+	<h2>Custom checks on the APK</h2>
+	<ul>
+		<if name="suspicious.elf">
+			<then>
+				<li>
+					<b><font color="red">[ELF IN APK]</font></b> There are suspicious ELF files inside the APK:
+					<prop name="suspicious.elf.names" />
+					.
+				</li>
+			</then>
+		</if>
+		<if name="suspicious.apk">
+			<then>
+				<li>
+					<b><font color="red">[APK IN APK]</font></b> There are suspicious APK files inside the APK:
+					<prop name="suspicious.apk.names" />
+					.
+				</li>
+			</then>
+		</if>
+		<if name="android.sms.delayed">
+			<then>
+				<li>
+					<b><font color="red">[DELAYED SMS]</font></b> Some sms sent are triggered only on a timer.
+					<ul>
+						<loop index="android.sms.delayed.count">
+							<li>
+								<prop name="android.sms.delayed.path" rel="true" />
+							</li>
+						</loop>
+					</ul>
+				</li>
+			</then>
+		</if>
+		<if name="android.sms.nocontrol">
+			<then>
+				<li>
+					<b><font color="red">[NOCONTROL SMS]</font></b> Check that sending the sms is controlled in some
+					way by the user.
+					<ul>
+						<loop index="android.sms.nocontrol.count">
+							<li>
+								<prop name="android.sms.nocontrol.path" rel="true" />
+							</li>
+						</loop>
+					</ul>
+				</li>
+			</then>
+		</if>
+		<if name="android.aborted.broadcast.sms">
+			<then>
+				<li>
+					<b><font color="red">[SMS INTERCEPTION]</font></b> There is a broadcast receiver that intercept
+					some
+					SMS.
+					<ul>
+						<loop index="android.aborted.broadcast.sms.count">
+							<li>
+								<prop name="android.aborted.broadcast.sms.path" rel="true" />
+							</li>
+						</loop>
+					</ul>
+				</li>
+			</then>
+		</if>
+	</ul>
+</customOutput>

@@ -1,0 +1,141 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h2>Escaping Java sandbox</h2>
+	<sdiv name="exec">
+		<h3> Launching applications </h3>
+		<div class="AuxFoldBox">
+			Those APIs give access to the low-level APIs (Linux level)
+			of an Android system and can be used to directly launch commands.
+				</div>
+		<div class="FoldBox">
+			Ces APIs donnent accès au niveau Linux d'Android
+			et permettent de lancer des commandes directement.
+	 			</div>
+		<callRef name="Runtime.exec-1" />
+		<callRef name="Runtime.exec-2" />
+		<callRef name="Runtime.exec-3" />
+		<callRef name="Runtime.exec-4" />
+		<callRef name="Runtime.exec-5" />
+		<callRef name="Runtime.exec-6" />
+	</sdiv>
+	<sdiv name="native">
+		<h3> Using native libraries </h3>
+		<div class="AuxFoldBox">
+			Those APIs let an application load native libraries included in the APK. 
+				</div>
+		<div class="FoldBox">
+			Ces APIs donnent accès à des bibliothèques natives incluses dans l'APK.
+	 			</div>
+		<callRef name="System.load" />
+		<callRef name="System.loadLibrary" />
+	</sdiv>
+	<sdiv name="dynLoad">
+		<h3> Dynamically loading dex files </h3>
+		<div class="AuxFoldBox">
+			Those APIs let an application load additional DEX files. One can use any
+			classloader to evade the regular screening of the app. Any use of those
+			APIs must be considered with suspicion. 
+		</div>
+		<div class="FoldBox">
+			Ces APIs donnent accès au chargement dynamique de fichiers DEX.
+	 	</div>
+		<callRef name="DexFile-1" />
+		<callRef name="DexFile-2" />
+		<callRef name="DexFile.loadDex" />
+		<callRef name="DexFile.loadClassBinaryName" />
+		<callRef name="DexClassLoader" />
+	</sdiv>
+	<sdiv name="renderscript">
+    	<h3>Renderscript</h3>
+    	<div class="AuxFoldBox">
+			Renderscript is a way to use the GPU for computing but computation may be executed on the CPU. 
+			There is no known vulnerability but it is also quite new and complex. 
+		</div>
+		<div class="FoldBox">
+			Renderscript est un moyen d'exprimer des calculs pour les exécuter soit sur la GPU soit sur la CPU (suivant le matériel).
+			Il n'y a pas de vulnérabilité connu mais le système est à la fois neuf et complexe.
+	 	</div>
+    	<callRef name="RenderScript"/>
+    </sdiv>
+	<sdiv name="classloader">
+		<h3> Java Classloaders </h3>
+		<div class="AuxFoldBox">
+			Classical Java classloader. They can be misused but are also used in
+			reflexive frameworks.
+				</div>
+		<div class="FoldBox">
+			Ces APIs donnent accès au chargement dynamique de classes. Leur utilisation
+			avec Android n'est pas claire.
+	 			</div>
+		<callRef name="URLClassLoader-1" />
+		<callRef name="URLClassLoader-2" />
+		<callRef name="URLClassLoader-3" />
+		<callRef name="ClassLoader-1" />
+		<callRef name="ClassLoader-2" />
+		<callRef name="SecureClassLoader-1" />
+		<callRef name="SecureClassLoader-2" />
+	</sdiv>
+	<sdiv>
+		<h3> Reflection </h3>
+		<div class="AuxFoldBox">
+			Use of reflection can be a way to avoid detection or to launch whatever dynamically
+			in a botnet.
+				</div>
+		<div class="FoldBox">
+			L'utilisation de la reflexion peut être un moyen d'éviter la détection de méthodes
+			dangereuses ou de reprogrammer dynamiquement le comportement de l'application (botnet).
+	 			</div>
+		<callRef name="Method.invoke" />
+		<callRef name="Class.getMethod" />
+		<callRef name="Class.getDeclaredMethod" />
+	</sdiv>
+	<sdiv name="UnsafeGroup">
+		<h3> Non typed access </h3>
+		<div class="AuxFoldBox">
+			Access to Unsafe is a way to build any object in Java without the control of the
+			type checker. It should not be in use.
+				</div>
+		<div class="FoldBox">
+			L'utilisation de Unsafe permet de complètement contourner le typage. Cela ne devrait
+			pas être utilisé dans des applications.
+	 			</div>
+	 			<callRef name="Unsafe.compareAndSwapInt"/>
+		<callRef name="Unsafe.compareAndSwapLong"/>
+		<callRef name="Unsafe.compareAndSwapObject"/>
+		<callRef name="Unsafe.getInt"/>
+		<callRef name="Unsafe.getIntVolatile"/>
+		<callRef name="Unsafe.getLong"/>
+		<callRef name="Unsafe.getLongVolatile"/>
+		<callRef name="Unsafe.getObject"/>
+		<callRef name="Unsafe.getObjectVolatile"/>
+		<callRef name="Unsafe.getUnsafe"/>
+		<callRef name="Unsafe.putInt"/>
+		<callRef name="Unsafe.putIntVolatile"/>
+		<callRef name="Unsafe.putLong"/>
+		<callRef name="Unsafe.putLongVolatile"/>
+		<callRef name="Unsafe.putObject"/>
+		<callRef name="Unsafe.putObjectVolatile"/>
+		<callRef name="Unsafe.putOrderedInt"/>
+		<callRef name="Unsafe.putOrderedLong"/>
+		<callRef name="Unsafe.putOrderedObject"/>
+	</sdiv>
+
+</sdiv>

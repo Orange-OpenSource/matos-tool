@@ -1,0 +1,3 @@
+Main-Class: com.orange.matos.CoreCLI
+Class-Path: anasoot.jar custom.jar headers.jar implemchecker.jar matos.jar soot.jar bcel-5.2.jar d2j.jar sqlite-jdbc.jar commons-lang3-3.0.1.jar
+

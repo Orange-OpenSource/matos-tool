@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<!DOCTYPE matos SYSTEM "../com/orange/matos/matos.dtd" [
+<!ENTITY rulefile SYSTEM "misc/midp-rules.xml">
+]>
+<matos name="MIDP" description="Agnostic profile for MIDP"
+	version="2.0" date="22.08.2011">
+	<!--
+		OPTIONS ======================================================== =====
+	-->
+
+	<option name="anasoot.callbackAnalysis" value="false" />
+
+	<!-- Configuration of the descriptors conformity phase -->
+
+
+	<option name="implemchecker.forbiddenImplem" value="">
+		<description>
+			Those interfaces must not be overriden or there is a risk that the developer
+			implements its own version to bypass checks.
+        </description>
+	</option>
+
+	<option name="anasoot.printNodes" value="true">
+		<description>
+			This option is necessary to get the table of nodes that can be used to
+			check the
+			actual types of some arguments.
+        </description>
+	</option>
+	<option name="anasoot.treatConcatenation" value="true" />
+	<option name="anasoot.treatStringBuffer" value="true" />
+	<option name="anasoot.treatStringOperation" value="true" />
+	<option name="anasoot.treatFunctions" value="true" />
+	<option name="anasoot.treatSpyReturn" value="true" />
+	<option name="anasoot.treatProperties" value="true" />
+	<option name="anasoot.treatValueOf" value="true" />
+	<option name="anasoot.reportPseudo" value="false" />
+	<option name="anasoot.usedJSR" value="false" />
+	<option name="anasoot.loopAnalysis" value="false" />
+	<option name="anasoot.enhancedPointsto" value="false" />
+
+	<score threshold="20">
+		<stringmatch score="10" name="SP-1" message="System properties - privacy" pattern="Dangerous System property - privacy" />
+		<stringmatch score="20" name="TC1" message="Telephone call - Overbilling" pattern="telephone - short target" />
+		<stringmatch score="5" name="TC2" message="Telephone call" pattern="telephone - identified target" />
+		<stringmatch score="10" name="TC3" message="Telephone call" pattern="telephone - unknown target" />
+		<stringmatch score="10" name="PF" message="Platform Request - unknown" pattern="platform request" />
+		<stringmatch score="5" name="BT" message="Bluetooth" pattern="[bB]luetooth" />
+		<stringmatch score="10" name="LLN" message="Low level networking" pattern="connection with low level protocol" />
+		<stringmatch score="10" name="NFC" message="NFC" pattern="connection to NFC element" />
+		<stringmatch score="10" name="Card1" message="Cardlet" pattern="JSR 177 Cardlet" />
+		<stringmatch score="10" name="Card2" message="Cardlet - SIM slot" pattern="Wrong SIM slot" />
+		<stringmatch score="10" name="Card3" message="Cardlet - Wrong AID" pattern="Wrong AID" />
+		<stringmatch score="5" name="CNX-Num" message="Numerical IP Address" pattern="numerical IP address" />
+		<stringmatch score="5" name="CNX-Scheme" message="Scheme in URL unknown" pattern="unhandled scheme" />
+		<stringmatch score="5" name="CNX-Limit" message="Limits in connection analysis" pattern="unknown site" />
+		<stringmatch score="3" name="SMS1" message="SMS reception" pattern="SMS reception" />
+		<stringmatch score="3" name="SMS2" message="SMS emission" pattern="SMS emission" />
+		<stringmatch score="20" name="SMS3" message="SMS emission - Overbilling" pattern="short SMS number" />
+		<stringmatch score="5" name="SMS4" message="MMS reception" pattern="MMS reception" />
+		<stringmatch score="5" name="SMS5" message="MMS emission" pattern="MMS emission" />
+	</score>
+
+	<structure>
+		<script type="text/javascript">
+		var collapseCaption = '[-]';
+		var expandCaptionF = '[F]';
+		var expandCaptionE = '[E]';
+		
+		function toggleFrBox(indexNavigationBar) {
+			var button = document.getElementById('EB' + indexNavigationBar);
+			var content = document.getElementById('EC' + indexNavigationBar);
+			if (button.firstChild.data == collapseCaption) {
+				button.firstChild.data = expandCaptionF;
+				content.style.display = 'none';
+			} else if (button.firstChild.data == expandCaptionF) {
+				button.firstChild.data = collapseCaption;
+				content.style.display = 'block';
+			}
+		}
+
+		function toggleFrBoxAux(indexNavigationBar) {
+			var button = document.getElementById('FB' + indexNavigationBar);
+			var content = document.getElementById('FC' + indexNavigationBar);
+			if (button.firstChild.data == collapseCaption) {
+				button.firstChild.data = expandCaptionE;
+				content.style.display = 'none';
+			} else if (button.firstChild.data == expandCaptionE) {
+				button.firstChild.data = collapseCaption;
+				content.style.display = 'block';
+			}
+		}
+
+		function expandFrBox() {
+			var indexNavigationBar = 0;
+			var frame;
+			var auxframe;
+			var nextelt;
+			var divArray = document.getElementsByTagName('div');
+			for( var i=0; frame = divArray[i]; i++ ) {
+				if (frame.className == 'EnBox') {
+					auxframe = frame;
+				} else if (frame.className == 'FrBox') {
+					indexNavigationBar++;
+					var button = document.createElement('a');
+					button.setAttribute('id', 'EB' + indexNavigationBar);
+					button.setAttribute('href', 'javascript:toggleFrBox(' + indexNavigationBar + ');');
+					button.appendChild(document.createTextNode(expandCaptionF));
+					var content = document.createElement('div');
+					content.className = 'FoldContent';
+					content.setAttribute('id', 'EC' + indexNavigationBar);
+					content.style.display = 'none';
+					for ( var elt = frame.firstChild; elt != null; elt = nextelt ) { 
+						nextelt	= elt.nextSibling; content.appendChild(elt); 
+					}
+					content.appendChild(document.createElement('hr'));
+					frame.appendChild(button);
+					if (auxframe != null) {
+						var abutton = document.createElement('a');
+						abutton.setAttribute('id', 'FB' + indexNavigationBar);
+						abutton.setAttribute('href', 'javascript:toggleFrBoxAux(' +
+											 indexNavigationBar + ');');
+						abutton.appendChild(document.createTextNode(expandCaptionE));
+						auxframe.setAttribute('id', 'FC' + indexNavigationBar);
+						auxframe.style.display = 'none';
+						auxframe.appendChild(document.createElement('hr'));
+						frame.appendChild(document.createTextNode(' '));
+						frame.appendChild(abutton);
+						frame.appendChild(auxframe);
+						auxframe = null;
+					}
+					frame.appendChild(content);
+				}
+			}
+		}
+		
+		window.onload = expandFrBox;
+  	</script>
+  
+
+<sdiv>
+<h2>System</h2>
+	<div class="EnBox">
+	Controls access to system and application properties and checks on security permissions.
+	It also controls access to platform requests.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="System.getProperty"/>
+<callRef name="MIDlet.getAppProperty"/>
+<callRef name="MIDlet.platformRequest"/>
+<callRef name="MIDlet.checkPermission"/>
+</sdiv>
+<sdiv>
+<h2>Opening a connection</h2>
+	<div class="EnBox">
+	Connection opening using the GCF (Generic Connection Framework) of CLDC. Risks
+	depend on the value of the URL.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="Connector.open-1"/>
+<callRef name="Connector.open-2"/>
+<callRef name="Connector.open-3"/>
+<callRef name="Connector.openInputStream"/>
+<callRef name="Connector.openDataInputStream"/>
+<callRef name="Connector.openOutputStream"/>
+<callRef name="Connector.openDataOutputStream"/>
+<callRef name="siemens.Connection"/>
+</sdiv>
+<sdiv>
+<h2>Low level connections</h2>
+	<div class="EnBox">
+	Low level connections such as server socket or datagram sending.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="StreamConnection.acceptAndOpen"/>
+<callRef name="Datagram.setAddress"/>
+<callRef name="Datagram.setAddress-2"/>
+<callRef name="SocketConnection.setSocketOption"/>
+</sdiv>
+<sdiv>
+<h2>Push Registry and timers</h2>
+	<div class="EnBox">
+	Ways to register a midlet or an action to be launched later at at pre-determined time. 
+	Timer Tasks require that the midlet is active so are not usually used for waiting a long time.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="PushRegistry.registerConnection"/>
+<callRef name="PushRegistry.registerAlarm"/>
+<callRef name="Timer.schedule-1"/>
+<callRef name="Timer.schedule-2"/>
+<callRef name="Timer.schedule-3"/>
+<callRef name="Timer.schedule-4"/>
+<callRef name="Timer.scheduleAtFixedRate-1"/>
+<callRef name="Timer.scheduleAtFixedRate-2"/>
+<callRef name="System.currentTimeMillis"/>
+</sdiv>
+<sdiv>
+<h2>Content Handlers (CHAPI)</h2>
+	<div class="EnBox">
+	With CHAPI it is possible to invoke another midlet depending on the context (eg. the target URL).
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="Registry.register"/>
+<callRef name="Invocation.open"/>
+<callRef name="Invocation.setURL"/>
+<callRef name="Invocation.setType"/>
+<callRef name="Invocation.setCredentials"/>
+<callRef name="Invocation.setAction"/>
+<callRef name="Invocation.setID"/>
+<callRef name="Invocation-1"/>
+<callRef name="Invocation-2"/>
+<callRef name="Invocation-3"/>
+<callRef name="Invocation-4"/>
+</sdiv>
+<sdiv>
+<h2>SMS handling</h2>	
+	<div class="EnBox">
+	Sending and receiving short message services.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="MessageConnection.send"/>
+<callRef name="MessageConnection.newMessage-1"/>
+<callRef name="MessageConnection.newMessage-2"/>
+<callRef name="MessageConnection.receive"/>
+<callRef name="siemens.SMS.send-1"/>
+<callRef name="siemens.SMS.send-2"/>
+<callRef name="MessagePart.getContentAsStream"/>	
+<callRef name="Message.setAddress"/>
+<callRef name="MultipartMessage.setAddress"/>
+<callRef name="MultipartMessage.addAddress"/>
+<callRef name="MultipartMessage.setHeader"/>
+<callRef name="nokia.Message.setAddress"/>
+</sdiv>
+<sdiv>
+<h2>Record store</h2>
+	<div class="EnBox">
+	The Record store is MIDP database mechanism. RecordStores can be shared
+	between applications and breaks strict application isolation.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="RecordStore.deleteRecordStore"/>
+<callRef name="RecordStore.openRecordStore-1"/>
+<callRef name="RecordStore.openRecordStore-2"/>
+<callRef name="RecordStore.openRecordStore-3"/>
+</sdiv>
+<sdiv>
+<h2>Access to the filesystem</h2>
+	<div class="EnBox">
+	Access to the underlying filesystem. It is a powerful but less portable alternative
+	to RMS. Applications should use roots to find where they can write.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="FileSystemRegistry.addFileSystemListener"/>
+<callRef name="FileConnection.create"/>
+<callRef name="FileConnection.mkdir"/>
+<callRef name="FileConnection.rename"/>
+<callRef name="FileConnection.setFileConnection"/>
+<callRef name="siemens.File.copy"/>
+<callRef name="siemens.File.delete"/>
+<callRef name="siemens.File.exists"/>
+<callRef name="siemens.File.isDirectory"/>
+<callRef name="siemens.File.rename"/>
+<callRef name="siemens.File.open"/>
+</sdiv>
+<sdiv>
+<h2>Media players and external resources</h2>
+	<div class="EnBox">
+	Media Players can access external resources.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="Player.createPlayer-1"/>
+<callRef name="Player.createPlayer-2"/>
+<callRef name="Player.createPlayer-3"/>
+<callRef name="InputSource-1"/>
+<callRef name="InputSource-2"/>
+<callRef name="ScalableImage-2"/>
+<callRef name="ScalableImage-1"/>
+<callRef name="ScalableImage.createImage-2"/>
+<callRef name="ScalableImage.createImage-1"/>
+<callRef name="m3g.Loader.load"/>
+<callRef name="DataSource"/>
+</sdiv>
+<sdiv>
+<h2>Personal Informations</h2>
+	<div class="EnBox">
+	Management of personal inforamtions, ie the contact, calendar and todo lists.
+	There are two levels: handling the lists and handling individual elements of the lists. 
+	</div>
+	<div class="FrBox">
+	</div>
+<sdiv>
+<h3>List Management</h3>
+<callRef name="PIM.openPIMList-1"/>
+<callRef name="PIM.openPIMList-1"/>
+<callRef name="PIM.fromSerialFormat"/>
+<callRef name="PIM.toSerialFormat"/>
+<callRef name="ContactList.createContact"/>
+<callRef name="ContactList.importContact"/>
+<callRef name="EventList.items"/>
+<callRef name="EventList.createEvent"/>
+<callRef name="EventList.importEvent"/>
+<callRef name="TODOList.items"/>
+<callRef name="TODOList.createToDo"/>
+<callRef name="TODOList.importToDo"/>
+</sdiv>
+<sdiv>
+<h3>Item management</h3>
+	<div class="EnBox">
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="PIMItem.getBoolean"/>
+<callRef name="PIMItem.getInt"/>
+<callRef name="PIMItem.getFields"/>
+<callRef name="PIMItem.setBoolean"/>
+<callRef name="PIMItem.setInt"/>
+<callRef name="PIMItem.getAttributes"/>
+<callRef name="PIMItem.getString"/>
+<callRef name="PIMItem.getDate"/>
+<callRef name="PIMItem.setDate"/>
+<callRef name="PIMItem.getBinary"/>
+<callRef name="PIMItem.addBinary"/>
+<callRef name="PIMItem.setBinary"/>
+<callRef name="PIMItem.addDate"/>
+<callRef name="PIMItem.addInt"/>
+<callRef name="PIMItem.addString"/>
+<callRef name="PIMItem.setString"/>
+<callRef name="PIMItem.addBoolean"/>
+<callRef name="PIMItem.getStringArray"/>
+<callRef name="PIMItem.addStringArray"/>
+<callRef name="PIMItem.setStringArray"/>
+</sdiv>
+</sdiv>
+<sdiv>
+<h2>Security</h2>
+	<div class="EnBox">
+	Access to various security services
+	</div>
+	<div class="FrBox">
+	</div>
+<sdiv>
+<h3>Signature service</h3>
+	<div class="EnBox">
+	Access to platform signature and authentication services.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="CMSMessageSignatureService.sign"/>
+<callRef name="CMSMessageSignatureService.authenticate-1"/>
+<callRef name="CMSMessageSignatureService.authenticate-2"/>
+</sdiv>
+<sdiv>
+<h3>User credential management</h3>
+	<div class="EnBox">
+	Access to certificates and keys used for authenticating the user on remote systems (SSL).
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="UserCredentialManager.addCredential"/>
+<callRef name="UserCredentialManager.removeCredential"/>
+</sdiv>
+<sdiv>
+<h3>Payment</h3>
+	<div class="EnBox">
+	Payment API (rarely used).
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="TransactionModule.process-1"/>
+<callRef name="TransactionModule.process-2"/>
+</sdiv>
+<sdiv>
+<h3>Certificate verification</h3>
+	<div class="EnBox">
+	Verification of remote certificates. It should be used if HTTPS is used.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="HttpsConnection.getSecurityInfo"/>
+</sdiv>
+</sdiv>
+<sdiv>
+<h2>Localization API</h2>
+	<div class="EnBox">
+	Geographical localization of the phone using GPS or cell tower triangulation and
+	management of localization data.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="Location.getTimestamp"/>
+<callRef name="Location.getSpeed"/>
+<callRef name="Location.getAddressInfo"/>
+<callRef name="Location.getCourse"/>
+<callRef name="Location.getExtraInfo"/>
+<callRef name="LandmarkStore.createLandmarkStore"/>
+<callRef name="LandmarkStore.deleteLandmarkStore"/>
+<callRef name="LandmarkStore.listLandmarkStore"/>
+<callRef name="LandmarkStore.addLandmark"/>
+<callRef name="LandmarkStore.getLandmarks-1"/>
+<callRef name="LandmarkStore.getLandmarks-2"/>
+<callRef name="LandmarkStore.getLandmarks-3"/>
+<callRef name="Orientation.getOrientation"/>
+<callRef name="AddressInfo.getField"/>
+<callRef name="Criteria.setHorizontalAccuracy"/>
+<callRef name="Criteria.setVerticalAccuracy"/>
+<callRef name="Criteria.setCostAllowed"/>
+<callRef name="Criteria.setSpeedAndCourseRequired"/>
+<callRef name="Criteria.setAltitudeRequired"/>
+<callRef name="Criteria.setAddressInfoRequired"/>
+</sdiv>
+<sdiv>
+<h2>Access to the SIM</h2>
+	<div class="EnBox">
+	Access to the SIM. 
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="JavaCardRMIConnection.enterPin"/>
+<callRef name="JavaCardRMIConnection.changePin"/>
+<callRef name="JavaCardRMIConnection.disablePin"/>
+<callRef name="JavaCardRMIConnection.enablePin"/>
+<callRef name="JavaCardRMIConnection.unblockPin"/>
+<callRef name="RemoteRef.invoke"/>
+</sdiv>
+<sdiv>
+<h2>Access to SIP telephony</h2>
+	<div class="EnBox">
+	Establishment of SIP connections.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="SipHeader.setName"/>
+<callRef name="SipHeader.setValue"/>
+<callRef name="SipHeader"/>
+<callRef name="HeaderSet.setHeader"/>
+<callRef name="SipRefreshHelper.update"/>
+<callRef name="SipConnection.openContentInputStream"/>
+<callRef name="SipConnection.openContentOutputStream"/>
+<callRef name="SipClientConnection.setCredentials"/>
+<callRef name="SipAddress.setURI"/>
+<callRef name="SipAddress.setHost"/>
+<callRef name="SipAddress-1"/>
+<callRef name="SipAddress-1"/>
+</sdiv>
+<sdiv>
+<h2>Regular telephony</h2>
+	<div class="EnBox">
+	Mainly Siemens old proprietary APIs. Doing a phone call is made with platformRequest 
+	on MIDP2.0 phones.
+	</div>
+	<div class="FrBox">
+	</div>
+<callRef name="siemens.Call.start"/>
+<callRef name="siemens.PhoneBook.getMDN"/>
+</sdiv>
+	
+	<nodes/>
+	</structure>
+
+<!--  Overiding reports -->
+
+	<report name="Message.setAddress-0" alias="Message.newMessage-0,Message.nokia.setAddress-0,MessageConnection.newMessage-1-0,MessageConnection.newMessage-2-0">		
+      <description>
+        Change the address of a SMS
+  	  </description>
+	  <pseudoString>
+	  	<filter name="SMS-ADDRESS-1" pattern="^[0-9][0-9][0-9][0-9]?[0-9]?[0-9]?$" verdict="PASSED">
+		    <tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(SMS number - short SMS number - %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="SMS-ADDRESS-2" pattern="([^\\]*)$" verdict="PASSED">
+		    <tr><td class="head">Argument 1:</td><td class="result">%r <font color="green">(SMS number - %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="SMS-ADDRESS-3" pattern="(.*)$" verdict="PASSED">
+		    <tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(SMS number - unknown)</font></td></tr>&#13;
+		</filter>
+	  </pseudoString>
+	</report>
+	
+	<report name="MIDlet.platformRequest-0">
+	  <description>
+	  	Platform request URL handling
+	  </description>
+  	<pseudoString>	
+		<filter name="HTTP-1" pattern="(http|https)://([^\\]*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="green">(browser - HTTP connection)</font></td></tr>&#13;
+			<b>The application performs a platform request for Web Browsing. Check if it is an
+				application update URL</b>
+			<ul>
+			<li> Schema <b>%1</b></li>
+			<li> Target <b>%2</b></li>
+			</ul>
+		</filter>
+		<filter name="HTTP-BAD-1" pattern="(http|https)://(.*)" verdict="PASSED">
+		    <tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(browser - HTTP connection - unknown site)</font></td></tr>&#13;
+		</filter>								
+		<filter name="TEL-0" pattern="tel://([0-9][0-9][0-9]?[0-9]?[0-9]?[0-9]?)$" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(telephone - short target)</font></td></tr>&#13;
+		</filter>
+		<filter name="TEL-1" pattern="tel://([^\\]*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="green">(telephone - identified target)</font></td></tr>&#13;
+		</filter>
+		<filter name="TEL-2" pattern="tel://(.*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(telephone - unknown target)</font></td></tr>&#13;
+		</filter>								
+    	<filter name="PF-1" pattern="([^:\\]*):(.*)" verdict="PASSED">
+    		<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(platform request - %1)</font></td></tr>&#13;
+    	</filter>
+	    <filter name="PF-2"  pattern=".*" verdict="PASSED">
+       		<tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(platform request to unknown)</font></td></tr>&#13;
+    	</filter>
+	  </pseudoString>
+	</report>
+	
+	<report name="URL-FILTER"
+		alias="Connector.open-1-0,Connector.open-2-0,Connector.open-3-0,Connector.openInputStream-0,Connector.openDataInputStream-0,Connector.openOutputStream-0,Connector.openDataOutputStream-0,">
+		<description>
+			This report extracts information on the schemes used in the URL. It
+			forbids low level
+			IP protocols, allow bluetooth and NFC service discovery, URL specified
+			by the
+			user. It implements the filtering rules for HTTP, HTTPS, SMS, MMS, FILE
+			(JSR 75)
+			and APDU (JSR 177).
+  	  </description>
+	  <pseudoString>
+		<filter name="FORBIDDEN-PROTOCOL" pattern="(datagram|socket|ssl|tcpobex):.*">
+		    <tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(connection with low level protocol - %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="BLUETOOTH" pattern="\\\[javax[.]bluetooth[.]ServiceRecord[.]getConnectionURL\\\]" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(connection to a bluetooth service)</font></td></tr>&#13;
+		</filter>
+		<filter name="NFC" pattern="\\\[javax[.]microedition[.]contactless[.]TargetProperties[.]getUrl\\\]" verdict="PASSED">
+  			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(connection to NFC element)</font></td></tr>&#13;
+		</filter>		
+		<filter name="USER-INPUT" pattern="\\\[javax[.]microedition[.]lcdui[.](TextBox|StringItem).getString\\\]" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="green">(connection with user provided URL)</font></td></tr>&#13;
+		</filter>
+		<filter name="HTTP-BAD-0" pattern="(http|https)://(localhost|127\\.0\\.0\\.1)(:.*|/.*|)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(connection to localhost)</font></td></tr>&#13;
+		</filter>
+		<filter name="HTTP-BAD-1" pattern="(http|https)://([0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:.*|/.*|)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(connection to numerical IP address)</font></td></tr>&#13;
+		</filter>
+		<filter name="HTTP-1" pattern="http://([^:/\\]*):([^:/\\]*)(/.*|)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="green">(HTTP connection with dedicated port : %2 - site : %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="HTTP-2" pattern="http://([^:/\\]*)(/.*|)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="green">(HTTP connection - site : %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="HTTP-BAD-2" pattern="http://(.*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(HTTP connection - unknown site)</font></td></tr>&#13;
+		</filter>
+		<filter name="HTTPS-1" pattern="https://([^:/\\]*):([^:/\\]*)(/.*|)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="green">(HTTPS connection with dedicated port : %2 - site : %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="HTTPS-2" pattern="https://([^:/\\]*)(/.*|)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(HTTPS connection - site %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="HTTPS-BAD-2" pattern="https://(.*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(HTTPS connection - unknown site)</font></td></tr>&#13;
+		</filter>
+		<filter name="SMS-BILL" pattern="sms://([0-9][0-9][0-9][0-9]?[0-9]?[0-9]?)" verdict="PASSED">
+		   <tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(SMS emission - short SMS number)</font></td></tr>&#13;
+		</filter>
+		<filter name="SMS-REC" pattern="sms://:([0-9]*)" verdict="PASSED">
+		   <tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(SMS reception on port %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="SMS-SEND" pattern="sms://([^\\]*)" verdict="PASSED">
+		   <tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(SMS emission to number %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="SMS-BAD" pattern="sms:([^\\]*)" verdict="PASSED">
+ 		   <tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(SMS emission to unknown number)</font></td></tr>&#13;
+		</filter>
+		<filter name="MMS-BILL" pattern="mms://([0-9][0-9][0-9][0-9]?[0-9]?[0-9]?)" verdict="PASSED">
+		   <tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(MMS emission - short SMS number)</font></td></tr>&#13;
+		</filter>
+		<filter name="MMS-REC" pattern="mms://:([0-9]*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(MMS reception on port %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="MMS-SEND" pattern="mms://([^\\]*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(MMS emission to number %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="MMS-BAD" pattern="mms:([^\\]*)" verdict="PASSED">
+ 		   <tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(MMS emission to unknown number)</font></td></tr>&#13;
+		</filter>
+		<filter name="FILE-1" pattern="file:([^\\]*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="green">(File connection - %1)</font></td></tr>&#13;
+		</filter>
+		<filter name="FILE-BAD-1" pattern="file:(.*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(File connection - unknwon file)</font></td></tr>&#13;
+		</filter>
+		<filter name="APDU-1" pattern="apdu:0?;target=([0-9a-fA-F][0-9a-fA-F]?([.][0-9a-fA-F][0-9a-fA-F]?){4,15})" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="green">(JSR 177 Cardlet - AID:%1)</font></td></tr>&#13;
+		</filter>
+		<filter name="APDU-BAD-1" pattern="apdu:([0-9]*);target=([0-9a-fA-F][0-9a-fA-F]?([.][0-9a-fA-F][0-9a-fA-F]?){4,15})" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(JSR 177 Cardlet - wrong SIM slot:%1 - AID:%2)</font></td></tr>&#13;
+		</filter>
+		<filter name="APDU-BAD-2" pattern="apdu:[0-9]*;target=(.*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(JSR 177 Cardlet - wrong AID:%1)</font></td></tr>&#13;
+		</filter>
+		<filter name="APDU-BAD-2" pattern="apdu:(.*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(JSR 177 Cardlet - bad URI)</font></td></tr>&#13;
+		</filter>
+		<filter name="JCRMI-BAD-2" pattern="jcrmi:(.*)" verdict="PASSED">
+			<tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(JSR 177 Cardlet - JCRMI)</font></td></tr>&#13;
+		</filter>								
+    	<filter pattern="([^:]*):(.*)" verdict="PASSED">
+    		<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(Connection - unhandled scheme %1)</font></td></tr>&#13;
+	   	</filter>
+  	    <filter pattern=".*" verdict="PASSED">
+	  	    <tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(Unhandled connection - unknown site)</font></td></tr>&#13;
+    	</filter>
+	  </pseudoString>
+	</report>
+
+  <report name="System.getProperty-0">
+    <description>
+      This report checks that the argument of a call to
+      <code>System.getProperty</code> is one of the authorized values,
+      namely:
+      <ul>
+		<li> CLDC and MIDP basic properties: microedition.platform,
+			microedition.encoding, microedition.configuration,
+	  		microedition.profiles, microedition.locale</li>
+		<li> WMA capabilities: microedition.comports </li>
+		<li> MMAPI capabilities: supports.audio, supports.audio.capture,
+	  		supports.video.capture, supports.recording, audio.encodings,
+	  		video.encodings, video.snapshot.encodings </li>
+      </ul>
+    </description>
+    
+    <pseudoString>
+      <filter pattern="(microedition[.]platform|microedition[.]encoding|microedition[.]configuration|microedition[.]profiles|microedition[.]locale|microedition[.]comports|microedition[.]media[.]version|supports[.]mixing|supports[.]audio[.]capture|supports[.]video[.]capture|supports[.]recording|audio[.]encodings|video[.]encodings|video[.]snapshot[.]encodings)" verdict="PASSED">
+		<tr><td class="head">Argument 1:</td><td class="result">%r <font color="green">(Correct use of System property)</font></td></tr>&#13;
+      </filter>
+      <filter pattern="[^\\]*([iI][mM][eE][iI]|[mM][sS][iI][sS][dD][nN]|[iI][mM][sS][iI])" verdict="PASSED">
+     	<tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(Dangerous System property - privacy)</font></td></tr>&#13;
+      </filter>
+      <filter pattern="internal.se.url" verdict="PASSED">
+	  	<tr><td class="head">Argument 1:</td><td class="result">%r <font color="red">(Access to Secure Element via system property)</font></td></tr>&#13;
+	  </filter>
+	  <filter pattern=".*" verdict="PASSED">
+		<tr><td class="head">Argument 1:</td><td class="result">%r <font color="orange">(Potentially dangerous System property)</font></td></tr>&#13;
+      </filter>
+    </pseudoString>
+  </report>
+<!--  Initial generated rule file -->
+&rulefile;
+
+</matos>
+
+

@@ -1,0 +1,93 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<script type="text/javascript">
+var collapseCaption = '[-]';
+var expandCaptionF = '[F]';
+var expandCaptionE = '[E]';
+
+function toggleFoldBox(indexNavigationBar) {
+	var button = document.getElementById('EB' + indexNavigationBar);
+	var content = document.getElementById('EC' + indexNavigationBar);
+	if (button.firstChild.data == collapseCaption) {
+		button.firstChild.data = expandCaptionF;
+		content.style.display = 'none';
+	} else if (button.firstChild.data == expandCaptionF) {
+		button.firstChild.data = collapseCaption;
+		content.style.display = 'block';
+	}
+}
+
+function toggleFoldBoxAux(indexNavigationBar) {
+	var button = document.getElementById('FB' + indexNavigationBar);
+	var content = document.getElementById('FC' + indexNavigationBar);
+	if (button.firstChild.data == collapseCaption) {
+		button.firstChild.data = expandCaptionE;
+		content.style.display = 'none';
+	} else if (button.firstChild.data == expandCaptionE) {
+		button.firstChild.data = collapseCaption;
+		content.style.display = 'block';
+	}
+}
+
+function expandFoldBox() {
+	var indexNavigationBar = 0;
+	var frame;
+	var auxframe;
+	var nextelt;
+	var divArray = document.getElementsByTagName('div');
+	for( var i=0; frame = divArray[i]; i++ ) {
+		if (frame.className == 'AuxFoldBox') {
+			auxframe = frame;
+		} else if (frame.className == 'FoldBox') {
+			indexNavigationBar++;
+			var button = document.createElement('a');
+			button.setAttribute('id', 'EB' + indexNavigationBar);
+			button.setAttribute('href', 'javascript:toggleFoldBox(' + indexNavigationBar + ');');
+			button.appendChild(document.createTextNode(expandCaptionF));
+			var content = document.createElement('div');
+			content.className = 'FoldContent';
+			content.setAttribute('id', 'EC' + indexNavigationBar);
+			content.style.display = 'none';
+			for ( var elt = frame.firstChild; elt != null; elt = nextelt ) { 
+				nextelt	= elt.nextSibling; content.appendChild(elt); 
+			}
+			content.appendChild(document.createElement('hr'));
+			frame.appendChild(button);
+			if (auxframe != null) {
+				var abutton = document.createElement('a');
+				abutton.setAttribute('id', 'FB' + indexNavigationBar);
+				abutton.setAttribute('href', 'javascript:toggleFoldBoxAux(' +
+									 indexNavigationBar + ');');
+				abutton.appendChild(document.createTextNode(expandCaptionE));
+				auxframe.setAttribute('id', 'FC' + indexNavigationBar);
+				auxframe.style.display = 'none';
+				auxframe.appendChild(document.createElement('hr'));
+				frame.appendChild(document.createTextNode(' '));
+				frame.appendChild(abutton);
+				frame.appendChild(auxframe);
+				auxframe = null;
+			}
+			frame.appendChild(content);
+		}
+	}
+}
+
+window.onload = expandFoldBox;
+</script>

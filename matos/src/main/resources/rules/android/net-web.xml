@@ -1,0 +1,203 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h2>Network - Application level</h2>
+	<sdiv name="SIPGroup">
+		<h3>SIP Services</h3>
+		<div class="AuxFoldBox">
+			Establishment of SIP connections. Parameters are set in SIP profile.
+			It can also be set to answer to SIP calls.
+		</div>
+		<div class="FoldBox">
+			Etablissement de connexions SIP. Les paramètres sont déclarés dans le SIP profile.
+			On peut aussi créer un serveur SIP. 
+   		</div>
+   		<callRef name="SipManager.makeAudioCall-1"/>
+		<callRef name="SipManager.makeAudioCall-2"/>
+		<callRef name="SipManager.register"/>
+		<callRef name="SipManager.setRegistrationListener"/>
+		<callRef name="SipManager.takeAudioCall-1"/>
+		<callRef name="SipProfile.Builder-1"/>
+		<callRef name="SipProfile.Builder-2"/>
+		<callRef name="SipProfile.Builder-3"/>
+		<callRef name="SipProfile.Builder.setOutboundProxy"/>
+	</sdiv>
+	<sdiv name="DownloadGroup">
+		<h3> Download manager</h3>
+		<div class="AuxFoldBox">
+			The download manager manages long running user downloads. Regular application do not
+			need to modify those settings.
+		</div>
+		<div class="FoldBox">
+			Le gestionnaire de téléchargement gère les téléchargements longs de l'utilisateur. Les 
+			applications normales ne devraient pas toucher à ces APIs
+		</div>
+		<callRef name="DownloadManager.Request"/>
+		<callRef name="DownloadManager.Request.setAllowedOverRoaming"/>
+		<callRef name="DownloadManager.Request.setDestinationUri"/>
+		<callRef name="DownloadManager.Request.setVisibleInDownloadsUi"/>
+		<callRef name="Downloads.deleteDownload"/>
+		<callRef name="Downloads.removeAllDownloadsByPackage"/>		
+	</sdiv>
+	<sdiv name="BrowserGroup">
+		<h3>Browser</h3>
+		<div class="AuxFoldBox">
+			The most dangerous functionality is the possibility to open a bridge
+			between JavaScript and the application so that the application is now
+			controllable from the contents retrieved by the navigator. If the application
+			also uses reflection to select the method to use, then it can be a really
+			dangerous vulnerability. This should only be used if there is a real need
+			for it.
+			
+			The other functions explore the navigation history and can cause a privacy
+			problem if the information is harvested to an external site.
+		</div>
+		<div class="FoldBox">
+			La fonctionnalité la plus dangereuse est la possibilité d'ouvrir un
+			pont entre JavaScript
+			et l'application rendant la commande de l'application possible par
+			les contenus récupérés
+			par le navigateur. Normalement à n'utiliser qu'en cas de nécessité. Le
+			mélange entre la réflexion une telle fonctionnalité peut être très dangereux.
+
+			Les autres fonctions permettent d'explorer l'historique de navigation
+			ce qui peut poser des
+			problèmes si ces informations sont collectées ensuite.
+		</div>
+		<callRef name="WebView.addJavaScriptInterface" />
+		<callRef name="WebView.loadUrl"/>
+		<callRef name="WebView.postUrl"/>
+		<callRef name="WebView.loadData"/>
+		<callRef name="WebView.loadDataWithBaseURL"/>
+		<callRef name="WebView.loadUrl-2"/>
+		<callRef name="WebView.savePassword"/>
+		<callRef name="WebView.setCertificate"/>
+		<callRef name="WebView.setHttpAuthUsernamePassword"/>
+		<callRef name="WebView.getHttpAuthUsernamePassword"/>
+		<callRef name="WebView.setNetworkType"/>
+		<callRef name="Browser.getVisitedHistory" />
+		<callRef name="Browser.saveBookmark" />
+		<callRef name="Browser.sendString-1" />
+		<callRef name="Browser.sendString-2" />
+		<callRef name="Browser.getAllBookmarks" />
+		<callRef name="Browser.getAllVisitedUrls" />
+		<callRef name="Browser.updateVisitedHistory" />
+		<callRef name="Browser.deleteFromHistory"/>
+		<callRef name="Browser.deleteHistoryTimeFrame"/>
+		<callRef name="Browser.truncateHistory" />
+		<callRef name="Browser.addSearchUrl" />
+		<callRef name="Bookmarks.add" />
+		                                                
+	</sdiv>
+	<sdiv>
+		<h3>Synchronization</h3>
+			<div class="AuxFoldBox">
+				Synchronisation
+   			</div>
+			<div class="FoldBox">
+				Synchronisation
+   			</div>
+				<callRef name="SyncStateContract.get"/>
+   			<callRef name="SyncStateContract.set"/>
+   			<callRef name="SyncStateContract.insert"/>
+   			<callRef name="SyncStateContract.getWithUri"/>
+   			<callRef name="SyncStateContract.newSetOperation"/>
+   			<callRef name="SyncStateContract.newUpdateOperation"/>
+	
+	</sdiv>
+	<sdiv>
+		<h3>Apache HTTP connections</h3>
+		<div class="AuxFoldBox">
+		These are connection request made with the Apache library included in Android.
+		They are made up with Java URI or strings.
+		</div>
+		<div class="FoldBox">
+		Ce sont des connexions ouvertes avec la bibliothèque Apache. Elles utilisent
+		des URI Java ou des chaînes.
+		</div>
+		<callRef name="DefaultHttpRequest.newHttpRequest"/>                          
+		<callRef name="HttpHost.toURI"/>                                             
+		<callRef name="HttpHost-1"/>                                                 
+		<callRef name="HttpHost-2"/>                                                 
+		<callRef name="HttpHost-3"/>                                                 
+		<callRef name="HttpHost-4"/>                                                 
+		<callRef name="HttpRequestBase.setURI"/>                                     
+		<callRef name="HttpOptions-1"/>                                              
+		<callRef name="HttpOptions-2"/>                                              
+		<callRef name="HttpPost-1"/>                                                 
+		<callRef name="HttpPost-2"/>                                                 
+		<callRef name="HttpDelete-1"/>
+		<callRef name="HttpDelete-2"/>
+		<callRef name="HttpHead-1"/>
+		<callRef name="HttpHead-2"/>
+		<callRef name="HttpPut-1"/>
+		<callRef name="HttpPut-2"/>
+		<callRef name="HttpGet-1"/>
+		<callRef name="HttpGet-2"/>
+		<callRef name="URIUtils.resolve-1"/>
+		<callRef name="URIUtils.resolve-2"/>
+		<callRef name="URIUtils.createURI"/>
+		<callRef name="URIUtils.rewriteURI-1"/>
+		<callRef name="URIUtils.rewriteURI-2"/>
+		<callRef name="HttpTrace-1"/>
+		<callRef name="HttpTrace-2"/>
+		<callRef name="HttpService-1"/>
+		<callRef name="HttpService.setParams"/>
+		<callRef name="HttpParams.setIntParameter"/>
+		<callRef name="HttpParams.setParameter"/>
+		<callRef name="HttpResponseCache.getInstalled"/>
+		<callRef name="HttpResponseCache.install"/>
+		<callRef name="RequestHandler.setupBasicAuthResponse"/>
+		<callRef name="RequestHandler.setupDigestAuthResponse"/>
+	</sdiv>
+	<sdiv name="MMGroup">
+		<h3> Multimedia Contents</h3>
+		<div class="AuxFoldBox">
+			Creation of media players and media recorders. There should be no
+			security problems with players. For recorders it depends on the use
+			of the recorded media and it also depends if the user is aware or not
+			of the recording.
+		</div>
+		<div class="FoldBox">
+			Création de media player. Normalement cela ne pose pas de problème
+			particulier pour les
+			players. Pour les recorders cela dépend de l'utilisation du média
+			enregistré et de savoir
+			si l'utilisateur a été prévenu.
+		</div>
+		<callRef name="MediaPlayer.create-1" />
+		<callRef name="MediaPlayer.create-2" />
+		<callRef name="MediaPlayer.create-3" />
+		<callRef name="MediaPlayer.setDataSource-1" />
+		<callRef name="MediaPlayer.setDataSource-2" />
+		<callRef name="MediaPlayer.setDataSource-3" />
+		<callRef name="MediaPlayer.setDataSource-4" />
+		<callRef name="MediaPlayer.setDataSource-5"/>
+
+		<callRef name="MediaRecorder.start" />
+		<callRef name="MediaRecorder.prepare" />
+		<callRef name="MediaRecorder.setAudioSource" />
+		<callRef name="MediaRecorder.setVideoSource" />
+		<callRef name="MediaRecorder.setOutputFormat" />
+		<callRef name="MediaRecorder.setOutputFile-1" />
+		<callRef name="MediaRecorder.setOutputFile-2" />
+	</sdiv>
+</sdiv>	
+	

@@ -1,0 +1,127 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<!-- Those rules are written by hand because they are on base class not treated by the stub generator -->
+<matos>
+<report name="Class.getMethod-0">                           
+  <message><tr><td class="head">Base:</td><td class="result">%r</td></tr>&#13;</message>
+</report>                                                                               
+<report name="Class.getMethod-1">                                     
+  <message><tr><td class="head">Argument 1:</td><td class="result">%r</td></tr>&#13;</message>
+</report>                                                                                     
+<report name="H1-Class.getMethod">                                          
+  <message unique="title"><h4>Class.getMethod</h4>&#13;</message>           
+</report>                                                                                     
+<report name="H2-Class.getMethod">                                          
+  <message><tr><td colspan="2" class="result">%nA</td></tr>&#13;<tr><td class="head">Caller:</td><td class="result"> %c.%m</td></tr>&#13;</message>                                           
+</report>
+<report name="R-Class.getMethod">
+  <conjunction>
+     <ref name="H1-Class.getMethod"/>
+     <ref name="H-SEP"/>
+     <ref name="OTABLE"/>
+     <ref name="H2-Class.getMethod"/>
+     <ref name="Class.getMethod-0" pos="0"/>
+     <ref name="Class.getMethod-1" pos="1"/>
+     <ref name="CTABLE"/>
+  </conjunction>
+</report>
+<rule name="Class.getMethod">
+  <args class="java.lang.Class"
+        signature="java.lang.reflect.Method getMethod(java.lang.String,java.lang.Class[])"
+        report="R-Class.getMethod">
+    <argument position="0"/>
+    <argument position="1"/>
+    <argument position="-1"/>
+  </args>
+</rule>
+
+<report name="R-ClassLoader-1">
+  <forbiddenMethod silent="true"><h4>%nA - ClassLoader()</h4>%p</forbiddenMethod>
+</report>
+<rule name="ClassLoader-1">
+  <use class="java.lang.ClassLoader"
+        signature="void &lt;init&gt;()"
+        report="R-ClassLoader-1">
+  </use>
+</rule>
+
+<report name="R-ClassLoader-2">
+  <forbiddenMethod silent="true"><h4>%nA - ClassLoader(ClassLoader)</h4>%p</forbiddenMethod>
+</report>
+<rule name="ClassLoader-2">
+  <use class="java.lang.ClassLoader"
+        signature="void &lt;init&gt;(java.lang.ClassLoader)"
+        report="R-ClassLoader-2">
+  </use>
+</rule>
+
+<report name="R-SecureClassLoader-1">
+  <forbiddenMethod silent="true"><h4>%nA - SecureClassLoader()</h4>%p</forbiddenMethod>
+</report>
+<rule name="SecureClassLoader-1">
+  <use class="java.security.SecureClassLoader"
+        signature="void &lt;init&gt;()"
+        report="R-ClassLoader-1">
+  </use>
+</rule>
+
+<report name="R-SecureClassLoader-2">
+  <forbiddenMethod silent="true"><h4>%nA - SecureClassLoader(ClassLoader)</h4>%p</forbiddenMethod>
+</report>
+<rule name="SecureClassLoader-2">
+  <use class="java.security.SecureClassLoader"
+        signature="void &lt;init&gt;(java.lang.ClassLoader)"
+        report="R-SecureClassLoader-2">
+  </use>
+</rule>
+
+<report name="Class.getDeclaredMethod-0">                           
+  <message><tr><td class="head">Base:</td><td class="result">%r</td></tr>&#13;</message>
+</report>                                                                               
+<report name="Class.getDeclaredMethod-1">                                     
+  <message><tr><td class="head">Argument 1:</td><td class="result">%r</td></tr>&#13;</message>
+</report>                                                                                     
+<report name="H1-Class.getDeclaredMethod">                                          
+  <message unique="title"><h4>Class.getDeclaredMethod</h4>&#13;</message>           
+</report>                                                                                     
+<report name="H2-Class.getDeclaredMethod">                                          
+  <message><tr><td colspan="2" class="result">%nA</td></tr>&#13;<tr><td class="head">Caller:</td><td class="result"> %c.%m</td></tr>&#13;</message>                                           
+</report>
+<report name="R-Class.getDeclaredMethod">
+  <conjunction>
+     <ref name="H1-Class.getDeclaredMethod"/>
+     <ref name="H-SEP"/>
+     <ref name="OTABLE"/>
+     <ref name="H2-Class.getDeclaredMethod"/>
+     <ref name="Class.getDeclaredMethod-0" pos="0"/>
+     <ref name="Class.getDeclaredMethod-1" pos="1"/>
+     <ref name="CTABLE"/>
+  </conjunction>
+</report>
+<rule name="Class.getDeclaredMethod">
+  <args class="java.lang.Class"
+        signature="java.lang.reflect.Method getDeclaredMethod(java.lang.String,java.lang.Class[])"
+        report="R-Class.getDeclaredMethod">
+    <argument position="0"/>
+    <argument position="1"/>
+    <argument position="-1"/>
+  </args>
+</rule>
+</matos>

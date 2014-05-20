@@ -1,0 +1,55 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<!--
+	OPTIONS ======================================================== =====
+-->
+
+
+<!-- Configuration of the descriptors conformity phase -->
+
+<matos>
+<option name="implemchecker.forbiddenImplem" value="">
+	<description>
+		Those interfaces must not be overriden or there is a risk that the developer
+		implements its own version to bypass checks.
+       </description>
+</option>
+
+<option name="anasoot.printNodes" value="true">
+	<description>
+		This option is necessary to get the table of nodes that can be used to
+		check the
+		actual types of some arguments.
+       </description>
+</option>
+
+<option name="anasoot.treatConcatenation" value="true" />
+<option name="anasoot.treatStringBuffer" value="true" />
+<option name="anasoot.treatStringOperation" value="true" />
+<option name="anasoot.treatFunctions" value="true" />
+<option name="anasoot.treatSpyReturn" value="true" />
+<option name="anasoot.treatProperties" value="true" />
+<option name="anasoot.treatValueOf" value="true" />
+<option name="anasoot.reportPseudo" value="false" />
+<option name="anasoot.usedJSR" value="false" />
+<option name="anasoot.android.global" value="true" />
+<option name="anasoot.enhancedPointsto" value="false" />
+<option name="anasoot.androidApiUse" value="true" />
+</matos>

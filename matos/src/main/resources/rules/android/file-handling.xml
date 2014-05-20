@@ -1,0 +1,133 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h3>Files</h3>
+	<sdiv>
+		<h4>Opening files</h4>
+		<div class="AuxFoldBox">
+			Those methods let the application open files that are then visible as streams.
+			It may be possible to follow their use. 
+		</div>
+		<div class="FoldBox">
+			Ces APIs permettent d'ouvrir des fichiers et créent donc des streams
+			dont on peut ensuite éventuellement suivre l'utilisation.
+		</div>
+		<callRef name="FileOutputStream.getFD" />
+		<callRef name="FileOutputStream-1" />
+		<callRef name="FileOutputStream-2" />
+		<callRef name="FileOutputStream-3" />
+		<callRef name="FileOutputStream-4" />
+		<callRef name="FileOutputStream-5" />
+		<callRef name="FileInputStream.getFD" />
+		<callRef name="FileInputStream-1" />
+		<callRef name="FileInputStream-2" />
+		<callRef name="FileInputStream-3" />
+		<callRef name="FileWriter-1" />
+		<callRef name="FileWriter-2" />
+		<callRef name="FileWriter-3" />
+		<callRef name="FileWriter-4" />
+		<callRef name="FileWriter-5" />
+		<callRef name="FileReader-1" />
+		<callRef name="FileReader-2" />
+		<callRef name="FileReader-3" />
+	</sdiv>
+	<sdiv>
+		<h4>Opening local files</h4>
+		<div class="AuxFoldBox">
+			Those methods let the application open files in their private directory.
+		</div>
+		<div class="FoldBox">
+			Ces APIs permettent d'ouvrir des fichiers dans le répertoir privé de l'application.
+		</div>
+		<callRef name="Context.getSharedPrefsFile"/>
+		<callRef name="Context.openFileInput"/>
+		<callRef name="Context.openFileOutput"/>
+		<callRef name="Context.deleteFile"/>
+		<callRef name="Context.getFileStreamPath"/>
+		<callRef name="Context.getFilesDir"/>
+		<callRef name="Context.getExternalFilesDir"/>
+		<callRef name="Context.getCacheDir"/>
+		<callRef name="Context.getExternalCacheDir"/>
+		<callRef name="Context.getDir"/>
+		<callRef name="Context.deleteDatabase"/>
+		<callRef name="Context.getDatabasePath"/>					
+	</sdiv>
+	<sdiv>
+		<h4>File handling</h4>
+		<div class="AuxFoldBox">
+			File is a java standard API to manipulate file names and do some basic 
+			operations on files and filesystems. To understand what is really done, it
+			is necessary to link the creation of the File object defining the target
+			file or folder and the methods that only specify the action done. 
+		</div>
+		<div class="FoldBox">
+			Cette API standard en Java permet de manipuler des noms de fichiers et
+			de faire des opérations
+			de base sur les fichiers. Pour comprendre ce qui est fait, il faut
+			relier la création de l'objet
+			où le fichier utilisé est défini et les méthodes qui ne spécifient
+			que l'action effectuée.
+		</div>
+		<callRef name="File.list-1" />
+		<callRef name="File.list-2" />
+		<callRef name="File.delete" />
+		<callRef name="File.createNewFile" />
+		<callRef name="File.createTempFile-1" />
+		<callRef name="File.createTempFile-2" />
+		<callRef name="File.getAbsoluteFile" />
+		<callRef name="File.getCanonicalsFile" />
+		<callRef name="File.getParentFile" />
+		<callRef name="File.listFiles-1" />
+		<callRef name="File.listFiles-2" />
+		<callRef name="File.listFiles-3" />
+		<callRef name="File.listRoots" />
+		<callRef name="File.mkdir"/>
+		<callRef name="File.mkdirs"/>
+		<callRef name="File.renameTo"/>
+		<callRef name="File.setExecutable-1"/>
+		<callRef name="File.setExecutable-2"/>
+		<callRef name="File.setReadable-1"/>
+		<callRef name="File.setReadable-2"/>
+		<callRef name="File.setWritable-1"/>
+		<callRef name="File.setWritable-2"/>
+		<callRef name="File-1" />
+		<callRef name="File-2" />
+		<callRef name="File-3" />
+		<callRef name="File-4" />
+		
+		<callRef name="Environment.getExternalStorageDirectory"/>                                         
+		<callRef name="Environment.getDataDirectory"/>
+		<callRef name="Environment.getDownloadCacheDirectory"/>                                       
+		<callRef name="Environment.getRootDirectory"/>
+		<callRef name="Environment.getExternalStorageAppCacheDirectory"/>
+		<callRef name="Environment.getExternalStorageAppDataDirectory"/>
+		<callRef name="Environment.getExternalStorageAppFilesDirectory"/>
+		<callRef name="Environment.getExternalStorageAppMediaDirectory"/>
+		<callRef name="Environment.getExternalStorageDataDir"/>
+		<callRef name="Environment.getExternalStoragePublicDirectory"/>
+		<callRef name="Environment.getSecureDataDirectory"/>
+		<callRef name="Environment.getSystemSecureDirectory"/>
+	</sdiv>
+	<sdiv>
+		<h4> Streams Bluetooth </h4>
+		<callRef name="BluetoothSocket.getInputStream" />
+		<callRef name="BluetoothSocket.getOutputStream" />
+	</sdiv>
+</sdiv>

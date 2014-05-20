@@ -1,0 +1,46 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv name="log">
+	<h2>Logging</h2>
+	<div class="AuxFoldBox">
+		In may be desirable to prevent all logs on production environments. This set of checker
+		tells whether Logging APIs are used.
+	</div>
+	<div class="FoldBox">
+		Il peut être souhaitable d'interdire l'utilisation des logs en production. Cet ensemble de
+		règles indique si les APIs de logging sont utilisées.
+	</div>
+	<callRef name="Log.println"/>
+	<callRef name="Log.i-1"/>
+	<callRef name="Log.i-2"/>
+	<callRef name="Log.e-1"/>
+	<callRef name="Log.e-2"/>
+	<callRef name="Log.v-1"/>
+	<callRef name="Log.v-2"/>
+	<callRef name="Log.d-1"/>
+	<callRef name="Log.d-2"/>
+	<callRef name="Log.w-1"/>
+	<callRef name="Log.w-2"/>
+	<callRef name="Log.w-3"/>
+	<callRef name="Log.wtf-1"/>
+	<callRef name="Log.wtf-2"/>
+	<callRef name="Log.wtf-3"/>
+	<callRef name="Log.println_native"/>
+</sdiv>

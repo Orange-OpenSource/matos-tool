@@ -1,0 +1,144 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h3>Intents</h3>
+	<div class="AuxFoldBox">
+		Intents are the basic communication mechanism between the application
+		and other components of the system (like the OS itself).
+		
+		This section is necessarily long because intents are used between each activities
+		and services of an application. We are most interested here in intents used to communicate
+		with the system.
+		
+		Matos cannot identify those intents alone because it is necessary to accumulate
+		information coming from different methods. It is up to the user to collect this
+		information using search in the browser.
+	</div>
+	<div class="FoldBox">
+		Les intents sont le mécanisme de communication de base entre
+		l'application et les autres composants
+		du système dont l'OS lui même. 
+
+		Cette section est presque obligatoirement longue car les intents sont
+		utilisés entre chacune	des activités. On s'intéressera donc ici à des intents utilisés pour
+		communiquer avec le	système.
+
+		Matos ne peut les isoler lui même et il faut lancer des recherches dans
+		le navigateur pour les retrouver.
+		
+				 </div>
+	<sdiv>
+		<h4>Intent creation</h4>
+		<sdiv>
+		<div class="AuxFoldBox">
+		It is important to distinguish two kinds of events:
+		<ul>
+		<li>
+		Explicit intents refer to explicit class implementing the activity that one want to
+		trigger. It is usually activities or services belonging to the same application as
+		the intent sender and there is usually little risks associated to it.
+		</li>
+		<li>
+		Implicit intents refer to actions (coded as strings) and contents (Uri) that
+		can be completed by a category and auxiliary data (pairs of key/values stored in a
+		bundle associated to the intent. They ca code important information like the real
+		destination address of an MMS).
+		</li>
+		</ul>
+		</div>
+		<div class="FoldBox">
+		Il est important de distinguer deux classes d'intents:
+		<ul>
+		<li>
+		Les intents explicites permettent de déclencher une action en donnant la classe
+		de l'activité qui l'implante. Il s'agit normalement d'activités de la même application et
+		posent donc assez peu de risques
+		</li>
+		<li>
+		Les intents implicites font référence à une action sur un contenu (URI) qui peuvent être
+		complétés par une catégorie et des données auxiliaires (contenant parfois des informations
+		importantes comme l'adresse de destination réelle pour des MMS).
+		</li>
+		</ul>
+		</div>
+		</sdiv>
+		<callRef name="Intent.setType" />
+		<callRef name="Intent.getIntent" />
+		<callRef name="Intent.setData" />
+		<callRef name="Intent.setClassName-1" />
+		<callRef name="Intent.setClassName-2" />
+		<callRef name="Intent.setAction" />
+		<callRef name="Intent.setDataAndType" />
+		<callRef name="Intent.createChooser" />
+		<callRef name="Intent.parseIntent-1" />
+		<callRef name="Intent.setClass" />
+		<callRef name="Intent.parseUri" />
+		<callRef name="Intent.getIntentOld" />
+		<callRef name="Intent-1" />
+		<callRef name="Intent-2" />
+		<callRef name="Intent-3" />
+		<callRef name="Intent-4" />
+	</sdiv>
+	<sdiv>
+		<h4>Intent filtering</h4>
+		<div class="AuxFoldBox">
+		Intent filters are  the counter part of intent. They are used to receive messages
+		from other applications sent as implicit intents. As far as security is concerned
+		we are most interested in dynamic filters established for BroadcastReceivers to
+		receive messages coming from the operating system. For example, it is the way to
+		receive the contents of SMS received by the handset.
+		</div>
+		<div class="FoldBox">
+		Les filtres d'intents sont la contrepartie des intents. Ils sont utilisés pour recevoir
+		des messages. Pour ce qui est de la sécurité, ce sont surtout les filtres dynamiques 
+		associés aux BroadcastReceivers qui nous interessent. Ils permettent par exemple de
+		recevoir les contenus des SMS reçus par le terminal.
+		</div>
+		<callRef name="IntentFilter.create" />
+		<callRef name="IntentFilter.addAction" />
+		<callRef name="IntentFilter.addDataScheme" />
+		<callRef name="IntentFilter.addDataType" />
+		<callRef name="IntentFilter.addDataPath" />
+		<callRef name="IntentFilter.addCategory" />
+		
+		<callRef name="IntentFilter-1" />
+		<callRef name="IntentFilter-2" />
+		<callRef name="IntentFilter-3" />
+	</sdiv>
+	<sdiv>
+		<h4>Intent extras</h4>
+		<div class="AuxFoldBox">
+		Those methods are used to add auxiliary information to intents and bundles.
+		Bundles are interesting in this context only if they are then associated to an
+		intent. We only survey string values because all the critical parameters we are
+		aware of are coded as strings (and not as numbers or more complex types).
+		</div>
+		<div class="FoldBox">
+		Ces méthodes permettent d'ajouter des informations à des intents ou à des Bundles.
+		Ces derniers ne nous intéressent que s'ils sont associés à des intents.
+		En pratique on ne regarde que les chaînes de caractères car tous les paramètres
+		un peu critiques sont codés par des chaînes.
+		</div>
+		<callRef name="Intent.putExtra" />
+		<callRef name="Intent.putExtras-1" />
+		<callRef name="Intent.putExtras-2" />
+		<callRef name="Bundle.putString"/>
+	</sdiv>
+</sdiv>

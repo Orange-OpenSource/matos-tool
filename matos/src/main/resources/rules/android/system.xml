@@ -1,0 +1,314 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h2>System</h2>
+	<sdiv name="DMGroup">
+		<h3> Device Management </h3>
+		<div class="AuxFoldBox">
+			Those APIs let the owner define a security policy on top of the device configuration. 
+				</div>
+		<div class="FoldBox">
+			Ces APIs permettent au propriétaire du terminal de définir une politique de sécurité
+			imposée aux utilisateurs du terminal. Elle contrôle en particulier la remise à zéro.
+  			</div>
+  			<callRef name="DevicePolicyManager.removeActiveAdmin"/>
+		<callRef name="DevicePolicyManager.resetPassword"/>
+		<callRef name="DevicePolicyManager.setActiveAdmin"/>
+		<callRef name="DevicePolicyManager.setActivePasswordState"/>
+		<callRef name="DevicePolicyManager.setMaximumFailedPasswordsForWipe"/>
+		<callRef name="DevicePolicyManager.setMaximumTimeToLock"/>
+		<callRef name="DevicePolicyManager.setPasswordQuality"/>
+		<callRef name="DevicePolicyManager.wipeData"/>
+		<callRef name="RecoverySystem.installPackage"/>
+		<callRef name="RecoverySystem.rebootWipeUserData"/>    			
+	</sdiv>
+	<sdiv name="alarm">
+		<h3> Alarm management </h3>
+		<div class="AuxFoldBox">
+			Programmed alarm that can awake an application at a given time.
+		</div>
+		<div class="FoldBox">
+			Alarmes pouvant reveiller une application qui ne tourne pas.
+  		</div>
+  			<callRef name="AlarmManager.set" />
+  			<callRef name="AlarmManager.setTime"/>
+  			<callRef name="AlarmManager.setRepeating" />
+  			<callRef name="AlarmManager.setInexactRepeating" />
+	</sdiv>
+	 <sdiv>
+		<h3> ClipBoard</h3>
+		<div class="AuxFoldBox">
+			Using the clipboard to leak or to get sensitivie information would be a weird approach.
+		</div>
+		<div class="FoldBox">
+			Le clipboard. A priori peu de risque.
+  		</div>
+		
+        <callRef name="ClipboardManager.addPrimaryClipChangedListener"/>
+		<callRef name="ClipboardManager.getPrimaryClip"/>
+      	<callRef name="ClipboardManager.setPrimaryClip"/>
+        <callRef name="ClipboardManager.setText"/>
+    </sdiv>
+	<sdiv>
+		<h3> External storage management </h3>
+		<div class="AuxFoldBox">
+			APIs to enable/disable/monitor SDCard access  
+		</div>
+		<div class="FoldBox">
+			Api de gestion de la carte SD.  
+		</div>
+		<callRef name="StorageManager.disableUsbMassStorage"/>
+		<callRef name="StorageManager.enableUsbMassStorage"/>
+		<callRef name="StorageManager.registerListener"/>							
+	</sdiv>
+	<sdiv name="Sync">
+		<h3>Sync control</h3>
+		<callRef name="SyncStateContract.get"/>
+		<callRef name="SyncStateContract.getWithUri"/>
+		<callRef name="SyncStateContract.insert"/>
+		<callRef name="SyncStateContract.newSetOperation"/>
+		<callRef name="SyncStateContract.newUpdateOperation"/>
+		<callRef name="SyncStateContract.set"/>
+		<callRef name="SyncStateContract.update"/>				
+	</sdiv>
+	<sdiv>
+		<h3> System monitoring </h3>
+		<div class="AuxFoldBox">
+			These APIs are the high level APIs exposed by the content-provider in charge
+			of managing the settings of the operating system. There are three levels of
+			settings:
+			<ul>
+				<li>Google services (Gservices) </li>
+				<li>The OS itself (System)</li>
+				<li>Critical parameter of the oS (Secure)</li>
+			</ul>
+			The secure parameters should only be readable by a regular application.
+			
+			Those methods take as arguments pairs of keys and values. We can only interpret
+			the modifications made only if we have the key used.  
+			
+			 System properties should not be used by regular applications but were on older versions of the system.
+		</div>
+		<div class="FoldBox">
+			Les APIs surveillées sont les APIs de haut niveau exposées par le
+			content-provider chargé de la gestion des réglages du système d'exploitation. 
+			On distingue 3 niveaux
+			<ul>
+				<li>Les services Google (Gservices) </li>
+				<li>L'OS lui même (System) </li>
+				<li>Les paramètres critiques de l'OS (Secure)</li>
+			</ul>
+			Ces méthodes prennent en argument des paires clé/valeur.
+			On ne peut interpréter le type de changement effectué qu'à condition
+			d'avoir la clé utilisée.
+			Notons que normalement les applications n'ont pas la permission de
+			changer les paramètres
+			critiques.
+			
+			 Les applications normales ne devraient pas accéder aux SystemProperties. Cela a été utilisé par le passé.
+		</div>
+		<callRef name="Settings.Gservices.getInt" />
+		<callRef name="Settings.Gservices.getLong" />
+		<callRef name="Settings.Gservices.getString" />
+		<callRef name="Settings.Gservices.putString" />
+		<callRef name="Settings.Gservices.getUriFor" />
+		<callRef name="Settings.getGTalkDeviceId" />
+
+		<callRef name="Settings.System.getInt-1" />
+		<callRef name="Settings.System.getInt-2" />
+		<callRef name="Settings.System.putInt" />
+		<callRef name="Settings.System.getLong-1" />
+		<callRef name="Settings.System.getLong-2" />
+		<callRef name="Settings.System.putLong" />
+		<callRef name="Settings.System.getFloat-1" />
+		<callRef name="Settings.System.getFloat-2" />
+		<callRef name="Settings.System.putFloat" />
+		<callRef name="Settings.System.getString" />
+		<callRef name="Settings.System.putString" />
+		<callRef name="Settings.System.getConfiguration" />
+		<callRef name="Settings.System.getUriFor" />
+		<callRef name="Settings.System.putConfiguration" />
+
+		<callRef name="Settings.Secure.getInt-1" />
+		<callRef name="Settings.Secure.getInt-2" />
+		<callRef name="Settings.Secure.putInt" />
+		<callRef name="Settings.Secure.getLong-1" />
+		<callRef name="Settings.Secure.getLong-2" />
+		<callRef name="Settings.Secure.putLong" />
+		<callRef name="Settings.Secure.getFloat-1" />
+		<callRef name="Settings.Secure.getFloat-2" />
+		<callRef name="Settings.Secure.putFloat" />
+		<callRef name="Settings.Secure.getString" />
+		<callRef name="Settings.Secure.putString" />
+		<callRef name="Settings.Secure.getUriFor" />
+		<callRef name="Settings.Secure.isLocationProviderEnabled" />
+		<callRef name="Settings.Secure.setLocationProviderEnabled" />
+		
+		<callRef name="SystemProperties.get-1"/>
+		<callRef name="SystemProperties.get-2"/>
+		<callRef name="SystemProperties.getBoolean"/>
+		<callRef name="SystemProperties.getInt"/>
+		<callRef name="SystemProperties.getLong"/>
+		<callRef name="SystemProperties.set"/>
+	</sdiv>
+	<sdiv name="OsSettings">
+		<h3> Low level OS settings </h3>
+		<div class="AuxFoldBox">
+			Low level OS settings. Should be more hidden than they are.  
+		</div>
+		<div class="FoldBox">
+			Settings OS de bas niveau. Ils sont normalement cachés... mais pas tant que cela.
+		</div>
+		<callRef name="SystemProperties.get-1" />
+		<callRef name="SystemProperties.get-2" />
+		<callRef name="SystemProperties.getBoolean" />
+		<callRef name="SystemProperties.getInt" />
+		<callRef name="SystemProperties.getLong" />
+		<callRef name="SystemProperties.set" />
+	</sdiv>
+	<sdiv>
+		<h3>Various management APIs</h3>
+		<div class="AuxFoldBox">
+			Beware of unwanted time changes. Note also that the use of the Window manager with
+			a low-level layout specification can have unexpected consequences. These are fields
+			in user provided data structures. 
+			<code>Field.layout.xxx</code> captures the type and the flags of a screen built
+			manually. The following values can create problems:
+			<ul>
+				<li> <code>type = 2003</code>: This is an alarm window that will be always visible. Check
+				    any value in the 2000 range (2013 is for a wall-paper).</li>
+				<li> if <code>flag</code> contains 128, the screen cannot be turned off anymore.</li>
+				<li> if <code>flag</code> contains  8 : no focus. The window may hide the one that
+				receives the real event 
+				</li>
+			</ul>
+		</div>
+		<div class="FoldBox">
+			Attention aux changements d'heure intempestifs. L'utilisation du
+			Window Manager avec une
+			spécification de layout de bas niveau peut avoir des conséquences imprévues.
+			<code>Field.layout.xxx</code> capture le type et les drapeaux d'une fenêtre 
+			construite manuellement. Les valeurs suivantes
+			peuvent poser problème (0 par contre est la valeur d'initialisation).
+			<ul>
+				<li> type = 2003 : c'est une fenêtre alarme qui reste visible.
+					Vérifier toute valeur dans les 2000 (2013 papier peint).</li>
+				<li> flag contient 128 : l'écran ne peut passer en veille.</li>
+				<li> flag contient 8 : pas de focus. La fenêtre peut cacher celle
+					qui reçoit l'évènement. </li>
+			</ul>
+		</div>
+		<callRef name="AlarmManager.setTimeZone" />
+		<callRef name="AppWidgetManager.bindAppWidgetId" />
+		<fieldRef name="LayoutFormat.type" />
+		<fieldRef name="LayoutFormat.flags" />
+		<callRef name="LayoutParams-1"/>
+		<callRef name="LayoutParams-2"/>
+		<callRef name="LayoutParams-3"/>
+		<callRef name="LayoutParams-4"/>
+		<callRef name="LayoutParams-5"/>
+		<callRef name="setPermissionController" />
+	</sdiv>
+
+	<sdiv>
+		<h3>Wallpaper</h3>
+		<div class="FoldBox"> Gestion du papier peint. A priori sans danger. </div>
+		<callRef name="WallpaperManager.setBitmap" />
+		<callRef name="WallpaperManager.setStream" />
+		<callRef name="WallpaperManager.setResource" />
+		<callRef name="Context.setWallpaper-1" />
+		<callRef name="Context.setWallpaper-2" />
+		<callRef name="Context.clearWallpaper" />
+	</sdiv>
+
+	<sdiv name="WMGroup">
+		<h3>Low-level management APIs</h3>
+		<div class="AuxFoldBox">
+			Those methods should not be called in regular applications. They handle
+			events at a very low-level.
+		</div>
+		<div class="FoldBox">
+			Ces fonctions ne devraient pas apparaître dans une application
+			classique.
+			Elles permettent de gérer les évènements à un niveau très bas.
+		</div>
+		<callRef name="IWindowManager.disableKeyguard" />
+		<callRef name="IWindowManager.reenableKeyguard" />
+		<callRef name="IWindowManager.setAnimationScale" />
+		<callRef name="IWindowManager.setAnimationScales" />
+		<callRef name="IWindowManager.addWindowToken" />
+		<callRef name="IWindowManager.removeWindowToken" />
+		<callRef name="IWindowManager.injectKeyEvent" />
+		<callRef name="IWindowManager.injectPointerEvent" />
+		<callRef name="IWindowManager.injectTrackballEvent" />
+		<callRef name="IWindowManager.addAppToken" />
+		<callRef name="IWindowManager.setAppGroupId" />
+		<callRef name="IWindowManager.updateOrientationFromAppTokens" />
+		<callRef name="IWindowManager.setAppOrientation" />
+		<callRef name="IWindowManager.setFocusedApp" />
+		<callRef name="IWindowManager.prepareAppTransition" />
+		<callRef name="IWindowManager.executeAppTransition" />
+		<callRef name="IWindowManager.setAppStartingWindow" />
+		<callRef name="IWindowManager.setAppWillBeHidden" />
+		<callRef name="IWindowManager.setAppVisibility" />
+		<callRef name="IWindowManager.startAppFreezingScreen" />
+		<callRef name="IWindowManager.stopAppFreezingScreen" />
+		<callRef name="IWindowManager.removeAppToken" />
+		<callRef name="IWindowManager.moveAppToken" />
+		<callRef name="IWindowManager.removeAppTokensToTop" />
+		<callRef name="IWindowManager.removeAppTokenToBottom" />
+		<callRef name="IWindowManager.getSwitchState" />
+		<callRef name="IWindowManager.getSwitchStateForDevice" />
+		<callRef name="IWindowManager.getScancodeState" />
+		<callRef name="IWindowManager.getScancodeStateForDevice" />
+		<callRef name="IWindowManager.getTrackballScancodeState" />
+		<callRef name="IWindowManager.getDPadScancodeState" />
+		<callRef name="IWindowManager.getKeycodeState" />
+		<callRef name="IWindowManager.getKeycodeStateForDevice" />
+		<callRef name="IWindowManager.getTrackballKeycodeState" />
+		<callRef name="IWindowManager.getDPadKeycodeState" />
+		<callRef name="IWindowManager.setRotation" />
+		<callRef name="IWindowManager.pauseKeyDispatching" />
+		<callRef name="IWindowManager.resumeKeyDispatching" />
+		<callRef name="IWindowManager.setEventDispatching" />
+	</sdiv>
+	<sdiv name="InstrumentationGroup">
+		<h3>Code instrumentation</h3>
+		<div class="AuxFoldBox">
+			Those APIs should not appear in a regular application. 
+			There are few known associated risks because Android limits tests to applications
+			with the same signature. They can be used to send events to the various parts of
+			the input peripherals.
+		</div>
+		<div class="FoldBox">
+			Ces fonctions ne devraient pas apparaître dans une application
+			classique.
+			Normalement il y a peu de risques associés (Android limite les tests sur ses
+			propres applications). Elles permettent d'envoyer des évènements
+			aux différents	périphériques d'entrée.
+		</div>
+		<callRef name="Instrumentation.sendStringSync" />
+		<callRef name="Instrumentation.sendKeySync" />
+		<callRef name="Instrumentation.sendKeyDownUpSync" />
+		<callRef name="Instrumentation.sendCharacterSync" />
+		<callRef name="Instrumentation.sendPointerSync" />
+		<callRef name="Instrumentation.sendTrackballEventSync" />
+	</sdiv>
+</sdiv>

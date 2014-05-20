@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<book version="5.0" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xsi:schemaLocation="http://docbook.org/ns/docbook 
+      http://docbook.org/xml/5.0/xsd/docbook.xsd">
+
+  <title>Matos Manual</title>
+  <titleabbrev>Matos</titleabbrev>
+  <info>
+    <author>
+      <personname>
+        <firstname>Pierre</firstname>
+        <surname>Crégut</surname>
+      </personname>
+    </author>
+  </info>
+  <chapter>
+    <title>Introduction</title>
+    <section>
+      <title>Matos objectives </title>
+      <para>
+        Matos is a static analysis tool that can analyze a compiled mobile java
+        application
+        (Android or MIDP) and give back facts on its potential executions. To do
+        this it
+        accumulate information from simple syntactic checks and from semantic analysis
+        mainly
+        based on an analysis of data flows in the code (using a points-to
+        analyis).
+      </para>
+      <para>
+        Matos then uses simple heuristics to give a grade to applications that
+        can be used to focus
+        deeper analysis on the most likely sources of problems. It is also
+        designed to be relatively
+        fast so that large number of applications can be analyzed in a
+        reasonable amount of time.
+      </para>
+      
+      <para>
+        The engine of the tool takes three inputs:
+      </para>
+      <itemizedlist>
+        <listitem>
+          <para>an application to analyzed with optionally a descriptor
+            of this application (a Jad file for a MIDP application)
+          </para>
+        </listitem>
+        <listitem>
+          <para>A set of rules describing what to search (known as the
+            analysis profile or profile).</para>
+        </listitem>
+        <listitem>
+          <para>An emulation of the execution platform (MIDP MSA,
+            Android, with additional libraries.)</para>
+        </listitem>
+      </itemizedlist>
+      <para>
+        Matos as a tool can either be used directly from the command line or as a
+        serivce on the web
+        through a web browser (matosweb).
+      </para>
+    </section>
+    <section>
+      <title>Organization of the manual</title>
+      <para></para>
+    </section>
+  </chapter>
+  <chapter>
+    <title>Installing Matos</title>
+    <section>
+      <title>Command line version</title>
+      <para>The tool is provided in a ZIP archive. Unpack it and refer
+        to the scripts in the bin
+        sub folder to launch the application. Under windows, use matos.bat.
+        Under Linux, use matos
+      </para>
+      <para>
+        The Linux script tries to detect your current version of Java
+        and tries to locate the location of the tool. You can override 
+        the location of the tool with the
+        <envar>MATOS_HOME</envar> environment variable. 
+      </para>
+    </section>
+    <section>
+      <title>Matosweb</title>
+      <para></para>
+    </section>
+    <section>
+      <title>Adding plug-ins</title>
+      <para>Matos can be customized for specific use. Plugins are just
+        archives that contain analysis profiles and if necessary some new stub execution environments.
+      </para>
+    </section>
+  </chapter>
+  <chapter>
+    <title>Standard analysis profiles</title>
+    <section>
+        <title>Android profile</title>
+        <para></para>
+    </section>
+    <section>
+        <title>MIDP profile</title>
+        <para></para>
+    </section>
+  </chapter>
+  <chapter>
+    <title>Developing profiles.</title>
+    <section>
+        <title>Structure of profiles</title>
+        <para></para>
+        <section><title>Specifying options</title><para></para></section>
+    </section>
+        <section>
+        <title>Static analysis rules</title>
+        <para></para>
+    </section>
+        <section>
+        <title>Presentation of results</title>
+        <para></para>
+    </section>
+        <section>
+        <title>Scoring system</title>
+        <para></para>
+    </section>
+  </chapter>
+  <chapter>
+    <title>Developping stub libraries</title>
+    <para></para>
+  </chapter>
+  <chapter>
+    <title>Developping custom checkers</title>
+    <para></para>
+  </chapter>
+</book>

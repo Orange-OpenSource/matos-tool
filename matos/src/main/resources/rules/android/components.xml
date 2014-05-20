@@ -1,0 +1,141 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h2>Activities, components</h2>
+	<sdiv name="IntentSendGroup">
+		<h3> Sending intents</h3>
+		<div class="AuxFoldBox">
+			Those methods are used to send intents (either to activities, services or to broadcast
+			a message). There is no security risk associated to any of those APIs but they help
+			to understand the use of intents (who may be associated to a security critical operation
+			depending on their contents).
+  			</div>
+		<div class="FoldBox">
+			Ces différentes APIs permettent d'envoyer des intents (pour lancer une
+			activité, un service, ou diffuser un message). Envoyer un intent ne pose pas de problème
+			de sécurité en soi. Ces règles permettent par contre de comprendre ce qui est fait des
+			intents qui eux peuvent déclencher des opérations dangereuses suivant leur contenu.
+  			</div>
+		<callRef name="ContextWrapper.getSystemService" />
+
+		<callRef name="Context.startActivity" />
+		<callRef name="Context.startIntentSender" />
+		<callRef name="Context.sendBroadcast-1" />
+		<callRef name="Context.sendBroadcast-2" />
+		<callRef name="Context.sendOrderedBroadcast-1" />
+		<callRef name="Context.sendOrderedBroadcast-2" />
+		<callRef name="Context.sendStickyBroadcast-1" />
+		<callRef name="Context.sendStickyBroadcast-2" />
+		<callRef name="Context.removeStickyBroadcast-1" />
+		<callRef name="Context.startService" />
+		<callRef name="Context.stopService" />
+		<callRef name="Context.bindService" />
+		<callRef name="Activity.startActivityForResult" />
+		<callRef name="Activity.startIntentSenderForResult" />
+		<callRef name="Activity.startActivityIfNeeded" />
+		<callRef name="Activity.startNextMatchingActivity" />
+		<callRef name="Activity.startIntentSenderFromChild" />
+		<callRef name="Activity.startActivityFromChild" />
+		<callRef name="Activity.setResult" />
+		<callRef name="Activity.getIntent" />
+		<callRef name="Activity.setIntent" />
+		<callRef name="Activity.setPersistent" />
+	</sdiv>
+
+	<sdiv name="TaskGroup">
+		<h3>Task management</h3>
+		<div class="AuxFoldBox">
+			Those methods are used to manage task stacks and packages (applications).
+  			</div>
+		<div class="FoldBox">
+			Ces APIs permettent de gérer les piles de tâche et les packages
+  			</div>
+		<callRef name="ActivityManagerNative.getDefault" />
+		<callRef name="ActivityManager.clearApplicationUserData" />
+		<callRef name="ActivityManager.getRecentTasks" />
+		<callRef name="ActivityManager.restartPackage" />
+		<callRef name="ActivityManager.getRunningAppProcesses" />
+		<callRef name="ActivityManager.getRunningTasks" />
+		<callRef name="ActivityManager.getRunningServices" />
+		<callRef name="ActivityManager.getRunningAppProcesses" />
+		<callRef name="ActivitiyManager.getRunningTasks-2"/>
+		<callRef name="ActivityManager.forceStopPackage"/>
+		<callRef name="ActivityManager.ingAppProcesses"/>
+		<callRef name="ActivityManager.ingExternalApplications"/>
+		<callRef name="ActivityManager.killBackgroundProcesses"/>
+		<callRef name="IActivityManager.shutdown" />
+		<callRef name="IActivityManager.updateConfiguration" />
+		<callRef name="IActivityManager.moveTaskToBack" />
+		<callRef name="IActivityManager.moveActivityTaskToBack" />
+		<callRef name="IActivityManager.registerActivityWatcher" />
+		<callRef name="IActivityManager.signalPersistentProcess" />
+		<callRef name="IActivityManager.setActivityController" />
+		<callRef name="IActivityManager.setProcessForeground" />
+		<callRef name="IActivityManager.killApplicationProcess" />
+		<callRef name="IActivityManager.stopAppSwitches" />
+		<callRef name="IActivityManager.killApplicationWithUid" />
+		<callRef name="IActivityManager.moveTaskToFront" />
+		<callRef name="IActivityManager.moveTaskBackwards" />
+		<callRef name="IActivityManager.setProcessLimit" />
+		<callRef name="IActivityManager.restartPackage" />
+		<callRef name="IActivityManager.unhandledBack" />
+		<callRef name="IActivityManager.setDebugApp" />
+		<callRef name="IActivityManager.setAlwaysFinish" />
+		<callRef name="IActivityManager.startRunning" />
+		<callRef name="IActivityManager.resumeAppSwitches" />
+		<callRef name="IActivityManager.crashApplication"/>
+		<callRef name="IActivityManager.forceStopPackage"/>
+		<callRef name="IActivityManager.killBackgroundProcesses"/>
+		<callRef name="IActivityManager.killPids"/>
+		
+		<callRef name="PackageManager.getPackageInfo" />
+		<callRef name="PackageManager.getPackageSizeInfo" />
+		<callRef name="PackageManager.addPackageToPreferred"/>
+		<callRef name="PackageManager.clearApplicationUserData"/>
+		<callRef name="PackageManager.deletePackage"/>
+		<callRef name="PackageManager.freeStorage"/>
+		<callRef name="PackageManager.getActivityInfo"/>
+		<callRef name="PackageManager.getApplicationInfo"/>
+		<callRef name="PackageManager.getInstalledApplications"/>
+		<callRef name="PackageManager.getInstalledPackages"/>
+		<callRef name="PackageManager.getReceiverInfo"/>
+		<callRef name="PackageManager.getServiceInfo"/>
+		<callRef name="PackageManager.getSystemAvailableFeatures"/>
+		<callRef name="PackageManager.getSystemSharedLibraryNames"/>
+		<callRef name="PackageManager.hasSystemFeature"/>
+		<callRef name="PackageManager.installPackage"/>
+		<callRef name="PackageManager.movePackage"/>	
+	</sdiv>
+	<sdiv name="Component">
+		<h3>Component names</h3>
+		<div class="AuxFoldBox">
+			Those methods are used to create complete component names that are then used to denote
+			explicit activities or services in  intents.
+		</div>
+		<div class="FoldBox">
+			Ces méthodes permettent de créer des noms de composant complets. Ces noms sont utilisés
+			pour les intents explicites.
+  			</div>
+		<callRef name="ComponentName-1" />
+		<callRef name="ComponentName-2" />
+		<callRef name="ComponentName-3" />
+		<callRef name="ComponentName-4" />
+	</sdiv>
+</sdiv>

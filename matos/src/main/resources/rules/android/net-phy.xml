@@ -1,0 +1,174 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv>
+	<h2>Network - physical interfaces</h2>
+	<sdiv name="NetworkGroup">
+		<h3> Management of network preferences</h3>
+		<div class="AuxFoldBox">
+			The integer codes for the different network types that may appear are:
+			<ul>
+				<li>0 - mobile (default)</li>
+				<li>1 - wifi </li>
+				<li> 2 - mobile mms (for  MMS - variant of mobile) </li>
+				<li> 3 - suplementary mobile  (assisted GPS) </li>
+				<li> 4 - DUN (modem  mode) </li>
+				<li> 5 - High Priority Mobile Connection (as mobile but with prioritary routing)</li>
+				<li> 6 - wimax </li>
+			</ul>
+			<code>startUsingNetworkFeature</code> can activate functionalities specific to 
+			certain handsets and specific networks. They are non portable and can have
+			various effects. So far it seems only be used to force routes for some contents.
+			The only standard (but still undocumented) constants can be used to force the
+			use of a given network type.
+			
+			Note that if one can force the use of a given network type for a given destination, this
+			can have impact on the cost of the communication.
+			
+			Some API in INetworkManagementService can modify low level settings when using the
+			tethering mode (forwarding, DNS, etc.) This can disrupt or worse hijack connections.
+		</div>
+		<div class="FoldBox">
+			Les codes des différents types de réseaux sont:
+			<ul>
+				<li> 0 - mobile (défaut)</li>
+				<li> 1 - wifi </li>
+				<li> 2 - mobile mms (pour les MMS - proche de mobile) </li>
+				<li> 3 - mobile suplémentaire (GPS assisté) </li>
+				<li> 4 - DUN (mode modem) </li>
+				<li> 5 - High Priority Mobile Connection (mobile mais avec routage
+					prioriatire)</li>
+				<li> 6 - wimax </li>
+			</ul>
+			<code>startUsingNetworkFeature</code>
+			permet d'activer des fonctionnalités propre à certains
+			terminaux pour certains réseaux. C'est non portable et peut avoir des effets
+			divers (comme forcer des routes pour certains contenus, semble-t-il). 
+			Les seuls constantes standards (mais non documentées)
+			permettent de forcer (à bas niveau) l'utilisation d'un type de réseau mobile
+			donné.
+
+			Noter que l'on peut forcer l'utilisation d'un type de réseau pour une
+			destination. Cela peut
+			faire exploser un forfait si ce n'est pas utilisé à bon escient.
+			
+			Des méthodes INetworkManagementService peuvent modifier la configurationd de
+			bas niveau du tethering (forwarding, DNS, etc.). Cela peut au mieux perturber les
+			connexions ou au pire permettre une prise de contrôle.
+		</div>
+	</sdiv>
+	<sdiv>
+		<callRef name="ConnectivityManager.setNetworkPreference" />
+		<callRef name="ConnectivityManager.getNetworkPreference" />
+		<callRef name="ConnectivityManager.getActiveNetworkInfo" />
+		<callRef name="ConnectivityManager.getNetworkInfo" />
+		<callRef name="ConnectivityManager.getAllNetworkInfo" />
+		<callRef name="ConnectivityManager.requestRouteToHost" />
+		<callRef name="ConnectivityManager.startUsingNetworkFeature" />
+		<callRef name="ConnectivityManager.setMobileDataEnabled"/>
+		<callRef name="ConnectivityManager.tether"/>
+		<callRef name="ConnectivityManager.untether"/>
+		<callRef name="INetworkManagementService.disableNat"/>
+		<callRef name="INetworkManagementService.enableNat"/>
+		<callRef name="INetworkManagementService.setAccessPoint"/>
+		<callRef name="INetworkManagementService.setDNSForwarders"/>
+		<callRef name="INetworkManagementService.setInterfaceConfig"/>
+		<callRef name="INetworkManagementService.setIpForwardingEnabled"/>
+		<callRef name="INetworkManagementService.startAccessPoint"/>
+		<callRef name="INetworkManagementService.startTethering"/>
+	</sdiv>
+	<sdiv name="BTGroup">
+		<h3> Bluetooth management</h3>
+		<div class="AuxFoldBox">
+			Those methods control how the bluetooth access is used (exploring the neighborhood,
+			parameters associated to the network interface).
+		</div>
+		<div class="FoldBox">
+			Ces méthodes permettent de contrôler l'utilisation du bluetooth
+			(exploration de l'environnement, paramètres
+			de l'interface).
+		</div>
+		<callRef name="BluetoothAdapter.setName" />
+		<callRef name="BluetoothAdapter.disable" />
+		<callRef name="BluetoothAdapter.enable" />
+		<callRef name="BluetoothAdapter.getRemoteDevice" />
+		<callRef name="BluetoothAdapter.setScanMode-1" />
+		<callRef name="BluetoothAdapter.setScanMode-2" />
+		<callRef name="BluetoothAdapter.startDiscovery" />
+		<callRef name="BluetoothAdapter.listenUsingRfcommOn" />
+		<callRef name="BluetoothAdapter.listenUsingRfcommWithServiceRecord" />
+		<callRef name="BluetoothAdapter.listenUsingInsecureRfcommOn" />
+		<callRef name="BluetoothAdapter.listenUsingScoOn" />
+		<callRef name="ScoSocket.connect"/>
+		<callRef name="BluetoothAdapter.getProfileProxy"/>
+		<callRef name="BluetoothAdapter.listenUsingEncryptedRfcommOn"/>
+		<callRef name="BluetoothAdapter.listenUsingEncryptedRfcommWithServiceRecord"/>
+		<callRef name="BluetoothAdapter.listenUsingInsecureRfcommWithServiceRecord"/>
+		<callRef name="Bluetooth.registerAppConfiguration"/>
+		<callRef name="BlutoothSocket.connect"/>
+	</sdiv>
+	<sdiv name="WifiGroup">
+		<h3>Wifi management</h3>
+		<div class="AuxFoldBox">
+			Those methods control the paramaters associated to the Wifi networks in use.
+			Note that ApEnabled enables the access point mode.
+		</div>
+		<div class="FoldBox">
+			Ces méthodes permettent de contrôler l'utilisation du WIFI.
+		</div>
+		<callRef name="WifiManager.disconnect" />
+		<callRef name="WifiManager.setWifiEnabled" />
+		<callRef name="WifiManager.getConfiguredNetworks" />
+		<callRef name="WifiManager.removeNetwork" />
+		<callRef name="WifiManager.enableNetwork" />
+		<callRef name="WifiManager.disableNetwork" />
+		<callRef name="WifiManager.pingSupplicant" />
+		<callRef name="WifiManager.startScan" />
+		<callRef name="WifiManager.getScanResults" />
+		<callRef name="WifiManager.reconnect" />
+		<callRef name="WifiManager.reassociate" />
+		<callRef name="WifiManager.getConnectionInfo" />
+		<callRef name="WifiManager.saveConfiguration" />
+		<callRef name="WifiManager.getDhcpInfo" />
+		<callRef name="WifiManager.getWifiState" />
+		<callRef name="WifiManager.addNetwork" />
+		<callRef name="WifiManager.updateNetwork" />
+		<callRef name="WifiManager.startScanActivity" />
+		<callRef name="WifiManager.createWifiLock-1" />
+		<callRef name="WifiManager.createWifiLock-2" />
+		<callRef name="WifiManager.setWifiApEnabled"/>
+		<callRef name="WifiStateTracker.listNetworks"/>
+		<callRef name="WifiStateTracker.startUsingNetworkFeature"/>
+		<callRef name="WifiStateTracker.teardown"/>
+		<callRef name="WifiStateTracker.startMonitoring"/>
+		<callRef name="WifiStateTracker.reconnect"/>
+	</sdiv>
+	<sdiv name="WifiP2PGroup">
+		<h3>Wifi P2P management</h3>
+		<div class="AuxFoldBox">
+			Wifi P2P is closer to bluetooth but on a wifi technology.
+		</div>
+		<div class="FoldBox">
+			Le Wifi P2P est plus proche du bluetooth en terme de scénario d'utilisation et risque mais sur une technologie wifi.
+		</div>
+		<callRef name="WifiP2pManager.connect"/>
+		<callRef name="WifiP2pManager.discoverPeers"/>
+		<callRef name="WifiP2pManager.enableP2P"/>
+	</sdiv>
+</sdiv>

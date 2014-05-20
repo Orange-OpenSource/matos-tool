@@ -1,0 +1,977 @@
+\chapter{Customization of security profiles} \label{AdvancedUsage}
+
+In this section, we present more technical things, that you normally
+won't have to use every day. We explain how to understand analysis
+profiles and to write your own profile and present further
+configuration options.
+
+\section{Analysis Profiles Specification}\label{ProfFormalization}
+In this section, we present what can be specified in a profile and the
+syntax to do so.
+
+\subsection*{WARNING} 
+\begin{itemize}
+\item France Telecom publishes the specification of
+  analysis profiles for your convenience. However, be advised that this
+  specification may change in the future. 
+\item If you change your analysis profiles, please keep in mind that
+  profiles widely condition the behaviour of the tool's
+  engine. Therefore, any change should be carefully understood and
+  validated prior to any operational usage. \textbf{France Telecom rejects any
+  responsibility in case of problems resulting from the bad
+  interpretation of the specification's semantics}. Cf. also
+  \ref{AnaProfs}. However, we can provide assistance in this task and
+  do the changes for you.
+\end{itemize}
+
+\subsection{How Are Profiles Stored?}
+Analysis profiles are XML files that must be placed in
+\texttt{lib/definitions} folder of your installation directory on
+Windows (\texttt{lib/matos/definitions} folder on Linux).
+
+\subsection{What's In a Profile?}
+A profile basically lets you define 4 things:
+\begin{itemize}
+\item \textbf{Header}: General information on the profile.
+\item \textbf{Options}: To overload options set by default in the tool's
+configuration.
+\item \textbf{Rules}: To define the Java methods to be watched
+during the Features Usage phase.
+\item \textbf{Reports}: To associate messages to some result values (what messages
+should be raised according to the results obtained).
+\end{itemize}
+
+\subsection{Syntax by the Example}\label{ProfSyntax}
+
+\subsubsection{Header}
+A profile typically starts as shown below. The two first lines are
+mandatory and must be written as shown. In the \texttt{<matos>}
+tag, you're required to specify at least a name for the profile.
+The \texttt{</matos>} closing tag must appear at the very end of
+the file. Your entire profile data will be specified inside the
+\texttt{<matos>} element.
+
+\begin{verbatim}
+  <?xml version='1.0' encoding='utf-8'?>
+  <!DOCTYPE matos SYSTEM "../matos.dtd">
+
+  <matos name="MyProfile"
+         description="The purpose of the present profile is..."
+         version="1.5"
+         date="18.08.2006">
+\end{verbatim}
+
+\subsubsection{Options} \label{optionsSecurityProfile}
+Configuration options may be set for a profile. The options you can
+set are those presented in \ref{AdvConfigOptions}. Values set in a
+profile take precedence over those set as defaults in the configuration
+file.
+\begin{verbatim}
+  <option name="anasoot.treatConcatenation" value="false">
+      <description>
+        This option controls if a special treatment is applied to the
+        <code>StringBuffer.append</code> method. In this profile, string 
+        concatenation is not treated.
+      </description>
+  </option>
+\end{verbatim}
+
+\subsubsection{Syntax of method signatures}
+We often need to specify methods. For this, we use the signature  of the method.
+The signature is the description of the name and types of arguments and
+result. The syntax is the following:
+\begin{verbatim}
+resultType methodName(argType1,...,argTypen)
+\end{verbatim}
+Note that the number of spaces is significant and that you can only put one
+space after the result type. Types are fully qualified names for classes and
+are the class name followed by the correct number of [] for array types. 
+The name of primitive type is the regular java name.
+
+\subsubsection{Rules (probes)}
+A rule defines a particular observation target for the Features Usage
+phase, namely a method identifier plus the arguments of that method to
+be observed. Conceptually, a rule can be seen as a probe on the
+defined target.
+
+In the following example, we define a rule that will check how the
+MIDlet uses the network connection feature, with a focus on the
+address used in the connection. This address is passed through the
+argument number 1 of the method. Values returned by this rule will be
+reported using the report called \texttt{net}. The description element
+is always optional.
+\begin{verbatim}
+ rule name="connection">
+  <description>
+    This rule is to observe what addresses are used when the
+    midlet tries to open a network connection.
+  </description>
+  <args class="javax.microedition.io.Connector"
+    signature="javax.microedition.io.Connection open(java.lang.String)"
+    report="net">
+     <argument position="1"/>
+  </args>
+</rule>
+\end{verbatim}
+
+In fact there are three types of rules:
+\begin{itemize}
+\item{\textbf{Observation of method argument(s)}}: this is the above
+  example. Note that the fully-qualified identifier of the target
+  method must be given (absolute package path expected for all types).
+  Multiple \texttt{argument} elements can be specified if
+  multiple arguments are to be observed. Arguments are numbered
+  starting from 1, from left to right. 
+% TODO: COMPRENDRE PUIS TRADUIRE: La position 0 correspond � l'objet
+% racine de l'appel (\texttt{this}).
+\item{\textbf{Observation of a class field}}: in the following
+  example, we define a probe on the field \texttt{name} of the class
+  \texttt{Person}. Here again, types must be fully-qualified.
+\begin{verbatim}
+  <rule name="peoplesName">
+    <field class="myPackage.Person" type="String name"/>   
+  </rule>
+\end{verbatim}
+\item{\textbf{Observation of a method's return value}}: in the
+  following example, we define a probe that provides the values
+  returned by the method that gives the name of a record
+  store.
+\begin{verbatim}
+  <rule name="recordStoreName">
+    <return class="javax.microedition.rms.RecordStore" 
+            type="java.lang.String getName()"/>   
+  </rule>
+\end{verbatim}
+\end{itemize}
+
+\subsubsection{Reports}
+As seen above, each rule is associated to a report element. The report
+defines what messages will be produced according to those
+results. 
+Reports are identified by names. There can be only one report with a
+given name and it is the first defined that takes precedence.
+Besides the name attribute, there is an optional alias attributes that
+can defines a comma separated list of alternate names. This is useful
+to override a list of automatically generated reports with 
+one defined by hand.
+
+There are three types of report:
+
+\begin{itemize}
+\item{\textbf{Pseudo constant report}}: a report that offers a choice
+  among 2 bodies (messages). If ALL possible values of the observed data -- the
+  probe's target -- turned out to be fully determined, the
+  \texttt{pass} body is displayed. If at least in one case, the value
+  failed to be fully computed, then the \texttt{fail} message is
+  produced.
+\begin{verbatim}
+  <report name="R1">
+    <pseudoConstant>
+      <fail> 
+        In some cases, the argument(s) passed to method %C.%M
+        can't be fully determined.
+      </fail>
+      <pass> 
+        Managed to compute <b>all</b> possible values of observed 
+        argument(s). 
+      </pass>
+    </pseudoConstant>
+  </report>
+\end{verbatim}
+Each message is actually a piece of HTML code (notice the \texttt{<b>}
+bold-face tag in the example above). Besides,  note that we use some
+additional non-HTML tags: \texttt{\%C} and \texttt{\%M}. They are
+interpreted by the report generator, and are explained further;
+however, these special tags can't be used in the \texttt{pass} message
+part.
+
+\item{\textbf{Pseudo string report}}: a report that offers a choice
+  among N messages. Each message is associated to a filter, and for
+  each value computed, filters are evaluated one by one (following the
+  order in which they are declared), until the value matches one of
+  them, in which case the associated message is displayed. Filters are
+  regular expressions (patterns).
+\begin{verbatim}
+  <report name="netS">
+    <description>
+      This report extracts information on the schemes used in the URL.
+    </description>
+    <pseudoString>
+      <filter pattern="\x22([^:]*):([^\x22]*)\x22">
+        <b>The application opens a network connection:</b>
+        <ul> 
+          <li> Method called: %C.%M </li>
+          <li> Method hosting the call: %c.%m </li>
+          <li> URL used: <b>%r</b> </li>
+          <li> Connection type: <b>%1</b> </li>
+        </ul>
+      </filter>
+      <filter pattern=".*">
+        <b>The application opens a network connection (but of
+           an <font color="red">unknown type</font>):</b>
+        <ul> 
+          <li> Method called: %C.%M </li>
+          <li> Method hosting the call: %c.%m </li>
+          <li> URL used: <b>%r</b> </li>
+        </ul>
+      </filter>
+    </pseudoString>
+  </report>
+\end{verbatim}
+Note that the second filter here is associated to the \texttt{''.*''}
+expression that means ``anything else''. A special filter called \texttt{default}
+also means ``anything else'', but is produced only once even if many
+values can't be matched by any filter above, while the \texttt{''.*''}
+case is produced for every such value. 
+\begin{verbatim}
+    ../..
+    <pseudoString>
+      <filter pattern="\x22([^:]*):([^\x22]*)\x22">
+         (The message body)
+      </filter>
+      <filter ../..>
+
+      <default> Oops... no expression matched in report R1! </default>
+    </pseudoString>
+\end{verbatim}
+Filters are now named. When one use the XML output, the result will only
+contain the name of the filter that matched.
+\item{\textbf{Simple message}}: a report that just print a message. But this
+message may refer to the argument. For example to print all the potential values
+of this argument without filtering. The only useful macros are therefore 
+  \begin{itemize}
+    \item \texttt{\%r} the complete value
+    \item \texttt{\%C}, \texttt{\%M} and \texttt{\%S} the specification of the
+    method called.
+    \item the specification of the caller method.
+  \end{itemize}
+\begin{verbatim}
+     <message>The list of objects used : %r </message>
+\end{verbatim}
+  You can put simple HTML in the message definition. If HTML is not
+  well-balanced XML, you must escape the HTML entities (replace $<$ with
+  \verb!&lt;!)
+\item{\textbf{Forbidden method message}}: a report that prints a message when a
+forbidden method is used. 
+  \begin{itemize}
+    \item \texttt{\%p} the list of program points where it is used.
+  \end{itemize}
+\begin{verbatim}
+     <message>The method is called at the following points: %p
+     </message>
+\end{verbatim}
+  
+\item{\textbf{Conjunction report}}: a report that compiles the output
+  of two other reports. The first report is executed, then the second
+  one. However, if the first one is a pseudo constant
+  report that fails, the second report is not produced. The reason for
+  this behaviour is that it makes no sense to perform pattern matching
+  on a value if we failed to fully establish that value.
+
+\begin{verbatim}
+  <report name="net">
+    <conjunction>
+      <ref name = "R1"/>
+      <ref name = "R2"/>
+    </conjunction>
+  </report>
+\end{verbatim}
+    
+  Rules may give back results on several arguments but report should only refer
+  to one argument at a time. This is the only report where you can specify the
+  position of the argument that must be checked (as a number between 0 and the
+  number of arguments checked by the rule).
+  
+  If conjunction reports are included into other conjunction report, the
+  position should usually only be specified in the first. The element is then
+  immediately filtered.
+  
+  For example if you have a rule that check two arguments you can build two
+  filters \texttt{F0} and \texttt{F1} for each argument and a simple message
+  report \texttt{M} to print information on the function. The final report
+  \texttt{R} will be built as:
+\begin{verbatim}
+  <report name="R">
+    <conjunction>
+      <ref name = "M"/>
+      <ref name = "F0" pos="0"/>
+      <ref name = "F1" pos="1"/>
+    </conjunction>
+  </report>
+\end{verbatim}
+  Please note that the positions given here refer to the positions in the result
+  row.  It is not the position of the argument in the call of the method
+  analyzed.
+\end{itemize}
+
+\subsubsection{Structure element}
+This is a feature introduced with Android profile. The structure element
+describes how the report is organized. It contains an HTML body where some tags
+specify where to put the result of a given analysis. The tags are
+\verb!<callRef name="..."/>! and \verb!<fieldRef name="..."/>! where the
+attributes is the name of the rule (not the report) to inline at this point.
+It can also contain \verb!<sdiv>! elements. An SDIV is a division that is
+displayed only if there is a content in it: at least one of the rules that is
+specified with callRef or fieldRef has a result to display. An sdiv element
+may be named (optional \verb!name! attribute). Finally the \verb!<nodes/>!
+element is used to declare the location where the node table must be inlined.
+
+Note that the Android profile also contains some JavaScript to make it possible
+to have foldable explanations. The JavaScript is tailored to handle two
+languages. Contents must be defined in contiguous sections (using a \verb!div!
+element) whose class are respectively \verb!AuxFoldBox! and \verb!FoldBox!).
+
+\subsubsection{The score section}
+The \verb!score! tag introduces a basic scoring mechanism for Anasoot. The score
+section contains score elements that describes the individual contributions and
+text that is only used in the documentation of the profile. The score element
+has one attribute \verb!threshold! defining the value above which the analysis
+is considered as failed.
+
+Each score element has a name (attribute \verb!name!), a message (attribute
+\verb!message!) and a score value (attribute \verb:score:). The name is used to
+refer to the score element in other elements. The message is the text displayed
+in the report. The score is the contribution of the element to the global score.
+If it is 0 (no contribution), the element is NOT displayed. But it is still
+marked as triggered and may be used by other elements (any-of and all-of).
+
+The tags used to describe score elements are the following :
+\begin{itemize}
+  \item \verb!stringmatch! matches a string in the report. The element uses a
+  \verb!pattern! attribute describing a regular expression (in Java regexp
+  format with special characters escaped in XML format). Do not use patterns
+  spanning over multiple results as in fact the search is local to an element.
+  \item \verb!rulematch! element contains a list of \verb!rule! element
+  characterized by a \verb!name! attribute. This element is triggred if any of
+  the rules has been triggered during the analysis. A rule name is either an
+  Anasoot rule or the name of an \verb!sdiv! section grouping several rules. The
+  section is considered as trigered if any of the rules it contains has been
+  trigered.
+  \item \verb!any-of! is trigered if any of the score elements it refers to has
+  been trigered. Score element are identified by the \verb!element! tags. These
+  tags contain a \verb!name! attribute.
+  \item \verb!all-of! is trigered if all of the score elements it refers to have
+  been trigered. It is similar to \verb!any-of!
+  \item \verb!permission! matches a permission in the manifest. The full name of
+  the permission must be given in the \verb:perm: attribute.
+  \item \verb!catcher! are special elements. They have no score and no name.
+  They are used to print the list of elements in the report matching the
+  \verb!pattern! attribute. The \verb!message! attribute is the text printed as
+  header for this section.
+\end{itemize}
+
+
+\subsubsection{Score element}
+
+
+\subsubsection{Global structure of HTML report}
+The report should be a compliant XHTML document. So that automatic XSL
+transforms can be done on the document, we have introduced a few division in the
+generated report whose class attribute can be used to select the division
+content.
+
+The following class are used in the report:
+\begin{itemize}
+  \item header : the header part of the report (MIDP or Android)
+  \item compatibility : indication on hidden APIs used in an Android report
+  \item score : the score and how the score is split between subelements
+  \item catched : the substring that are isolated at the end (for example URLs)
+  \item AndroidManifest : the manifest analysis
+  \item android : main analysis.
+\end{itemize}
+
+\subsection{Customization of descriptors conformity phase}
+\label{CustoConform}
+
+To add properties to respect for the descriptors conformity phase, options
+described in section \ref{optionsSecurityProfile} are used. You can add
+some properties of JAD file and/or JAR manifest file about:
+\begin{itemize}
+  \item Line end characters.
+  \item Order of attributes.
+  \item Mandatory attributes.
+  \item Forbidden attributes. 
+\end{itemize}
+
+\subsubsection{Line end separator}
+According to the operating system, the line end character could be only
+\texttt{CR LF} (\verb!\r\n!), \texttt{CR} 
+(\verb!\r!) or \verb!LF (\n)!. The MIDP 2.0 specification
+authorizes only to use \texttt{CR LF} or \texttt{LF} character as end of line in
+the JAD file. You can specify only a subset of these characters as
+authorized line end separator for the descriptors. The given characters must be
+separated by a comma.\\
+Because the security profile is written in XML, the line end characters must be
+coded like indicated below:
+\begin{itemize}
+  \item{CR LF}: \verb!&#x000D;&#x000A;!
+  \item{CR}: \verb!&#x000D;!
+  \item{LF}: \verb!&#x000A;!
+\end{itemize}
+
+For instance,
+\begin{verbatim}
+  <option name="descriptor.jad.endline" value="&#x000D;&#x000A;">
+    <!-- This option defines that the only authorized character to 
+         mark the end of line is CR LF -->
+    <description>
+      This option gives authorized characters to mark the end of line 
+	  in the JAD file.
+    </description>
+  </option>
+  <option name="descriptor.jar.endline" 
+          value="&#x000D;&#x000A;,&#x000A;">
+    <!-- This option defines that authorized characters are CR LF 
+         and LF -->
+    <description>
+      This option gives authorized characters to mark the end of line 
+      in the JAR manifest file.
+    </description>
+  </option>
+\end{verbatim}
+
+\subsubsection{Order of attributes}
+
+You can define an order of attributes to respect in JAD file and/or in JAR
+manifest file. The \ma will notify an error in the report if the attributes' 
+order does not respect the order specified in the security profile. To specify
+this order, there are two options: \emph{descriptor.jad.attributesorder} and
+\emph{descriptor.jar.attributesorder}. By default, no order is specified.
+
+Syntax by the example:
+\begin{verbatim}
+  <option name="descriptor.jad.attributesorder" 
+          value="MIDlet-Jar-URL,MIDlet-Jar-Size">
+    <!-- This option declares that MIDlet-Jar-URL attribute must appear
+         before MIDlet-Jar-Size attribute in JAD file -->
+    <description>
+      This option controls attributes' order in JAD file.
+    </description>
+  </option>
+  <option name="descriptor.jar.attributesorder" 
+          value="MIDlet-Version,MIDlet-Name">
+    <description>
+      This option controls attributes' order in JAR manifest file.
+    </description>
+  </option>
+\end{verbatim}
+
+If a given attribute does not exist in the file, it is not taken into account.
+
+\subsubsection{Mandatory attributes}
+Likewise, to define attributes that must be appear in JAD file or in JAR
+manifest file, there are two options: \emph{descriptor.jad.mandatory} and
+\emph{descriptor.jar.mandatory}. 
+
+For instance,
+\begin{verbatim}
+  <option name="descriptor.jar.mandatory"
+          value="Created-By">
+    <!-- This option declares that Created-By attribute is mandatory
+         in JAR manifest file -->
+      <description>
+        This option gives attributes which must appear in JAR manifest 
+ 		file.
+      </description>
+  </option>
+\end{verbatim}
+
+By default, mandatory attributes are only mandatory attributes specified by the
+MIDP 2.0 specification.
+
+\subsubsection{Forbidden attributes}
+In the same way, you can specify which must not appear in JAD file or in JAR
+manifest file. By default, no forbidden attributes are specified.
+
+For instance,
+\begin{verbatim}
+  <option name="descriptor.jad.forbidden"
+          value="MIDlet-Jar-RSA-SHA1">
+    <!-- This option declares that MIDlet-Jar-RSA-SHA1 attribute must 
+         not appear in JAD file -->
+      <description>
+        This option gives attributes which are forbidden in JAD file.
+      </description>
+  </option>
+\end{verbatim}
+
+\subsection{Syntax For Regular Expressions (Filter Patterns)}
+Regular expressions that you can use in filters follow the syntax of Sun regular
+expressions (closely related to POSIX syntax of regular expressions).
+\begin{description}
+\item[Characters]
+%TODO: ALIGNEMENT A AMELIORER, PAS TRES lisible tel quel
+   \mbox{}\begin{itemize}
+    \item \textit{unicodeChar} filters the corresponding Unicode character
+    \item \verb!\\\\!        backslash
+    \item \verb!\\0nnn!      character expressed in octal code
+    \item \verb!\\xhh!       character expressed in hexadecimal code
+    \item \verb!\\uhhhh!     16-bit character expressed in hexadecimal code
+    \item \verb!\t!          tabulation
+    \item \verb!\n!          new line
+    \item \verb!\r!          carriage return
+    \item \verb!\f!          form feed
+   \end{itemize}
+\item[Character classes (sets)]
+    \mbox{}\begin{itemize}
+    \item \verb![abc]!                one character among a, b and c
+    \item \verb![a-zA-Z]!             one character from the a-z range or from the A-Z range
+    \item \verb![^abc]!               complement: one character different from a, b, and c
+    \end{itemize}
+\item[POSIX character classes]
+    \mbox{}\begin{itemize}
+    \item \verb![:alnum:]!            alphanumeric character
+    \item \verb![:alpha:]!            alphabetical character
+    \item \verb![:blank:]!            space or tab
+    \item \verb![:cntrl:]!            control character
+    \item \verb![:digit:]!            numeric character
+    \item \verb![:graph:]!            displayable and visible character
+    \item \verb![:lower:]!            lower-case character
+    \item \verb![:print:]!            non-control character
+    \item \verb![:punct:]!            ponctuation character
+    \item \verb![:space:]!            space
+    \item \verb![:upper:]!            upper-case character
+    \item \verb![:xdigit:]!           hexadecimal digit
+    \end{itemize}
+\item[Non-standard classes]
+    \mbox{}\begin{itemize}
+    \item \verb![:javastart:]!        begin of a Java identifier
+    \item \verb![:javapart:]!         part of a Java identifier
+    \end{itemize}
+\item[Predefined classes]
+    \mbox{}\begin{itemize}
+    \item \verb!.!   any character except new line
+    \item \verb!\\w! a word character (alphanumeric or '\_') %TODO: c quoi ca ???
+    \item \verb!\\W! anything but a word character
+    \item \verb!\\s! white space
+    \item \verb!\\S! anything but a white space
+    \item \verb!\\d! digit
+    \item \verb!\\D! anything but a digit
+    \end{itemize}
+\item[Bound filters]
+    \mbox{}\begin{itemize}
+    \item \verb!^!         beginning of a line
+    \item \verb!$!         end of a line (%$)
+    \item \verb!\\b!       filters within the limit of a word
+    \item \verb!\\B!       filters beyond the limit of a word
+    \end{itemize}
+\item[Greedy closures] %TODO: Je sais pas traduire fermeture AVIDE
+    \mbox{}\begin{itemize}
+    \item \verb!A*!        any number of the \verb!A! character
+    \item \verb!A+!        at least one \verb!A!
+    \item \verb!A?!        zero or one \verb!A!
+    \item \verb!A{n}!      exactly $n$ occurrences of \verb!A!
+    \item \verb!A{n,}!     at least $n$ occurrences of \verb!A!
+    \item \verb!A{n,m}!    at least $n$ occurrences of \verb!A! but no more than
+    $m$
+    \end{itemize}
+\item[Reluctant closures]
+    \mbox{}\begin{itemize}
+    \item \verb!A*?!        any number of \verb!A!
+    \item \verb!A+?!        at least one \verb!A!
+    \item \verb!A??!        zero or one \verb!A!
+    \end{itemize}
+\item[Logical operators]
+    \mbox{}\begin{itemize}
+    \item \verb!AB!        \verb!A! followed by \verb!B!
+    \item \verb!A|B!       \verb!A! or \verb!B!
+    \item \verb!(A)!       grouping of sub-expressions
+    \item \verb!(?:A)!     clustering of sub-expressions (just like grouping but no backrefs)
+%TODO: Pas sur de la traduction pour ``groupage de sous expression mais n'apparaissant pas en r�f�rence arri�re''
+    \end{itemize}
+\item[Rear reference]
+    \mbox{}\begin{itemize}
+    \item \verb!\\i! reference to the sub-expression number i (from 1 to 9)
+    \end{itemize}
+\end{description}
+
+You can make references to information of the analysis results from your messages.
+\begin{itemize}
+\item \verb!%r! the entire filtered result (string)
+\item \verb!%m! the method enclosing the analysed expression
+\item \verb!%c! the class that defines the method enclosing the analysed expression
+\item \verb!%s! the signature of the method enclosing the analysed expression
+\item \verb!%M! the analysed (probed) method
+\item \verb!%C! the class that defines the analysed (probed) method
+\item \verb!%S! the signature of the analysed method
+\item \verb!%%! the \% character
+\item \verb!%1!....\verb!%9! reference to a named sub-expression of a filter
+ %TODO: detailler un peu tout cela
+\end{itemize}
+
+
+\subsection{Syntax Formal Specification (DTD)}
+Analysis profiles are XML files that must follow the DTD presented in
+the present section.
+This DTD is stored in the \texttt{matos.dtd} file,
+located in the \texttt{lib} folder of your installation directory
+(\texttt{lib/matos} folder on Linux).
+\begin{verbatim}
+<!ELEMENT matos (option|report|rule)*>
+<!ATTLIST matos
+    name CDATA #REQUIRED
+    description CDATA #IMPLIED
+    version CDATA #IMPLIED
+    date CDATA #IMPLIED
+>
+<!ELEMENT option (description?)>
+<!ATTLIST option
+    name CDATA #REQUIRED
+    value CDATA #REQUIRED
+>
+
+<!ELEMENT report
+  ((conjunction|pseudoConstant|pseudoString|message|forbiddenMethod),
+  description?)>
+<!ATTLIST report name CDATA #REQUIRED
+>
+
+<!ELEMENT pseudoConstant (pass,fail)>
+<!ELEMENT pass (%content;)>
+<!ELEMENT fail (%content;)>
+
+<!ELEMENT pseudoString (filter*,default?)>
+<!ELEMENT filter (%content;)>
+<!ATTLIST filter
+    pattern CDATA #REQUIRED
+>
+
+<!ELEMENT default (%content;)>
+
+<!ELEMENT forbiddenMethod (%content;)>
+
+<!ELEMENT message (%content;)>
+
+<!ELEMENT conjunction (ref)*>
+
+<!ELEMENT ref EMPTY>
+<!ATTLIST ref
+    name CDATA #REQUIRED
+    pos  CDATA  
+>
+
+<!ELEMENT rule ((args|return|field|use), description?)>
+<!ATTLIST rule
+   name  CDATA #REQUIRED
+>
+
+<!ELEMENT args (argument)*>
+<!ATTLIST args
+   class CDATA #REQUIRED
+   signature CDATA #REQUIRED
+   report CDATA "terse"
+>
+<!ELEMENT argument EMPTY>
+<!ATTLIST argument
+  position CDATA #REQUIRED
+>
+
+<!ELEMENT field EMPTY>
+<!ATTLIST field
+   class CDATA #REQUIRED
+   type CDATA #REQUIRED
+>
+
+<!ELEMENT return EMPTY>
+<!ATTLIST return
+   class CDATA #REQUIRED
+   signature CDATA #REQUIRED
+>
+
+<!ELEMENT use EMPTY>
+<!ATTLIST use
+   class CDATA #REQUIRED
+   signature CDATA #REQUIRED
+>
+
+<!ELEMENT description (%content;)>
+
+<!ELEMENT loop (translation|callback|critical)*>
+<!ELEMENT translation (caller, callee, through*)>
+<!ATTLIST translation
+    index	CDATA	#IMPLIED
+    message	CDATA	#IMPLIED
+>
+
+<!ELEMENT caller EMPTY>
+<!ATTLIST caller
+     class	CDATA   #IMPLIED
+     signature	CDATA   #IMPLIED
+>
+
+<!ELEMENT through EMPTY>
+<!ATTLIST through
+     class	CDATA   #IMPLIED
+     signature	CDATA   #IMPLIED
+     from	CDATA   #IMPLIED
+     to 	CDATA   #IMPLIED
+>
+
+<!ELEMENT callee EMPTY>
+<!ATTLIST callee
+     signature        CDATA   #IMPLIED
+>
+
+<!ELEMENT critical EMPTY>
+<!ATTLIST critical 
+     class      CDATA   #IMPLIED
+     signature  CDATA   #IMPLIED
+     message 	CDATA   #IMPLIED
+>
+
+<!ELEMENT callback EMPTY>
+<!ATTLIST callback 
+     class       CDATA   #IMPLIED
+     signature   CDATA   #IMPLIED
+     message     CDATA  #IMPLIED
+>
+
+<!ELEMENT structure (callref,sdiv,fieldref,nodes,%content;)*>
+<!ELEMENT nodes EMPTY>
+<!ELEMENT callref EMPTY>
+<!ATTLIST callref
+	name	CDATA #REQUIRED
+>
+
+<!ELEMENT fieldref EMPTY>
+<!ATTLIST fieldref
+	name	CDATA #REQUIRED
+>
+
+<!ELEMENT sdiv (callref,sdiv,fieldref,nodes,%content;)*>
+<!ATTLIST sdiv
+	name	CDATA #IMPLIED
+>
+
+<!ELEMENT score (stringmatch,rulematch,any-of,all-of,permission,catcher,%content;)>
+<!ATTLIST score 
+     threshold       CDATA   #REQUIRED
+>
+
+<!ELEMENT stringmatch EMPTY>
+<!ATTLIST stringmatch
+	name	CDATA #REQUIRED
+	score	CDATA #IMPLIED
+	message CDATA #IMPLIED
+	pattern CDATA #REQUIRED
+>
+
+<!ELEMENT rulematch (element)*>
+<!ATTLIST rulematch
+	name	CDATA #REQUIRED
+	score	CDATA #IMPLIED
+	message CDATA #IMPLIED
+>
+
+<!ELEMENT element EMPTY>
+<!ATTLIST element
+	name	CDATA #REQUIRED
+>
+
+<!ELEMENT any-of (element)*>
+<!ATTLIST any-of
+	name	CDATA #REQUIRED
+	score	CDATA #IMPLIED
+	message CDATA #IMPLIED
+>
+
+<!ELEMENT all-of (element)*>
+<!ATTLIST all-of
+	name	CDATA #REQUIRED
+	score	CDATA #IMPLIED
+	message CDATA #IMPLIED
+>
+
+<!ELEMENT permission EMPTY>
+<!ATTLIST permission
+	name	CDATA #REQUIRED
+	id		CDATA #REQUIRED
+	score	CDATA #IMPLIED
+	message CDATA #IMPLIED
+>
+
+<!ELEMENT catcher EMPTY>
+<!ATTLIST catcher
+	message	CDATA #REQUIRED
+	pattern	CDATA #REQUIRED
+>
+\end{verbatim}
+
+%=============
+
+\section{Configuration Options}\label{AdvConfigOptions}
+The tool's behaviour is influenced by various configuration
+options. These are declared in the \texttt{config.prp} file located
+in the \texttt{lib} folder of your installation directory on Windows
+(\texttt{lib/matos} on Linux). In fact, you should
+normally seldom change these parameters. The available options are listed
+below. Remember that the very essential ones are those editable
+from the GUI Configuration panel.
+
+\noindent \textbf{Note:} Boolean properties are considered false only if the
+exact value is \texttt{\textbf{false}}. If the property is defined with another
+value, or not defined at all, then it is considered \textbf{true}.
+The \texttt{anasoot} prefix designates attributes specific
+to the Features Usage phase, for historical reasons.
+
+%TODO : verifier completude !!! Publier pas forcement tout. Pas ce qui
+% concerne les modules protos comme Navmid en tout cas.
+
+\begin{itemize}
+\item{\texttt{anasoot.enabled}}\\ activate the features usage analysis phase 
+  (boolean: \texttt{true} or \texttt{false}).
+\item{\texttt{anasoot.android.global}}\\ makes a global analysis rather than a
+per component analysis of Android applications (boolean: \texttt{true} or
+\texttt{false}, the recommended default is \texttt{true}).
+\item{\texttt{anasoot.enhancedPointsto}}\\ use an enhanced pointsto analysis
+that assign new objects to the results of method of the analysed profile. It
+creates more abstract objects and so gives more precise results (boolean:
+\texttt{true} or \texttt{false}).
+\item{\texttt{anasoot.reportPseudo}}\\ activate the reporting of pseudo
+  constants (boolean: \texttt{true} or \texttt{false}).
+\item {\texttt{anasoot.loopAnalysis}}\\ performs an analyis of recursion for
+profiles that forbid the use of recursion (boolean: \texttt{true} or
+\texttt{false}).
+\item{\texttt{anasoot.ruleDefaultFile}}\\ name of the default analysis profile
+  (file name without the extension).
+\item{\texttt{anasoot.treatConcatenation}}\\ enable treatment of appended
+  strings (boolean).
+\item{\texttt{anasoot.treatStringBuffer}}\\ enable treatment of basic operations on
+  \texttt{StringBuffer} objects, a special kind of string in Java (boolean).
+\item{\texttt{anasoot.treatValueOf}}\\ enable treatment of
+  \texttt{String.valueOf} (boolean).
+\item{\texttt{anasoot.treatProperties}}\\ enable treatment of
+  \texttt{getAppProperty}, with link to the JAD (boolean).
+\item{\texttt{anasoot.treatStringOperation}}\\ enable treatment of basic
+  operations on String objects (\texttt{trim}, \texttt{replace}, etc.) (boolean).
+\item{\texttt{anasoot.treatFunctions}}\\ enable treatment of functions in
+  general (followed by name and parameters) (boolean).
+\item{\texttt{anasoot.treatSpyReturn}}\\ enable treatment of values returned by
+  user's methods (boolean).
+\item{\texttt{anasoot.treatSpyParameter}}\\ enable treatment of arguments passed
+  to user's methods (boolean).
+\item{\texttt{anasoot.treatSpyField}}\\ enable treatment of user's class
+  attributes (boolean).
+\item{\texttt{anasoot.printNodes}}\\ enable useless mentions of node numbers in
+  report (boolean).
+%\item{\texttt{anasoot.reportPseudo}}\\
+%\item{\texttt{anasoot.callbackAnalysis}}\\ activate callbacks analysis phase to
+% to piece together the navigation between screens in a MIDlet.
+%\item{\texttt{thali.enabled}} \\ activate the THALI phase.
+\item{\texttt{anasoot.midp-classpath}}\\ path to libraries which are used in the
+  features usage analysis phase.
+\item{\texttt{anasoot.rules}}\\ directory which contains analysis profiles.
+%\item{\texttt{anasoot.throwCode}} enable to generate a file which contains
+%``soot'' outputs.
+\item{\texttt{anasoot.loopAnalysis}}\\ enable (default) or disable the analysis
+that points out recursive method
+\item{\texttt{anasoot.usedJSR}}\\ enable (default) or disable the analysis
+that points out the use of a set of MIDP JSR. 
+\item{\texttt{descriptorsChecking.enabled}}\\ enable the descriptors conformity check phase (boolean).
+\item{\texttt{proxyset}}\\ enable use of the HTTP proxy (boolean).
+\item{\texttt{proxyhost}}\\ hostname of HTTP proxy (if needed, for downloading of
+  MIDlets that are accessible on a web server).
+\item{\texttt{proxyport}}\\ port number of HTTP proxy. 
+\item{\texttt{httpMaxConnectionTime}}\\ maximum connection time allowed for HTTP
+  downloads (in seconds).
+\item{\texttt{httpMaxDownloadTime}}\\ maximum transfer time allowed for HTTP
+  downloads (once the connection has succeeded, and in seconds).
+\item{\texttt{version}}\\ current version of the \ma.
+\item{\texttt{matos.cssFile}}\\ style sheet (CSS file) to use for the HTML
+  reports (path to a CSS file).
+\item{\texttt{matos.history}}\\ enable the storage of all results if results are
+  stored in a directory (boolean).
+\item{\texttt{matos.considerSameName}}\\ enable to recognize that a JAD file and a JAR
+  file are relative to the same MIDlet suite if they have the same name, when
+  you add all MIDlet suite of a directory (boolean). 
+\ifthenelse{\equal{\Gallery}{true}}{
+\item{\texttt{matos.resultStorageMethod}}\\ one of these options: 
+	\begin{itemize}
+      \item{\emph{ArchivingDBResultStorage}} analysis results are stored in a
+      database.
+      \item{\emph{DirectoryResultStorage}} analysis results are stored in a
+      directory.
+      \item{\emph{NoResultStorage}} analysis results are not saved.
+    \end{itemize} 
+\item{\texttt{matos.allowRetrievingPreviousResults}}\\ enable to retrieve
+  previous results from database (boolean).
+\item{\texttt{matos.retrieveForLocalStepOnly}}\\ enable to retrieve previous
+  results from database uniquely for JAD and JAR files which are on the hard
+  disk (boolean). 
+}{
+\item{\texttt{matos.resultStorageMethod}}\\ one of these options: 
+	\begin{itemize}
+      \item{\emph{DirectoryResultStorage}} analysis results are saved in a
+      directory.
+      \item{\emph{NoResultStorage}} analysis results are not saved.
+    \end{itemize} 
+}
+\item{\texttt{matos.pdf.encryption}}\\ enable to put permission restrictions on
+generated PDF files (boolean).
+\item{\texttt{matos.pdf.encryption.userpasswd}}\\ the opening of generated PDF
+files will be protected with the given password (password).
+\item{\texttt{matos.pdf.encryption.ownerpasswd}}\\ a password to bolt some
+actions, the only action that is always authorized without password is to print
+the document (password).
+\item{\texttt{matos.xmlFormat}}\\ allow XML formatting of results (boolean). 
+\ifthenelse{\equal{\Gallery}{true}}{
+\item{\texttt{matos.dbUrl}}\\ url of used database.
+\item{\texttt{matos.dbLogin}}\\ login of database user.
+\item{\texttt{matos.dbPasswd}}\\ password of database user.
+\item{\texttt{matos.cid.mainSheetName}}\\ the main sheet name of Excel files
+which contains MIDlet suites of editor.
+}{}
+\item{\texttt{descriptor.jad.endline}}\\ comma separated list of authorized
+ characters to mark the end of line in the JAD file.
+\item{\texttt{descriptor.jar.endline}}\\gives authorized characters to mark the
+ end of line in the JAR manifest file.
+\item{\texttt{descriptor.mandatorChapiId}}\\boolean value (default false)
+ specifying if JSR 211 content-handler must have an explicit ID
+\item{\texttt{descriptor.chapiContentTypesRegexp}}\\optional regular expression
+ defining constraints on the each content-type mentioned in a JSR 211 handler 
+\item{\texttt{descriptor.chapiActionsRegexp}}\\optional regular expression
+ defining constraints on the each action mentioned in a JSR 211 handler
+\item{\texttt{descriptor.chapiSuffixesRegexp}}\\optional regular expression
+ defining constraints on the each file suffix mentioned in a JSR 211 handler
+\item{\texttt{descriptor.midletSuiteNameRegexp}}\\optional regular expression
+ defining constraints on the name of the midlet suite
+\item{\texttt{descriptor.vendorNameRegexp}}\\optional regular expression
+ defining constraints on the name of the vendor of the midlet suite
+\item{\texttt{descriptor.jad.attributesorder}}\\comma separated list defining
+ the order of jad attributes (useful for some download portal that cannot
+ handler attributes in random order)
+\item{\texttt{descriptor.jar.attributesorder}}\\comma separated list defining
+ the order of jar attributes (useful for some download portal that cannot
+ handler attributes in random order)
+\item{\texttt{descriptor.jad.forbidden}}\\ additional list of attributes
+ forbidden in the JAD
+\item{\texttt{descriptor.jad.mandatory}}\\ additional list of attributes 
+ mandatory in the JAD
+\item{\texttt{descriptor.jar.mandatory}}\\ additional list of attributes
+ forbidden in the JAR manifest
+\item{\texttt{descriptor.jar.forbidden}}\\ additional list of attributes
+ mandatory in the JAR manifest
+\item{\texttt{descriptor.midletSuiteIconSize}}\\optional comma delimited list of
+ authorized sizes for the midlet suite icons (as \textit{width}x\textit{height})
+\item{\texttt{descriptor.maxMidlets}}\\ Optional constraint defining the maximum
+ number of visible services (midlets) defined by the suite.
+\item{\texttt{descriptor.midletNameRegexp}}\\optional regular expression
+defining constraints on the names of midlets (services) provided by the suite.
+\item{\texttt{descriptor.midletIconSize}}\\optional comma delimited list of
+authorized sizes for midlet icons (as \textit{width}x\textit{height})
+\item{\texttt{descriptor.pushURLRegexp}}\\optional regular expression
+defining constraints on the URL defined for static push registry
+\item{\texttt{descriptor.pushRestrictionRegexp}}\\optional regular expression
+defining constraints on the restrictions imposed for static push registry.
+\end{itemize}
+
+
+
+%TODO: a documenter plus tard (DTD des fichiers de campagne .mcl)
+%section{The Check-list File Format}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

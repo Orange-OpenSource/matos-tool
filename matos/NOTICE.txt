@@ -1,0 +1,17 @@
+This software uses the following components:
+
+Soot 2.5.0 
+Copyright McGill University
+License LGPL v2.1
+
+BCEL 
+Copyright Apache Software Foundation
+License Apache V2
+
+Sqlite-jdbc  
+Copyright Xerial
+License Apache V2
+
+commons-lang3 
+Copyright Apache Software Foundation
+License Apache V2

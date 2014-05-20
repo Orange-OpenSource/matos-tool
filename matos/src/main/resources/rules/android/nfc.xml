@@ -1,0 +1,82 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv name="NfcGroup">
+	<h2>NFC Services</h2>
+	<div class="AuxFoldBox">
+		NFC services are not dangerous per se. But they usually have very strict security
+		requirements. NFC applications should be manually reviewed to ensure that the APIs
+		are correctly used.
+	</div>
+	<div class="FoldBox">
+		L'accès aux fonctions NFC n'est pas dangereux en lui même. Mais les applications NFC
+		ont normalement des exigences de sécurité propre assez contraignantes qui requièrent
+		une validation manuelle de l'application.
+  		</div>
+  	<callRef name="IsoDep.connect"/>
+  	<callRef name="IsoDep.get"/>
+	<callRef name="MifareClassic.get"/>
+	<callRef name="MifareUltralight.get"/>
+	<callRef name="Ndef.get"/>
+	<callRef name="NfcA.get"/>
+	<callRef name="NfcB.get"/>
+	<callRef name="NfcF.get"/>
+	<callRef name="NfcV.get"/>
+  	<callRef name="BasicTagTechnology.connect"/>
+  	
+	<callRef name="IsoDep.getHiLayerResponse" />
+	<callRef name="IsoDep.getHistoricalBytes" />
+	<callRef name="IsoDep.transceive" />
+  		
+  		
+  	<callRef name="MifareClassic.readBlock"/>
+	<callRef name="MifareClassic.transceive"/>
+	<callRef name="MifareClassic.writeBlock"/>
+	
+	<callRef name="MifareUltralight.readPages"/>
+	<callRef name="MifareUltralight.transceive"/>
+	<callRef name="MifareUltralight.writePage"/>
+	
+	<callRef name="NdefFormatable.format"/>
+	<callRef name="Ndef.getNdefMessage"/>
+	<callRef name="Ndef.writeNdefMessage"/>
+	
+	<callRef name="NfcAdapter.createNfcSecureElementConnection"/>
+	<callRef name="NfcAdapter.enableForegroundDispatch"/>
+	<callRef name="NfcAdapter.disableForegroundNdefPush"/>
+	<callRef name="NfcAdapter.enableForegroundNdefPush"/>
+	<callRef name="NfcAdapter.enableForegroundNdefPush-2"/>
+	<callRef name="NfcA.getAtqa"/>
+	<callRef name="NfcA.getSak"/>
+	<callRef name="NfcA.transceive"/>
+	
+	<callRef name="NfcB.getApplicationData"/>
+	<callRef name="NfcB.transceive"/>
+	
+	<callRef name="NfcF.getManufacturer"/>
+	<callRef name="NfcF.getSystemCode"/>
+	<callRef name="NfcF.transceive"/>
+	<callRef name="NfcSecureElement.exchangeAPDU"/>
+	<callRef name="NfcSecureElement.openSecureElementConnection"/>
+	
+	<callRef name="NfcV.getDesfId"/>
+	<callRef name="NfcV.getReponseFlags"/>
+	<callRef name="NfcV.transceive"/>
+  		
+</sdiv>

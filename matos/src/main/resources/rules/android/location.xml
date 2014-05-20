@@ -1,0 +1,100 @@
+<!--
+  #%L
+  Matos
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<sdiv name="LocationGroup">
+	<h2>Location</h2>
+	<div class="AuxFoldBox">
+		Functions used to find the location of the phone. To be used
+		sparingly and only
+		if the application has a use case for it. The mixture of the
+		identification of the phone (via APIs
+		telephony in general) and location should arouse suspicion (threats to the
+		user's privacy).
+
+		Methods using directly the class
+		<code>CdmaCellLocation</code>
+		use triangulation on
+		CDMA network. There is no reason (and no way) to use it on a GSM
+		network.
+	</div>
+	<div class="FoldBox">
+		Fonctions permettant la localisation du téléphone. A utiliser avec modération
+		et uniquement
+		si l'application le justifie. Le mélange de l'identification du
+		téléphone (via les APIs de
+		téléphonie en général) et de localisation doit éveiller des soupçons (risque
+		de menaces pour
+		la vie privée de l'utilisateur).
+
+		Les méthodes utilisant les classes CdmaCellLocation utilisent
+		directement la triangulation sur réseau CDMA.
+		Il n'y a aucune raison pour les utiliser sur un réseau GSM.
+  		</div>
+	<callRef name="LocationManager.getProvider" />
+	<callRef name="LocationManager.requestLocationUpdates-1" />
+	<callRef name="LocationManager.requestLocationUpdates-2" />
+	<callRef name="LocationManager.requestLocationUpdates-3" />
+	<callRef name="LocationManager.requestLocationUpdates-4"/>
+	<callRef name="LocationManager.requestLocationUpdates-5"/>
+	<callRef name="LocationManager.requestSingleUpdate-1"/>
+	<callRef name="LocationManager.requestSingleUpdate-2"/>
+	<callRef name="LocationManager.requestSingleUpdate-3"/>
+	<callRef name="LocationManager.requestSingleUpdate-4"/>
+	<callRef name="LocationManager.addProximityAlert" />
+	<callRef name="LocationManager.isProviderEnabled" />
+	<callRef name="LocationManager.getLastKnownLocation" />
+	<callRef name="LocationManager.addNmeaListener" />
+	<callRef name="CdmaCellLocation.getNetworkId" />
+	<callRef name="CdmaCellLocation.setCellLocationData-1" />
+	<callRef name="CdmaCellLocation.setCellLocationData-2" />
+	<callRef name="CdmaCellLocation.getBaseStationId" />
+	<callRef name="CdmaCellLocation.getBaseStationLattitude" />
+	<callRef name="CdmaCellLocation.getBaseStationLongitude" />
+
+	<sdiv>
+		<h3>Geo location system management</h3>
+		<div class="AuxFoldBox">
+			These functions test or maintenance of location APIs. As a general rule,
+			application should not use it.
+
+			The establishment of a geo-locator can have impacts on privacy:
+			géolocator
+			indeed translate address coordinates and therefore have access to details
+			of geo-locations that are submitted.
+		</div>
+		<div class="FoldBox">
+			Il s'agit de fonctions de test ou de maintenance des APIs de
+			localisation. En règle générale
+			une application ne devrait pas l'utiliser.
+
+			La mise en place d'un géo-localiseur peut avoir des impacts sur la
+			vie privée: le géolocaliseur
+			traduit en effet des coordonnées en adresse et donc a accès aux
+			coordonnées qui lui sont soumis.
+		</div>
+		<callRef name="LocationManager.addTestProvider" />
+		<callRef name="LocationManager.removeTestProvider" />
+		<callRef name="LocationManager.setTestProvider" />
+		<callRef name="LocationManager.clearTestProviderLocation" />
+		<callRef name="LocationManager.setTestProviderEnabled" />
+		<callRef name="LocationManager.clearTestProviderEnabled" />
+		<callRef name="LocationManager.installLocationProvider" />
+		<callRef name="LocationManager.installGeocodeProvider" />
+	</sdiv>
+</sdiv>
