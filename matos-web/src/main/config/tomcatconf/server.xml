@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--
+  #%L
+  Matos
+  $Id:$
+  $HeadURL:$
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+
+<Server port="8005" shutdown="SHUTDOWN">
+  <Service name="Catalina">
+    <Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+      maxThreads="150" scheme="https" secure="true" keystoreFile="${matos.keystore}"
+      keystorePass="changeit" clientAuth="false" sslProtocol="TLS" />
+    <Engine name="Catalina" defaultHost="localhost">
+
+    <Realm className="org.apache.catalina.realm.JDBCRealm" digest="SHA"
+      driverName="org.sqlite.JDBC"
+      connectionURL="jdbc:sqlite:${matos.authdb}"
+      userTable="users" userNameCol="user" userCredCol="password"
+      userRoleTable="roles" roleNameCol="role" />
+
+      <Host name="localhost" appBase="webapps" unpackWARs="true"
+        autoDeploy="true" xmlValidation="false" xmlNamespaceAware="false">
+
+      </Host>
+    </Engine>
+  </Service>
+</Server>

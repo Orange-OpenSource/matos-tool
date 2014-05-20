@@ -1,0 +1,78 @@
+<!--
+  #%L
+  Matos
+  $Id:$
+  $HeadURL:$
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Matos session</title>
+    <h:outputStylesheet library="css" name="style.css"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+</h:head>
+<h:body>
+<h:form>
+<div style="float:right;">
+<table class="table-menu">
+  <tr><td class="table-menu-cell"> <h:commandLink value="logout" action="#{matos_session.logout}" /></td></tr>
+  <tr><td class="table-menu-cell"> <h:outputLink value="change_password.xhtml" rendered="#{matos_auth.managed}">password</h:outputLink> </td></tr>
+  <tr><td class="table-menu-cell"> <h:outputLink value="manage_users.xhtml" rendered="#{matos_auth.admin}">manage</h:outputLink> </td></tr>
+</table>
+</div>
+<h1>Welcome Matos user <h:outputText value="#{matos_session.user}"/> !</h1>
+
+
+<h:dataTable id="out" 
+   value="#{matos_session.campaigns}" 
+   var="campaign"
+   rendered="#{not empty matos_session.campaigns}" 
+   styleClass="table-result" headerClass="table-result-header" columnClasses="table-result-cell,table-result-cell,table-result-cell">
+ <!-- Checkbox -->
+ <h:column>
+    <f:facet name="header">#</f:facet>
+    <h:selectBooleanCheckbox value="#{campaign.selected}" />
+ </h:column>
+ <!-- Name -->
+ <h:column>
+    <f:facet name="header">Campaign name</f:facet>
+    <h:commandLink value="#{campaign.name}" action="#{matos_session.view(campaign)}"/>
+ </h:column>
+ <!-- Date -->
+ <h:column>
+    <f:facet name="header">Date</f:facet>
+    <h:outputText value="#{campaign.printableCreateDate}"/>
+ </h:column>
+ <!-- Size -->
+ <!-- Analyzed -->
+ <!-- Passed -->
+</h:dataTable>
+<br/>
+<h:commandButton render="out" id="addButton" value="Create" action="#{matos_session.addNewCampaign}"/>
+Campaign name: <h:inputText value="#{matos_session.campaignName}"/>
+<hr/>
+<h:panelGroup rendered="#{not empty matos_session.campaigns}">
+<h:commandButton render="out" id="removeButton" value="Remove" action="#{matos_session.removeSelectedCampaigns}"/>
+<hr/>
+</h:panelGroup>
+</h:form>
+
+
+</h:body>
+</html>

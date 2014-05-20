@@ -1,0 +1,57 @@
+<!--
+  #%L
+  Matos
+  $Id:$
+  $HeadURL:$
+  %%
+  Copyright (C) 2004 - 2014 Orange SA
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+  <title>Matos user management</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+  <h:outputStylesheet library="css" name="style.css"/>
+</h:head>
+<h:body>
+  <h1> Welcome Matos administrator <h:outputText value="#{matos_auth.user}" /> </h1>
+   <h2> User creation</h2>
+  <h:form>
+      <h:outputLabel for="create">User name: </h:outputLabel>
+      <h:inputText id="create" value="#{matos_auth.newUser}"/>
+      <br/>
+      <h:outputLabel value="Admin" for="isAdmin" title="Is this user an administrator (can manage users) ?"/>
+      <h:selectBooleanCheckbox id="isAdmin" value="#{matos_auth.newUserAdmin}" />
+      <br/>
+      <h:commandButton value="Create" action="#{matos_auth.createUser}"/>
+  </h:form>
+   <h2> User deletion</h2>
+  <h:form>
+      <h:outputLabel for="delete">User name: </h:outputLabel>
+      <h:selectOneMenu id="delete" value="#{matos_auth.deletedUser}">
+        <f:selectItems value="#{matos_auth.users}"/>
+      </h:selectOneMenu>
+      
+      <h:commandButton value="Delete" action="#{matos_auth.deleteUser}"/>
+  </h:form>
+  <br/>
+  <h:outputText value="#{matos_auth.message}" class="#{matos_auth.messageStyle}" rendered="#{not empty matos_auth.message}"/>
+
+<hr/>
+<a href="index.xhtml">Back</a>
+</h:body>
+</html>

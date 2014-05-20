@@ -1,0 +1,166 @@
+/*
+ * #%L
+ * Matos
+ * $Id:$
+ * $HeadURL:$
+ * %%
+ * Copyright (C) 2004 - 2014 Orange SA
+ * %%
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * #L%
+ */
+body {
+    font-family: sans-serif;
+    font-size: 12px;
+	line-height:18px;
+	background-color: white;
+}
+
+h1 {
+    color: #0080FF;
+    font-family: sans-serif;
+}
+
+h2 {
+	font-size:22px;
+	color: black;
+	font-style:normal;
+	font-weight:normal;
+	margin-bottom:22px;
+	margin-top:22px;
+	font-family: Arial, Verdana; 
+}
+
+h3 {
+	font-size:18px;
+	color: black;
+	font-style:italic;
+	font-weight:normal;
+	margin-bottom:18px;
+	margin-top:18px;
+	font-family: Arial, Verdana; 
+}
+
+td {
+	font-family: sans-serif;
+	font-size:12px;
+}
+
+a:link {
+    text-decoration: underline;
+    color: #FF8000;
+    font-family: sans-serif;
+}
+
+a:visited {
+    text-decoration: underline;
+    color: #C08040;
+    font-family: sans-serif;
+}
+
+
+
+#progressDiv {
+  background-color:lightgray;
+  width:606px;
+  padding:3px;
+  -moz-border-radius:3px;
+  border-radius:3px;
+  text-align:left;
+  border:1px solid gray;
+}
+
+#progressBar {
+  width:600px;
+  padding:1px;
+  background-color:white;
+  border:1px solid black;
+  height:8px;
+}
+
+#progressLine {
+  width:0px;
+  background-color:#FF8000;
+  height:8px;
+  margin:0;
+}
+
+
+#progressMessage {
+	text-align:center;
+	color: white; 
+	font-weight: bold;
+}
+
+#deleteButton {
+	color: #C00;
+  	font-weight: bold;
+}
+
+.table-menu {
+    border-collapse:collapse;
+    border: 1px solid white;
+    margin: 0px;
+}
+
+.table-menu-cell {
+    padding: 2px 4px 2px 4px;
+    border: 1px solid white;
+    background-color: LightGray;
+    margin: 0px;
+}
+.table-result {
+	border-collapse:collapse;
+	border: 1px solid DimGray;
+	margin: 0px;
+}
+
+.table-result-header {
+	padding: 0px 8px 0px 8px;
+	text-align: center;
+	font-weight: bold;
+	border: 1px solid DimGray;
+	background-color: white;
+	margin: 0px;
+}
+
+.table-result-cell {
+	padding: 2px 4px 2px 4px;
+	border: 1px solid DimGray;
+	background-color: white;
+	margin: 0px;
+}
+
+td.disabled_result {
+	color: #cccccc;
+	padding: 0px 4px 0px 4px;
+	border: 1px solid DimGray;
+	background-color: white;
+	margin: 0px;
+}
+
+td.resultDiv {
+	padding: 0px 8px 0px 8px;
+	border: 1px solid DimGray;
+	text-align: center;
+	background-color: lightgray;
+	margin: 0px;
+}
+
+.positive {
+	color:#008000;
+}
+
+.negative {
+	color:#FF0000;
+}
