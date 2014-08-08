@@ -29,10 +29,12 @@ import com.orange.matos.core.Configuration;
 /**
  * @author piac6784
  * Check the ids used in attributes describing the use of CHAPI (Content
- * Handler API). It is an AFSCM checker.
+ * Handler API). The expected format is described by a regular expression
+ * specified in the profile (descriptor.chapiIdRegexp) 
  */
 public class ChapiIdChecker extends RegexpAttributeChecker {
 	
+	private final static String KEY_CHAPIID_REGEXP = "descriptor.chapiIdRegexp";
 	final private Configuration config;
 	
 	ChapiIdChecker(Configuration config) { 
@@ -42,7 +44,7 @@ public class ChapiIdChecker extends RegexpAttributeChecker {
 	
 	@Override
 	public void check() throws Alert{
-		String chapiIdRegexpSpec = config.string("descriptor.chapiIdRegexp");
+		String chapiIdRegexpSpec = config.string(KEY_CHAPIID_REGEXP);
 		Pattern chapiIdRegexp = null;
 		if (chapiIdRegexpSpec != null && chapiIdRegexpSpec.length() > 0) {
 			chapiIdRegexp = Pattern.compile(chapiIdRegexpSpec);
