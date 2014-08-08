@@ -749,7 +749,6 @@ public class Configuration {
      * @return
      */
     private String expandDirs(String origPath) {
-        System.out.println("original " + origPath);
         StringBuilder paths = new StringBuilder();
         for (String path : origPath.split(File.pathSeparator)) {
             if (path.endsWith(File.separator + "*")) {
@@ -774,7 +773,6 @@ public class Configuration {
                 paths.append(path);
             }
         }
-        System.out.println("final :" + paths.toString());
         return paths.toString();
     }
 
