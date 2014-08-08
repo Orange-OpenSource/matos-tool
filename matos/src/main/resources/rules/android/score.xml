@@ -29,36 +29,34 @@
 	<permission name="CoarseLocation" id="android.permission.ACCESS_COARSE_LOCATION"/>
 	<permission name="PhoneState" id="android.permission.READ_PHONE_STATE"/>
 	<permission name="WriteSD" id="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	
-	
+		
 	<all-of name="Privacy" score="10" message="Privacy (multiple queries)">
 		<element name="LocationTracking"/>
 		<element name="PhonePrivacy"/>
 		<element name="Accounts"/>
 	</all-of>
-	<stringmatch score="20" name="privacy-id" message="Explicit privacy leak in URL" pattern="PRIVACY LEAK:"/> 
 	
 	<h2> On-line advertisers.</h2>
-	<stringmatch score="5" name="admob" message="Advertising ADMOB" pattern="admob" />
-	<stringmatch score="5" name="adsense" message="Advertising AdSense" pattern="googlesyndication.com" />
-	<stringmatch score="5" name="mobclix" message="Advertising MOBCLIX" pattern="mobclix" />
-	<stringmatch score="5" name="qw" message="Advertising QUATTRO WIRELESS" pattern="qwapi" />
-	<stringmatch score="5" name="millenial" message="Advertising MILLENNIAL MEDIA" pattern="millennialmedia" />
-	<stringmatch score="5" name="adwhirl" message="Advertising ADWHIRL" pattern="adwhirl" />
-	<stringmatch score="5" name="linksynergy" message="Advertising LinkSynergy" pattern="linksynergy" />
-	<stringmatch score="5" name="mpression" message="Advertising (4th Screeen Adv.)" pattern="net.mpression" />
-	<stringmatch score="5" name="clickservice" message="Advertising Afiliate Commerce (Google)" pattern="clickservice.cc-dt.com" />
+	<stringmatch score="1" name="admob" message="Advertising ADMOB" pattern="admob" />
+	<stringmatch score="1" name="adsense" message="Advertising AdSense" pattern="googlesyndication.com" />
+	<stringmatch score="1" name="mobclix" message="Advertising MOBCLIX" pattern="mobclix" />
+	<stringmatch score="1" name="qw" message="Advertising QUATTRO WIRELESS" pattern="qwapi" />
+	<stringmatch score="1" name="millenial" message="Advertising MILLENNIAL MEDIA" pattern="millennialmedia" />
+	<stringmatch score="1" name="adwhirl" message="Advertising ADWHIRL" pattern="adwhirl" />
+	<stringmatch score="1" name="linksynergy" message="Advertising LinkSynergy" pattern="linksynergy" />
+	<stringmatch score="1" name="mpression" message="Advertising (4th Screeen Adv.)" pattern="net.mpression" />
+	<stringmatch score="1" name="clickservice" message="Advertising Afiliate Commerce (Google)" pattern="clickservice.cc-dt.com" />
 	<h2> Statistical usage analysis.</h2>
-	<stringmatch score="5" name="flurry" message="Analytics FLURRY" pattern="flurry" />
-	<stringmatch score="5" name="localytics" message="Analytics LOCALYTICS" pattern="localytics" />
-	<stringmatch score="5" name="google-analytics" message="Analytics Google-analytics" pattern="google-analytics.com" />
+	<stringmatch score="1" name="flurry" message="Analytics FLURRY" pattern="flurry" />
+	<stringmatch score="1" name="localytics" message="Analytics LOCALYTICS" pattern="localytics" />
+	<stringmatch score="1" name="google-analytics" message="Analytics Google-analytics" pattern="google-analytics.com" />
 	<h2> Markets, on-line payment, etc.</h2>
-	<stringmatch score="5" name="paypal" message="Payment Paypal" pattern="paypal.com" />
-	<stringmatch score="5" name="market" message="Google Marketplace" pattern="market.android.com|market://" />
-	<stringmatch score="5" name="skyhook" message="Location (Skyhook)" pattern="skyhookwireless" />
+	<stringmatch score="1" name="paypal" message="Payment Paypal" pattern="paypal.com" />
+	<stringmatch score="1" name="market" message="Google Marketplace" pattern="market.android.com|market://" />
+	<stringmatch score="1" name="skyhook" message="Location (Skyhook)" pattern="skyhookwireless" />
 	<h2> Social networks </h2>
-	<stringmatch score="3" name="twitter" message="Social network (Twitter)" pattern="twitter\.com" />
-	<stringmatch score="3" name="facebook" message="Social network (Facebook)" pattern="facebook\.com" />
+	<stringmatch score="1" name="twitter" message="Social network (Twitter)" pattern="twitter\.com" />
+	<stringmatch score="1" name="facebook" message="Social network (Facebook)" pattern="facebook\.com" />
 	<h2> URL Shortener </h2>
 	<stringmatch score="2" name="bitly" message="URL Abbreviator (Bit.ly)" pattern="bit.ly" />
 	<stringmatch score="2" name="tinyurl" message="URL Abbreviator (Tinyurl)" pattern="tinyurl.com" />
