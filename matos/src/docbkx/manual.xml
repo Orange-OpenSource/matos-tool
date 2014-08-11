@@ -410,42 +410,167 @@ mvn install
 			<title>Command line tool</title>
 			
 			<para>
+			     matos [&lt;options&gt;] [jarfile | jadfile | apk | checklist] 
+          
+         
+  
+  
+    
+            
+  
 			    
 			</para>
 			<variablelist>
 				<varlistentry>
-					<term><code></code></term>
+					<term><code>-d &lt;def&gt;</code></term>
 					<listitem>
-						<para></para>
+						<para>Use the security profile named &lt;def&gt;. By default, the profile specifed in the configuration file is used.</para>
+					</listitem>
+				</varlistentry>
+			    			  
+				<varlistentry>
+					<term><code> -o &lt;file&gt;</code></term>
+					<listitem>
+						<para>Set &lt;file&gt; as output file (or output directory in campaign mode (eg if <code>-c</code> option is set). </para>
 					</listitem>
 				</varlistentry>
 				<varlistentry>
-					<term><code></code></term>
+					<term><code>-jar &lt;file&gt;</code></term>
 					<listitem>
-						<para></para>
+						<para>Analyse this JAR &lt;file&gt; as a MIDP MIDlet, (ignore the one specified in the JAD).</para>
 					</listitem>
 				</varlistentry>
 				<varlistentry>
-					<term><code></code></term>
+					<term><code>-jad &lt;file&gt; </code></term>
 					<listitem>
-						<para></para>
+						<para>      Analyse this JAD &lt;file&gt;.</para>
 					</listitem>
 				</varlistentry>
 				<varlistentry>
-					<term><code></code></term>
+					<term><code>-apk &lt;file&gt;</code></term>
 					<listitem>
-						<para></para>
+						<para>Analyze this Android APK.</para>
 					</listitem>
 				</varlistentry>
 				<varlistentry>
-					<term><code></code></term>
+					<term><code>-all &lt;directory&gt;</code></term>
 					<listitem>
-						<para></para>
+						<para>Analyse all JAR, JAD and SWF files which are in &lt;directory&gt;.</para>
 					</listitem>
 				</varlistentry>																
+			
+
+			<varlistentry>
+				<term><code>-c &lt;file&gt;</code></term>
+				<listitem>
+					<para>
+					    Run the check-list described in &lt;file&gt; (script mode to launch a whole sequence of analyses).
+					    Check-list are XML files. 
+					</para>
+										
+				</listitem>
+				
+			</varlistentry>
+			<varlistentry>
+				<term><code>-m &lt;midlet&gt;</code></term>
+				<listitem>
+					<para>For a single MIDlet analysis, do not analyse all midlets of the JAR, but the one called &lt;midlet&gt;. Multiple -m flags may be given. </para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><code>-tmp &lt;directory&gt;</code></term>
+				<listitem>
+					<para>  Use &lt;directory&gt; as a temporary directory. </para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><code>-log &lt;file&gt;</code></term>
+				<listitem>
+					<para>Set &lt;file&gt; as log file. </para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><code>-css &lt;file&gt;</code></term>
+				<listitem>
+					<para>Use the CSS &lt;file&gt; to control the style and the layout of the HTML result. </para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><code>-h</code></term>
+				<listitem>
+					<para>Display a help </para>
+				</listitem>
+			</varlistentry>
 			</variablelist>
 			
-		</section>
+					<section>
+					    <title>The campaign file format</title>
+					    <para>
+					        Campaigns may disapear in future versions of the tool as they are less relevant in this version of the tool than they were in the
+					        stand-alone version. Most of the time, the <code>-all</code> option is a simpler alternative.
+					    </para>
+					
+					<para>
+						The root element is <code>campaign</code> and it contains a list of
+					    <code>anajava</code> (for MIDP) or <code>anadroid</code> (for Android) elements describing mobile applications. 
+					</para>
+					<para>
+					The attributes of <code>campaign</code> are:
+					</para>
+					<variablelist>
+						<varlistentry>
+						    <term><code>profile</code></term>
+						    <listitem><para>An analysis profile (required)</para></listitem>
+						</varlistentry>
+					    <varlistentry>
+						    <term><code>name</code></term>
+						    <listitem><para>A name for the campaign</para></listitem>
+						</varlistentry>
+						<varlistentry>
+						    <term><code>author</code></term>
+						    <listitem><para>an author (optional)</para></listitem>
+						</varlistentry>
+						<varlistentry>
+						    <term><code>date</code></term>
+						    <listitem><para>a date of definition (optional)</para></listitem>
+						</varlistentry>
+						<varlistentry>
+						    <term><code>description</code></term>
+						    <listitem><para>an informative description (optional)</para></listitem>
+						</varlistentry>
+					</variablelist>	
+					<para>
+					The attributes of <code>anajava</code> are:
+					</para>
+					<variablelist>
+						<varlistentry>
+						    <term><code>name</code></term>
+						    <listitem><para>A unique step identifier</para></listitem>
+						</varlistentry>
+					    <varlistentry>
+						    <term><code>jar</code></term>
+						    <listitem><para>The path to the jar</para></listitem>
+						</varlistentry>
+						<varlistentry>
+						    <term><code>jad</code></term>
+						    <listitem><para>The path to the optional jad</para></listitem>
+						</varlistentry>					    
+					</variablelist>
+					<para>
+					The attributes of <code>anadroid</code> are:
+					</para>
+					<variablelist>
+						<varlistentry>
+						    <term><code>name</code></term>
+						    <listitem><para>A unique step identifier</para></listitem>
+						</varlistentry>
+					    <varlistentry>
+						    <term><code>file</code></term>
+						    <listitem><para>The path to the APK file</para></listitem>
+						</varlistentry>
+					</variablelist>					
+					</section>
+				</section>
 
 	</chapter>
 	<chapter>

@@ -50,7 +50,7 @@ fi
 # Location of matos libraries
 MATOS_JAR=matos-core-0.0.1-SNAPSHOT.jar
 MATOS_SCRIPT=$(which $0)
-MATOS_HOME:=$(dirname $(dirname $MATOS_SCRIPT))
+MATOS_HOME=$(dirname $(dirname $MATOS_SCRIPT))
 EXEC=${MATOS_HOME}/lib/${MATOS_JAR}
 
 while [ ! -f "${EXEC}" ] ; do
