@@ -516,10 +516,10 @@ public class ScoreReport {
         @Override
         public void write(byte[] buf, int off, int len) {
             try {
-                score.matchString(new String(buf, off, len, "UTF-8"));
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException("UTF-8 not supported", e); // Cannot
-                                                                      // happen
+            	String str = new String(buf, off, len, "UTF-8");
+                score.matchString(str);
+            } catch (Exception e) {
+                throw new RuntimeException("UTF-8 not supported", e); // Cannot happen
             }
             ps.write(buf, off, len);
 

@@ -74,12 +74,10 @@ public class CmdLine implements Cloneable {
      */
     public static String help() {
 
-        // String rev = "$Revision: 2285 $";
-        // rev = rev.replace('$',' ');
         String help = "";
         help += "MIDLET ANALYSER" + "\n";
-        help += "(c) France Telecom Research & Development 2004-2009" + "\n";
-        help += "Release " + Release.getTag() + " (rev." + Release.getRevision() + ")\n" + "\n";
+        help += "(c) France Telecom Research & Development 2004-2014" + "\n";
+        help += "Release " + Release.getTag() + "\n";
         help += "USAGE: matos [<options>] [jarfile | jadfile | apk | checklist] " + "\n";
         help += "  -o <file>         Set <file> as output file (or output directory, if -c option is set). "
                 + "\n";
@@ -99,7 +97,6 @@ public class CmdLine implements Cloneable {
         help += "  -tmp <directory>  Use <directory> as a temporary directory." + "\n";
         help += "  -log <file>       Set <file> as log file." + "\n";
         help += "  -h                Display this help.\n";
-        help += "To launch in interactive mode (GUI), just avoid any option.";
 
         return help;
     }

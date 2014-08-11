@@ -25,11 +25,9 @@ package com.orange.matos.core;
  *
  */
 public class Release {
+	final private static String tag = "7.0";
+	
     /** Release tag */
     public static String getTag() { return tag; }
-    /** Release revision */
-    public static String getRevision() { return revisionTag.replace("$LastChangedRevision:", "").replace("$", "").trim(); }
-    final private static String tag = "Fig";
-    final private static String revisionTag = "$LastChangedRevision: 2280 $";
     
 }

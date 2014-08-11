@@ -108,8 +108,10 @@ public abstract class Step implements Cloneable {
 	 */
 	@Override
 	public String toString() {
-	    return String.format("profile=%s\ncode=%s\noutFileName=%s\ncss=%s\nlog=%s\ntemp=%s\nmessage=%s\nscore=%d\ntime=%d\nverdict=%d\n",
-	                          profileName, code,outFileName, cssUrl== null ? "-" : cssUrl.toExternalForm(),logFileName, temporaryDir, message, score, time, verdict );
+		
+	    return "errofile=" + profileName + "\ncode=" + code + "\noutFileName=" + outFileName + 
+	    		"\ncss=" + (cssUrl== null ? "-" : cssUrl.toExternalForm()) + "\nlog=" + logFileName + "\ntemp=" + temporaryDir + 
+	    		"\nmessage=" + message + "\nscore=" + score + "\ntime=" + time + "\nverdict=" + verdict+ "\n";
 	}
 	
 

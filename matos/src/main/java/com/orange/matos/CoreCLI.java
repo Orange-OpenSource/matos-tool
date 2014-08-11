@@ -276,7 +276,6 @@ public class CoreCLI {
      * @throws Alert the alert
      */
     public void executeStep(Step step) throws Alert {
-        System.out.println(step);
         boolean xmlFormat = configuration.xmlFormat();
 
         // Init outstream if needed
