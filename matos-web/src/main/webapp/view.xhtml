@@ -61,7 +61,7 @@ Date <h:outputText value="#{matos_session.current.printableCreateDate}"  />
  <!-- Status -->
  <h:column>
     <f:facet name="header">Status</f:facet>
-    <h:commandLink value="#{step.status}" action="#{matos_session.current.analyze(step)}"/>
+    <h:outputText value="#{step.status}" />
  </h:column>
  <!-- Code -->
  <h:column>
@@ -77,13 +77,16 @@ Date <h:outputText value="#{matos_session.current.printableCreateDate}"  />
 <hr/>
 
 <table>
-<tr><td colspan="4"><h2>Campain operations</h2></td></tr>
+<tr><td colspan="4"><h2>Campaign operations</h2></td></tr>
 <tr align="center">
 <td colspan="2">
 <h:commandButton render="out" id="removeButton" value="Remove selected" action="#{matos_session.current.removeSelectedSteps}"/>
 </td>
-<td colspan="2">
-<h:commandButton render="out" id="analyze" value="Analyze All" action="#{matos_session.current.analyzeAll}"/>
+<td>
+<h:commandButton render="out" id="analyzeAll" value="Analyze All" action="#{matos_session.current.analyzeAll}"/>
+</td>
+<td>
+<h:commandButton render="out" id="analyzeSingle" value="Analyze Selected" action="#{matos_session.current.analyzeSelected}"/>
 </td>
 </tr>
 <tr><td colspan="4"><h2>Add Android APK</h2></td></tr>

@@ -223,7 +223,7 @@ public class MatosCampaign implements Serializable {
     /**
      * Analyze all.
      * 
-     * @return the string
+     * @return null : no change to page
      */
     public String analyzeAll() {
         for (MatosStep step : steps) {
@@ -233,9 +233,23 @@ public class MatosCampaign implements Serializable {
     }
 
     /**
+     * Analyze steps marked as selected.
+     * 
+     * @return null no change to page.
+     */
+    public String analyzeSelected() {
+        for (MatosStep step : steps) {
+        	if (step.isSelected()) {
+        		engine.addWork(step);
+        	}
+        }
+        return null;
+    }
+
+    /**
      * Action analyzing a step.
      * 
-     * @return
+     * @return null : no change to page
      */
     public String analyze(MatosStep step) {
         engine.addWork(step);

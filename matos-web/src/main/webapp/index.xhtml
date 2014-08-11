@@ -42,7 +42,8 @@
 <h:dataTable id="out" 
    value="#{matos_session.campaigns}" 
    var="campaign"
-   rendered="#{not empty matos_session.campaigns}" 
+   rendered="#{not empty 
+   matos_session.campaigns}" 
    styleClass="table-result" headerClass="table-result-header" columnClasses="table-result-cell,table-result-cell,table-result-cell">
  <!-- Checkbox -->
  <h:column>
@@ -64,6 +65,7 @@
  <!-- Passed -->
 </h:dataTable>
 <br/>
+
 <h:commandButton render="out" id="addButton" value="Create" action="#{matos_session.addNewCampaign}"/>
 Campaign name: <h:inputText value="#{matos_session.campaignName}"/>
 <hr/>

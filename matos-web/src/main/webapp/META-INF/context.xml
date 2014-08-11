@@ -22,16 +22,5 @@
   -->
 
 <Context>
-  <!-- <Realm className="org.apache.catalina.realm.JNDIRealm" adCompat="true" 
-    authentication="simple" derefAliases="never" connectionURL="ldaps://p-guada1.rd.francetelecom.fr:636" 
-    referrals="ignore" userBase="DC=francetelecom,DC=fr" userSubtree="true" userSearch="(uid={0})" 
-    userRoleName="objectClass" /> -->
-  <!-- 
 
-  <Realm className="org.apache.catalina.realm.JDBCRealm" digest="SHA"
-    driverName="org.sqlite.JDBC"
-    connectionURL="jdbc:sqlite:${matos.authdb}"
-    userTable="users" userNameCol="user" userCredCol="password"
-    userRoleTable="roles" roleNameCol="role" />
-  -->
 </Context>
