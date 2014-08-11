@@ -1,155 +1,648 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!--
-  #%L
-  Matos
-  %%
-  Copyright (C) 2004 - 2014 Orange SA
-  %%
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-  
-       http://www.apache.org/licenses/LICENSE-2.0
-  
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  #L%
-  -->
+<!-- #%L Matos %% Copyright (C) 2004 - 2014 Orange SA %% Licensed under the 
+	Apache License, Version 2.0 (the "License"); you may not use this file except 
+	in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. 
+	#L% -->
 
 <book version="5.0" xml:lang="en" xmlns="http://docbook.org/ns/docbook"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink"
-  xsi:schemaLocation="http://docbook.org/ns/docbook 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xsi:schemaLocation="http://docbook.org/ns/docbook 
       http://docbook.org/xml/5.0/xsd/docbook.xsd">
 
-  <title>Matos Manual</title>
-  <titleabbrev>Matos</titleabbrev>
-  <info>
-    <author>
-      <personname>
-        <firstname>Pierre</firstname>
-        <surname>Crégut</surname>
-      </personname>
-    </author>
-  </info>
-  <chapter>
-    <title>Introduction</title>
-    <section>
-      <title>Matos objectives </title>
-      <para>
-        Matos is a static analysis tool that can analyze a compiled mobile java
-        application
-        (Android or MIDP) and give back facts on its potential executions. To do
-        this it
-        accumulate information from simple syntactic checks and from semantic analysis
-        mainly
-        based on an analysis of data flows in the code (using a points-to
-        analyis).
-      </para>
-      <para>
-        Matos then uses simple heuristics to give a grade to applications that
-        can be used to focus
-        deeper analysis on the most likely sources of problems. It is also
-        designed to be relatively
-        fast so that large number of applications can be analyzed in a
-        reasonable amount of time.
-      </para>
-      
-      <para>
-        The engine of the tool takes three inputs:
-      </para>
-      <itemizedlist>
-        <listitem>
-          <para>an application to analyzed with optionally a descriptor
-            of this application (a Jad file for a MIDP application)
-          </para>
-        </listitem>
-        <listitem>
-          <para>A set of rules describing what to search (known as the
-            analysis profile or profile).</para>
-        </listitem>
-        <listitem>
-          <para>An emulation of the execution platform (MIDP MSA,
-            Android, with additional libraries.)</para>
-        </listitem>
-      </itemizedlist>
-      <para>
-        Matos as a tool can either be used directly from the command line or as a
-        serivce on the web
-        through a web browser (matosweb).
-      </para>
-    </section>
-    <section>
-      <title>Organization of the manual</title>
-      <para></para>
-    </section>
-  </chapter>
-  <chapter>
-    <title>Installing Matos</title>
-    <section>
-      <title>Command line version</title>
-      <para>The tool is provided in a ZIP archive. Unpack it and refer
-        to the scripts in the bin
-        sub folder to launch the application. Under windows, use matos.bat.
-        Under Linux, use matos
-      </para>
-      <para>
-        The Linux script tries to detect your current version of Java
-        and tries to locate the location of the tool. You can override 
-        the location of the tool with the
-        <envar>MATOS_HOME</envar> environment variable. 
-      </para>
-    </section>
-    <section>
-      <title>Matosweb</title>
-      <para></para>
-    </section>
-    <section>
-      <title>Adding plug-ins</title>
-      <para>Matos can be customized for specific use. Plugins are just
-        archives that contain analysis profiles and if necessary some new stub execution environments.
-      </para>
-    </section>
-  </chapter>
-  <chapter>
-    <title>Standard analysis profiles</title>
-    <section>
-        <title>Android profile</title>
-        <para></para>
-    </section>
-    <section>
-        <title>MIDP profile</title>
-        <para></para>
-    </section>
-  </chapter>
-  <chapter>
-    <title>Developing profiles.</title>
-    <section>
-        <title>Structure of profiles</title>
-        <para></para>
-        <section><title>Specifying options</title><para></para></section>
-    </section>
-        <section>
-        <title>Static analysis rules</title>
-        <para></para>
-    </section>
-        <section>
-        <title>Presentation of results</title>
-        <para></para>
-    </section>
-        <section>
-        <title>Scoring system</title>
-        <para></para>
-    </section>
-  </chapter>
-  <chapter>
-    <title>Developping stub libraries</title>
-    <para></para>
-  </chapter>
-  <chapter>
-    <title>Developping custom checkers</title>
-    <para></para>
-  </chapter>
+	<title>Matos Manual</title>
+	<titleabbrev>Matos</titleabbrev>
+	<info>
+		<author>
+			<personname>
+				<firstname>Pierre</firstname>
+				<surname>Crégut</surname>
+			</personname>
+		</author>
+	</info>
+	<chapter>
+		<title>Introduction</title>
+		<section>
+			<title>Matos objectives </title>
+			<para>
+				Matos is a static analysis tool that can analyze a compiled
+				mobile java
+				application
+				(Android or MIDP) and give back facts on its
+				potential executions. To do
+				this it
+				accumulate information from simple
+				syntactic checks and from semantic analysis
+				mainly
+				based on an
+				analysis of data flows in the code (using a points-to
+				analyis).
+			</para>
+			<para>
+				Matos then uses simple heuristics to give a grade to
+				applications that
+				can be used to focus
+				deeper analysis on the most
+				likely sources of problems. It is also
+				designed to be relatively
+				fast
+				so that large number of applications can be analyzed in a
+				reasonable
+				amount of time.
+			</para>
+
+			<para>
+				The engine of the tool takes three inputs:
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>an application to analyzed with optionally a descriptor
+						of
+						this application (a Jad file for a MIDP application)
+					</para>
+				</listitem>
+				<listitem>
+					<para>A set of rules describing what to search (known as the
+						analysis profile or profile).
+					</para>
+				</listitem>
+				<listitem>
+					<para>An emulation of the execution platform (MIDP MSA,
+						Android,
+						with additional libraries.)
+					</para>
+				</listitem>
+			</itemizedlist>
+			<para>
+			    It produces a result in the form of an HTML file. This result is usually synthesized as a grade that
+				can be used to quantify the risk or the lack of quality of the application. Which score is assigned to
+				which rule is defined in the analysis profile. The combination operator for individual scores is the addition.
+			</para>
+			
+			<para>
+			    Rules usually control the use of a given method. They try to infer the potential arguments passed 
+			    to all the uses of those methods and depending on the obtained approximation they will produce a verdict
+                that states if there are some potential misuse of the API or not.
+             </para>
+             <para>   
+                Other kind of custom rules control the contents of some fields, the way descriptor files are built or some very rudimantary
+                constraint on the shape of the control graph or the layout of objects in memory (shape).
+			</para>
+			<para>
+				Matos as a tool can either be used directly from the command
+				line or as a service on the web through a web browser (matosweb).
+			</para>
+		</section>
+		<section>
+			<title>Organization of the manual</title>
+			<para>The first three chapters will help you use the tool: how to
+				install it, how to launch an analysis and how
+				to interpret the
+				results.
+			</para>
+			<para> The remaining chapters will help you understand how the
+				analysis profiles are organized so that you can customize
+				the
+				behaviour of the tool.
+			</para>
+		</section>
+	</chapter>
+	<chapter>
+		<title>Installing Matos</title>
+		<section>
+			<title>Command line version</title>
+			<para>The tool is provided in a ZIP archive. Unpack it and refer
+				to the scripts in the bin sub folder to launch the application. Under
+				windows, use <code>matos.bat</code>.		Under Linux, use <code>matos</code>.
+			</para>
+			<para>
+				The Linux script tries to detect your current version of Java
+				and
+				tries to locate the location of the tool. You can override
+				the	location of the tool with the
+				<envar>MATOS_HOME</envar> environment variable.
+				On Windows you may need to edit the file to get	the correct value of <envar>%MATOS_HOME%</envar> directly.
+			</para>
+			<para>
+			    Some users may want to customize the value of the <envar>TEMP</envar> variable.
+			</para>
+		</section>
+		<section>
+			<title>Matosweb</title>
+			
+				<para>
+				    The script is very similar to the the command line tool.
+ 				</para>
+			
+		</section>
+		<section>
+			<title>Compiling Matos from source</title>
+			<para>
+				The tool is made of several independent modules tied by maven.
+				The following instructions assumes that:
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						you have a working internet connection with necessary proxies
+						declared (
+						<code>http_proxy</code>
+						variables)
+					</para>
+				</listitem>
+				<listitem>
+					<para>you have a Java 7 JDK installed.</para>
+				</listitem>
+				<listitem>
+					<para>you have a configured installation of maven that can access
+						standard repositories.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						you have an installed Android SDK as described at
+						<filename>http://developer.android.com/sdk/installing/index.html
+						</filename>
+						with all the development environment you are interested in (used
+						to check what APIs are used).
+					</para>
+				</listitem>
+			</itemizedlist>
+			<para>
+				Note: if you are not developping applications, you just need the SDK
+				not the
+				Android Studio or Eclipse ADT but you must configure it by
+				launching
+				<code>${SDk}/tools/android sdk</code>
+				In the intereactive tool, install all the SDK platforms for relevant
+				versions of Android.
+			</para>
+
+			<para>
+				First you must fetch all the source in a folder where the
+				source will
+				reside.
+			</para>
+			<programlisting>git clone
+https://github.com/Orange-OpenSource/d2j.github
+git clone https://github.com/Orange-OpenSource/matos-profiles.git
+git clone https://github.com/Orange-OpenSource/matos-tool.git
+</programlisting>
+			<para>
+				Next you must compile the library that translates DEX bytecode
+				into Soot
+				internal representation. Soot is an analysis and compiler
+				optimization
+				framework developped by McGill University at Montreal
+				that is used by Matos
+				to perform low level static analysis (mainly
+				pointer analysis).
+			</para>
+			<programlisting>cd d2j
+mvn install
+</programlisting>
+			<para>
+			You must now compile the stubs representing the different execution
+			environments for the mobile applications. In the current
+			version, there are stubs for MIDP (complete MSA support with a few vendor
+			specific APIs) and Android (Ice Cream Sandwich).
+			</para>
+			<programlisting>cd ../matos-profiles</programlisting>
+			<para>
+			edit
+			<code>matos-android-database/pom.xml</code>
+			and modify the value of the
+			<code>&lt;matos.android.sdk&gt;</code>
+			element.
+			to the path of your current Android SDK.
+			</para>
+			<programlisting>mvn install</programlisting>
+
+			<para>
+				It is time to compile the tool itself. There are two flavors:
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>
+						a command line tool in
+						<filename>matos</filename>
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						a web application in
+						<filename>matosweb</filename>
+					</para>
+				</listitem>
+			</itemizedlist>
+			<programlisting>cd ../matos-tool/matos
+mvn install
+cd ../matos-web
+mvn install
+</programlisting>
+		<para>
+			The binary is stored in
+			<filename>matos-tool/matos-web/target/matosweb-bin.zip</filename>
+				It should be expanded in a suitable location.
+		</para>
+		</section>
+		<section>
+			<title>Adding plug-ins</title>
+			<para>Matos can be customized for specific use. Plugins are just
+				archives that contain analysis profiles and if necessary some new
+				stub execution environments.
+			</para>
+		</section>
+	</chapter>
+
+	<chapter>
+		<title>Running MATOS</title>
+		<section>
+			<title>Web interface</title>
+			<section>
+				<title>Launching the web site</title>
+				<para>
+					Launch
+					<code>matosweb/bin/matosweb</code>
+					. It will create a local server on port 8443 that you can
+					access
+					with your browser:
+					<code>https://localhost:8443/matosweb</code>
+				</para>
+				
+				<para>
+				    You can change the value of the port from the default 8443 with the <code>-httpPort</code> command-line option 
+				</para>
+				
+				<para>Matosweb is just a stand-alone tomcat7. Its configuration environment is created in 
+				    <filename>matosweb/extract</filename>. </para>
+			</section>
+
+			<section>
+				<title>On-line administration of the site</title>
+				<para>
+					Log-in for the first time with credentials
+					<code>admin/admin</code>
+					and modify the password (menu at the top
+					right of the browser
+					window,
+					<command>password</command>
+					entry).
+				</para>
+				<para>
+					The admin user can do analysis but its main purpose is to generate
+					new user profiles. Select the
+					<command>manage</command>
+					entry in the
+					top menu. On the new page, type in a new user name,
+					select if this
+					user has admin right (no by default) and click on
+					the
+					<command>Create</command>
+					button
+					The default password of a user is its name and it should be
+					changed
+					immediately by the
+					user.
+				</para>
+				<para>
+					The admin user can also delete users, use the combo box to find the
+					user and press
+					<command>Delete</command>
+					.
+				</para>
+			</section>
+			<section>
+				<title>Launching an analysis</title>
+				<para>
+				   Analysis are organized in campaigns. A campaign is just a set of applications to analyze 
+				   usually as a batch. It can be useful to launch a campaign again on a set of applications if
+                   the security profiles have been enhanced to catch new issues.
+				</para>
+				<section>
+					<title>Campaign definition</title>
+					<para>
+					First create a campaign from the top view. The only necessary value is an arbitrary name.
+					Just click on the "Create" button to create it. The campaign should appear in the table
+					with its creation date.
+					</para>
+					<para>
+					Campaigns can then be destroyed if they are no more useful by selecting it (ticker on the
+					column #) and clicking on the "Remove" button.
+					</para>
+					<para>
+					Access the content of the campaign by clicking on its name. Now you must define the
+					code of the applications and the profile used. This is done in a single step:
+					</para>
+					<itemizedlist>
+					    <listitem><para>Depending if the application is an Android application or a midlet, use the relevant section</para></listitem>
+					    <listitem><para>Select a profile. Depending on the version you use, there may be only one or several profiles available</para></listitem>
+					    <listitem><para>Select a code file on your disk. It must be an APK file for Android or a JAR file for MIDP.</para></listitem>
+					    <listitem><para>Select a jad file on your disk if you have one for a Midlet. Matos profiles usually have rules checking the consistency of JAD files if provided.</para></listitem>
+					    <listitem><para>Add the step to the list by clicking on either "Android Step" or "MIDP Step" buttons.</para></listitem>
+					</itemizedlist>
+					
+					<para>
+					To remove an analysis step proceed as in the campaign list:
+					</para>
+					<itemizedlist>
+    				    <listitem><para>Select the steps to remove by ticking the box on the first column.</para></listitem>
+						<listitem><para>Press "Remove selected" button.</para></listitem>
+					</itemizedlist> 
+				</section>
+				<section>
+				    <title>Analysis</title>
+				    <para>
+			        You can analyze a selection of steps or all the steps at once. The status should change from
+					"TODO" to "SCHEDULED" then "COMPUTING" and finally "PASSED", "FAILED" or "SKIPPED" 
+					when the analysis is completed.
+					</para> 
+					<variablelist>
+						<varlistentry>
+							<term>TODO</term>
+							<listitem>
+								<para>this is the initial status, nothing has been done yet</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>SCHEDULED</term>
+							<listitem>
+								<para>The analysis has been planned, but there are other analysis to do before in the 
+								   work queue.</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>COMPUTING</term>
+							<listitem>
+								<para>The analyzer is working on this item but no result has been produced yet.</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>PASSED</term>
+							<listitem>
+								<para>The analysis is complete and the score is low enough to consider the application as safe in a first approach</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>FAILED</term>
+							<listitem>
+								<para>The analysis is complete but there are some problems with the code (malware, bad design)</para>
+							</listitem>
+						</varlistentry>
+						<varlistentry>
+							<term>SKIPPED</term>
+							<listitem>
+								<para>The analysis failed. Is it a mobile application code ? May be you found a bug in the tool.</para>
+							</listitem>
+						</varlistentry>
+					</variablelist>
+					<para>
+					When the analysis is completed, a score is defined and it is possible to view the complete analysis report by clicking on the
+					score.
+				    </para>
+				</section>
+			</section>
+		</section>
+		<section>
+			<title>Command line tool</title>
+			
+			<para>
+			    
+			</para>
+			<variablelist>
+				<varlistentry>
+					<term><code></code></term>
+					<listitem>
+						<para></para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term><code></code></term>
+					<listitem>
+						<para></para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term><code></code></term>
+					<listitem>
+						<para></para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term><code></code></term>
+					<listitem>
+						<para></para>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term><code></code></term>
+					<listitem>
+						<para></para>
+					</listitem>
+				</varlistentry>																
+			</variablelist>
+			
+		</section>
+
+	</chapter>
+	<chapter>
+		<title>Standard analysis profiles</title>
+		<section>
+			<title>Android profile</title>
+			<para></para>
+		</section>
+		<section>
+			<title>MIDP profile</title>
+			<para></para>
+		</section>
+	</chapter>
+	<chapter>
+		<title>Developing analysis profiles.</title>
+		<section>
+			<title>Structure of profiles</title>
+			<para></para>
+			<section>
+				<title>Specifying options</title>
+				<para></para>
+			</section>
+		</section>
+		<section>
+			<title>Static analysis rules</title>
+			<para></para>
+		</section>
+		<section>
+			<title>Presentation of results</title>
+			<para></para>
+		</section>
+		<section>
+			<title>Scoring system</title>
+			<para></para>
+		</section>
+	</chapter>
+	<chapter>
+		<title>Developping stub libraries</title>
+		<para>
+			Because it is hard to work on real implementation of runtime (they often
+			depend on a lot of native code components) or
+			sometimes due to licensing restriction (mainly for MIDP), and also for
+			performance reasons,
+			it is highly desirable to use simplified versions of the execution
+			environment that only contain only a sketch of the
+			actual data-flow/control-flow paths of those libraries. But doing so is a
+			fastidious and very time-consuming
+			task that we have tried to automate with the help of a stub generator
+			application.
+		</para>
+		<section>
+			<title>Stub generator basics</title>
+			<para>
+				The goal of the stub-generator is three fold:
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>Simplify the content of a library using introspection and
+						annotations to understand what should
+						be kept of the original code
+					</para>
+				</listitem>
+				<listitem>
+				    <para>
+					Generate low level analysis rules from annotations in the code
+					because the actual code of the runtime is
+					the best place to indicate which methods should be checked.
+					</para>
+				</listitem>
+				<listitem>
+				    <para>
+					Generate a database of methods available in a given version of an
+					environment. It is used to generate
+					the list of available APIs in each version of Android.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</section>
+		<section>
+			<title>Command line options</title>
+			<variablelist>
+				<varlistentry>
+					<term>
+						<code>-a &lt;filename&gt;</code>
+					</term>
+					<listitem>
+						<para>Adds an annotated jar file to the list of handled jars.
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
+						<code>-d &lt;folder&gt;</code>
+					</term>
+					<listitem>
+						<para> path of the output folder.</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
+						<code>-db &lt;sqlite_database&gt;</code>
+					</term>
+					<listitem>
+						<para>
+							path of the Sqlite database for API control to be used with the
+							<code>-v</code>
+							or the
+							<code>-SDK</code>
+							option.
+
+						</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
+						<code>-jars &lt;classpath style list&gt;</code>
+					</term>
+					<listitem>
+						<para> jars to handle.</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
+						<code>-r &lt;config.xml&gt;</code>
+					</term>
+					<listitem>
+						<para> switch to the generation stub mode</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
+						<code>-s &lt;config.xml&gt;</code>
+					</term>
+					<listitem>
+						<para>switch to the statistic mode</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
+						<code>-v &lt;versionname&gt;</code>
+					</term>
+					<listitem>
+						<para> record a new version of profile in the database.</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
+						<code>-w &lt;side file &gt;</code>
+					</term>
+					<listitem>
+						<para></para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
+						<code>-x &lt;outfile&gt; </code>
+					</term>
+					<listitem>
+						<para>XML mode with the result. Used to prepare analysis profile
+							as they refer to the rules.</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
+						<code>-W</code>
+					</term>
+					<listitem>
+						<para>switch to witness mode.</para>
+					</listitem>
+				</varlistentry>
+
+				<varlistentry>
+					<term>
+						<code>-SDK &lt;path to the SDK&gt;</code>
+					</term>
+					<listitem>
+						<para> This is the normal way to generate a database for Android
+							as it iterates on all versions
+							on its own.
+						</para>
+					</listitem>
+				</varlistentry>
+
+			</variablelist>
+		</section>
+	</chapter>
+	<chapter>
+		<title>Developping custom checkers</title>
+		<para></para>
+	</chapter>
 </book>

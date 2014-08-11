@@ -36,6 +36,12 @@
       <outputDirectory>matos/lib</outputDirectory>
     </dependencySet>
   </dependencySets>
+  <fileSets>
+    <fileSet>
+        <directory>target/docbkx/webhelp/manual</directory>
+        <outputDirectory>matos/help</outputDirectory>
+    </fileSet>
+  </fileSets>
   <files>
     <file>
         <source>../src/main/scripts/matos</source>
