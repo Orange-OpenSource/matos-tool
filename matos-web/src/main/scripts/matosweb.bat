@@ -38,13 +38,13 @@ FOR /F "usebackq skip=2 tokens=3,4" %%A IN (`REG QUERY %JAVA_CURRENT% /v %JAVA_H
 
 echo %JAVA_PATH%
 
-for %%A in ("%~dp0..") do set MATOS_LIB=%%~fA
-echo %MATOS_LIB%
+for %%A in ("%~dp0..") do set MATOS_HOME=%%~fA
+echo %MATOS_HOME%
 
 set MATOS_JAR=matosweb.jar
-set EXEC=%MATOS_LIB%\lib\%MATOS_JAR%
+set EXEC=%MATOS_HOME%\lib\%MATOS_JAR%
 
 
-"%JAVA_PATH%\bin\java.exe" -cp "%MATOS_LIB%"'/lib/*' -Xmx1500m -Dmatos.keystore="%MATOS_LIB%/keystore" -Dmatos.authdb="%MATOS_LIB%/auth.db" -DLIB="%MATOS_LIB%" -DTEMP="%TEMP%" -jar "%EXEC%"
+"%JAVA_PATH%\bin\java.exe" -cp "%MATOS_HOME%"'\lib\*' -Xmx1500m -Dmatos.keystore="%MATOS_HOME%\keystore" -Dmatos.authdb="%MATOS_HOME%\auth.db" -DLIB="%MATOS_HOME%" -DTEMP="%TEMP%" -jar "%EXEC%"  -extractDirectory "%MATOS_HOME%\extract" 
 
 :end
