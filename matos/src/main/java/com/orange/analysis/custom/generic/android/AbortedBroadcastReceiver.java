@@ -46,7 +46,7 @@ import com.orange.matos.core.AppDescription;
 import com.orange.matos.core.Out;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Custom rule to study which broadcast receivers use the Abort capability and if this cause a security problem.
  *
  */

@@ -55,7 +55,7 @@ import com.orange.matos.core.Configuration;
 /**
  * Definition of the Android application wrapper as a direct class in the scene
  * we avoid going through text files to control the loading mechanism.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class AndroidWrapper {

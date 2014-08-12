@@ -34,7 +34,7 @@ import com.orange.matos.utils.HtmlOutput;
  * the tell method, only the infrastructure for naming reports. As a consequence it can be
  * put in a report conjunction but will not work there. It can only be used by a SpyUse.
  *  
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class ReportUse extends JavaReport {

@@ -31,7 +31,7 @@ import com.orange.matos.core.Alert;
 /**
  * Parse Properties File or InputStream, checking for double definition of attrubute.
  * The Propeties can be obtains using the getProperties() method (no double attribute)
- * @author moteauni
+ * @author Nicolas Moteau
  *
  */
 public class NoDoublePropertiesChecker extends LineAnalyserChecker{

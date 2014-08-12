@@ -32,7 +32,7 @@ import com.orange.matos.core.XMLStream;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * An operation but not a binop (more specific).
  */
 @XmlRootElement(name="Method")

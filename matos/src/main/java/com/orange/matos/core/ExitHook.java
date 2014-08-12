@@ -23,7 +23,7 @@ package com.orange.matos.core;
 /**
  * Defines the interface for registered callbacks that are run by Configuration.exit when the application exits.
  * These callbacks are usually added by a phase.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public interface ExitHook {

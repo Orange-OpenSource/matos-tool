@@ -39,7 +39,7 @@ import com.orange.matos.core.Alert;
 
 /**
  * Interface with a database containing all the versions of Android.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class VersionDatabase {

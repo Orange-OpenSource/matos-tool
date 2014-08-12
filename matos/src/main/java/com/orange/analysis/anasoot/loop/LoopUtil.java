@@ -31,7 +31,7 @@ import soot.Unit;
 
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Set of utility functions
  */
 public class LoopUtil {

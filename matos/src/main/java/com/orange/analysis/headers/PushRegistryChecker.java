@@ -36,7 +36,7 @@ import com.orange.matos.java.MidletKind;
  * <li> descriptor.pushURLRegexp optional constraint on the URL accepted for push actions
  * <li> descriptor.restrictionRegexp optional constraint on the restrictions accepted.
  * </ul>
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class PushRegistryChecker extends RegexpAttributeChecker {

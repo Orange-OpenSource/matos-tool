@@ -51,7 +51,7 @@ import com.orange.matos.utils.HtmlOutput;
 
 /**
  * Definition of the anasoot phase.
- * @author piac6784
+ * @author Pierre Cregut
  * 
  */
 public class AnasootPhase implements MatosPhase {

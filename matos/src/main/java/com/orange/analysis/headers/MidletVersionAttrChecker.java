@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
  *  							1.1 is equivalent to 1.1.0 but not to 1.0.1)
  *  </ul>
  * 
- * @author moteauni
+ * @author Nicolas Moteau
  */
 public class MidletVersionAttrChecker extends MandJadJarAttrChecker {
 

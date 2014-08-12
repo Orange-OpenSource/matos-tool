@@ -1,5 +1,5 @@
 /*
- * $Id: PackageSolver.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: PackageSolver.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.main;
 
@@ -29,7 +29,7 @@ import java.util.Properties;
 
 /**
  * Manage the MIDP components used by the midlet analyzed. 
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class PackageSolver {

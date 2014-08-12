@@ -27,7 +27,7 @@ import soot.Type;
 import soot.jimple.Stmt;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * A program point where the type is used as a diferentiator.
  */
 public class TypedProgramPoint extends ProgramPoint {

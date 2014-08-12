@@ -23,7 +23,7 @@ package com.orange.analysis.headers;
 import java.io.File;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Check attributes that should be present in the manifest OR in the jad 
  * descriptor.
  */

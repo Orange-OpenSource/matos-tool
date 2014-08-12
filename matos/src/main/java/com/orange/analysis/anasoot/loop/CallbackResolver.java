@@ -44,7 +44,7 @@ import soot.jimple.toolkits.pointer.MemoryEfficientRasUnion;
 import soot.jimple.toolkits.pointer.Union;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Gives back what is considered as a callback in the given technology
  * considered.
  */
@@ -56,7 +56,7 @@ public class CallbackResolver {
 	/**
 	 * A LinkMethod class represents the fact that a given java method establishes a link between two objects,
 	 * the first one being the container and the second being the contents. 
-	 * @author piac6784
+	 * @author Pierre Cregut
 	 *
 	 */
 	public static class LinkMethod {
@@ -77,7 +77,7 @@ public class CallbackResolver {
 	}
 
 	/**
-	 * @author piac6784
+	 * @author Pierre Cregut
 	 *
 	 */
 	public static class Translation {

@@ -32,7 +32,7 @@ import com.orange.matos.core.Step;
 import com.orange.matos.utils.FileUtilities;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Represents a single midlet suite to analyse
  */
 public final class JavaStep extends Step {

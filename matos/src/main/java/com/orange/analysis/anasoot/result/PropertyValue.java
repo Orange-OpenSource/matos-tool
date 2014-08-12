@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.orange.matos.core.XMLStream;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Representation of a named property (MIDP specific)
  */
 @XmlRootElement(name="Property")

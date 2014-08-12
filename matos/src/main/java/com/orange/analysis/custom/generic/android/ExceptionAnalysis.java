@@ -38,7 +38,7 @@ import com.orange.analysis.anasoot.spy.SpyResult;
 import com.orange.matos.core.AppDescription;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Analyse trap handlers looking for empty handlers. This is not more and not less than the similar checker in
  * Findbugs.
  */

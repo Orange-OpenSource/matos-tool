@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * Global structure of the report.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class GlobalReport {

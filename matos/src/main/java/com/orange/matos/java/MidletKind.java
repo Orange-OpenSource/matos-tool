@@ -30,7 +30,7 @@ import com.orange.matos.utils.HtmlOutput;
 /**
  * Class used to register the different use of a midlet as defined statically in the JAD/Manifest files.
  * Those use can be: user-level midlet, push-registry midlet, content-handler, etc.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class MidletKind {

@@ -31,7 +31,7 @@ import com.orange.matos.core.Step;
 import com.orange.matos.utils.Downloader;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Command line interface for Android analysis.
  */
 public class AndroidCoreCLI {

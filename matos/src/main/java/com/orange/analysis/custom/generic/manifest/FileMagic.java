@@ -36,7 +36,7 @@ import com.orange.matos.android.APKDescr;
 /**
  * Scan magic header to identify potential elf files or apks at weird places.
  * 
- * @author piac6784
+ * @author Pierre Cregut
  * 
  */
 public class FileMagic implements CustomManifestRule {

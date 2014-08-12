@@ -30,7 +30,7 @@ import com.orange.matos.core.XMLStream;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * An unknown value (Top in abstract interpretation).
  */
 @XmlRootElement(name="Unknown")

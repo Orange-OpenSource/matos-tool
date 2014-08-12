@@ -31,7 +31,7 @@ import com.orange.matos.core.Configuration;
  * Configuration parameters specific to Anasoot.
  */
 /**
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class AnasootConfig { 
@@ -178,7 +178,7 @@ public class AnasootConfig {
 
 	/**
 	 * A class that can be used to filter filenames that correspond to jar files.
-	 * @author piac6784
+	 * @author Pierre Cregut
 	 *
 	 */
 	static public class JarFileFilter implements FilenameFilter {

@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Value reference (ie a pointer to a value).
  */
 @XmlRootElement

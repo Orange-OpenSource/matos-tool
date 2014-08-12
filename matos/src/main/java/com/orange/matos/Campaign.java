@@ -1,5 +1,5 @@
 /*
- * $Id: Campaign.java 2285 2013-12-13 13:07:22Z piac6784 $
+ * $Id: Campaign.java 2285 2013-12-13 13:07:22Z Pierre Cregut $
  */
 // ALERT DONE
 package com.orange.matos;

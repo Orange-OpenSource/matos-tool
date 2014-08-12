@@ -39,7 +39,7 @@ import com.orange.matos.core.Alert;
 /**
  * Class to register API uses for each element.
  * It stores the list of unsupported versions and the hidden uses per elements.
- * @author tkdn3113
+ * @author Laurent Sebag
  *
  */
 public class ApplicationApiUse {

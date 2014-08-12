@@ -29,7 +29,7 @@ import com.orange.matos.core.XMLStream;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * These are JSR used but that are not part of the security profile.
  * Using them is a risk.
  */

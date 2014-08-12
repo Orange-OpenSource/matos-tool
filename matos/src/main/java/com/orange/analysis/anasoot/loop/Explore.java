@@ -42,7 +42,7 @@ import com.orange.matos.utils.HtmlOutput;
 /**
  * This class implements the exploration of the call graph to give arities to method (in fact only 0
  * 1 and many).
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class Explore

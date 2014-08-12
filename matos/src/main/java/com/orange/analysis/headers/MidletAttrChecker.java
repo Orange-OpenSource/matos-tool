@@ -55,7 +55,7 @@ import com.orange.matos.java.MidletKind;
  * <li>descriptor.midletIconSize
  * </ul>
  * 
- * @author piac6784
+ * @author Pierre Cregut
  * 
  */
 public class MidletAttrChecker extends RegexpAttributeChecker {

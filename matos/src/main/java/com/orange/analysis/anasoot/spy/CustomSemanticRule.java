@@ -23,7 +23,7 @@ package com.orange.analysis.anasoot.spy;
 import com.orange.matos.core.AppDescription;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Interface that custom rules must implement.
  */
 public interface CustomSemanticRule {

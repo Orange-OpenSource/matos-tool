@@ -44,7 +44,7 @@ import org.w3c.dom.Element;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Generic class to parameterize the output.
  */
 public class ParameterizedOutput {

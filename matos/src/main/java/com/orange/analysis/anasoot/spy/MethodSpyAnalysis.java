@@ -1,5 +1,5 @@
 /*
- * $Id: MethodSpyAnalysis.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: MethodSpyAnalysis.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.spy;
 
@@ -72,7 +72,7 @@ import com.orange.matos.core.Out;
 
 /**
  * COmputes the approximation of arguments of methods and of expressions in general.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class MethodSpyAnalysis {

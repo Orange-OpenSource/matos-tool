@@ -1,5 +1,5 @@
 /*
- * $Id: SpyMethodUse.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: SpyMethodUse.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.spy;
 
@@ -39,7 +39,7 @@ import com.orange.matos.core.XMLStream;
 
 /**
  * A probe that identifies where a given method is used. 
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class SpyMethodUse implements SpyMethod {

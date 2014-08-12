@@ -27,7 +27,7 @@ import soot.Unit;
 import com.orange.analysis.anasoot.result.AbsValue;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Represents a category of calls for which a specific analysis must be done.
  */
 public interface AnalyzeCallHandler {

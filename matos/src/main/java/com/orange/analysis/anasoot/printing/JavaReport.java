@@ -39,7 +39,7 @@ import com.orange.matos.utils.HtmlOutput;
 
 /**
  * Printing the result of analysing a method.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 

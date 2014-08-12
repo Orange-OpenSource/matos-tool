@@ -55,7 +55,7 @@ import com.orange.matos.core.XMLParser;
 
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Description of the set of rules for a MIDP application. Can be
  * specialized for Android.
  */

@@ -31,7 +31,7 @@ import com.orange.matos.core.Step;
 import com.orange.matos.utils.FileUtilities;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * A single application analysis.
  */
 public final class AndroidStep extends Step {

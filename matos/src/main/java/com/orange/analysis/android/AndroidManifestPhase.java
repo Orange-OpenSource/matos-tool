@@ -38,7 +38,7 @@ import com.orange.matos.utils.HtmlOutput;
 
 /**
  * This phase extracts relevant information from the manifest file.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class AndroidManifestPhase implements MatosPhase {

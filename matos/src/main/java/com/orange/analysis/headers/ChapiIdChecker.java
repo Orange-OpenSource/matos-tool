@@ -27,7 +27,7 @@ import com.orange.matos.core.Alert;
 import com.orange.matos.core.Configuration;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Check the ids used in attributes describing the use of CHAPI (Content
  * Handler API). The expected format is described by a regular expression
  * specified in the profile (descriptor.chapiIdRegexp) 

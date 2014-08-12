@@ -49,7 +49,7 @@ import com.orange.matos.java.MidletSuite;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784 The phase handling the descriptors of the midlet (JAD and
+ * @author Pierre Cregut The phase handling the descriptors of the midlet (JAD and
  *         internal manifest).
  */
 public class DescrPhase implements MatosPhase {

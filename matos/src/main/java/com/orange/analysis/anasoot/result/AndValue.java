@@ -1,5 +1,5 @@
 /*
- * $Id: AndValue.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: AndValue.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.result;
 
@@ -34,7 +34,7 @@ import com.orange.matos.core.XMLStream;
 /**
  * This class represents a tuple of results and is generated during the analysis of several
  * arguments of a method call.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 @XmlRootElement(name="And")

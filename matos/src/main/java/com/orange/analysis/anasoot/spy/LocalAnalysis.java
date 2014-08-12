@@ -1,5 +1,5 @@
 /*
- * $Id: LocalAnalysis.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: LocalAnalysis.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.spy;
 
@@ -38,7 +38,7 @@ import soot.toolkits.scalar.UnitValueBoxPair;
 /**
  * Abstraction around the control flow graph for def use analysis in a 
  * method.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class LocalAnalysis {

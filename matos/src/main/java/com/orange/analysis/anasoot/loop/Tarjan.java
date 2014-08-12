@@ -26,7 +26,7 @@ import soot.tagkit.Host;
 import soot.tagkit.Tag;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Implementation of tarjan algorithm for computing strongly connected
  * components of a graph. We use taggable elements for the graph so that
  * we can annotate them with the result.

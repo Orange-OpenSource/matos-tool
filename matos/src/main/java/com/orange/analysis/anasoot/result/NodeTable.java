@@ -38,7 +38,7 @@ import com.orange.analysis.anasoot.arrayanalysis.ArrayAnalysis;
 import com.orange.matos.core.Out;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Table of the abstractions of the different dynamic objects. A node
  * is a point of allocation (with a context if available). 
  */

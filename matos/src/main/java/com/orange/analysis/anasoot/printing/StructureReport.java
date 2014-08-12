@@ -49,7 +49,7 @@ import com.orange.matos.utils.HtmlOutput;
 
 /**
  * The global structure of the Anasoot report as a HTML file.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class StructureReport {

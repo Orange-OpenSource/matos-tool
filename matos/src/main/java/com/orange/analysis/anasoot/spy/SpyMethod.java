@@ -1,5 +1,5 @@
 /*
- * $Id: SpyMethod.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: SpyMethod.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.spy;
 
@@ -32,7 +32,7 @@ import soot.jimple.InvokeExpr;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Abstraction of a probe for method calls.
  */
 public interface SpyMethod {

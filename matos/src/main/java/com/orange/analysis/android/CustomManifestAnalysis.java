@@ -34,7 +34,7 @@ import com.orange.matos.core.RuleFile;
 import com.orange.matos.core.XMLParser;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Analysis and printing of custom rules on manifest.
  */
 public class CustomManifestAnalysis {

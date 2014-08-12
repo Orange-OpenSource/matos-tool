@@ -61,7 +61,7 @@ import com.orange.matos.utils.HtmlOutput;
  * As a long term goal we may try to replace the output result by an XML
  * structure shared by all the phases and accumulating the results.
  * 
- * @author piac6784
+ * @author Pierre Cregut
  */
 public class ImplemCheckerPhase implements MatosPhase {
 

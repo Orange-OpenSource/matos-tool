@@ -54,7 +54,7 @@ import com.orange.matos.core.RuleFile;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Main specification class for a MIDP analysis.
  */
 public class JavaBase {

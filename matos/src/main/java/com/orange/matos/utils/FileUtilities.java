@@ -48,7 +48,7 @@ import org.xml.sax.SAXException;
 import com.orange.matos.core.Configuration;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Support class containing file utilities
  */
 public class FileUtilities {

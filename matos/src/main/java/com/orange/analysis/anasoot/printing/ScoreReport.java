@@ -46,7 +46,7 @@ import com.orange.matos.utils.HtmlOutput;
  * This class implements a "WAC style" score mechanism that tries to evaluate
  * the risk associated to an application based on simple measures on the report.
  * 
- * @author piac6784
+ * @author Pierre Cregut
  */
 public class ScoreReport {
 
@@ -121,7 +121,7 @@ public class ScoreReport {
      * A score element describes an elementary contribution to the score. The
      * higher the score is, the worse is the result.
      * 
-     * @author piac6784
+     * @author Pierre Cregut
      */
     public static class ScoreElement {
         final String name;
@@ -167,7 +167,7 @@ public class ScoreReport {
      * This ScoreElement triggers when any of the rules of a given set has been
      * triggered
      * 
-     * @author piac6784
+     * @author Pierre Cregut
      */
     public static class UseRule extends ScoreElement {
         final String[] rules;
@@ -189,7 +189,7 @@ public class ScoreReport {
      * This ScoreElement triggers when a permission is used. Exact
      * implementation is left to the profile.
      * 
-     * @author piac6784
+     * @author Pierre Cregut
      */
     public static class PermissionScore extends ScoreElement {
         private final String permission;
@@ -220,7 +220,7 @@ public class ScoreReport {
      * This score is trigered if any of the referenced score has been triggered.
      * Warning : if there is a loop, in references, the isUsed method will loop.
      * 
-     * @author piac6784
+     * @author Pierre Cregut
      */
     public class DisjunctionElement extends ScoreElement {
         final String[] elements;
@@ -251,7 +251,7 @@ public class ScoreReport {
      * This score is trigered if all of the referenced score have been
      * triggered.
      * 
-     * @author piac6784
+     * @author Pierre Cregut
      */
     public class ConjunctionElement extends ScoreElement {
         final String[] elements;
@@ -281,7 +281,7 @@ public class ScoreReport {
     /**
      * This ScoreElement triggers when a given pattern is found in the results.
      * 
-     * @author piac6784
+     * @author Pierre Cregut
      */
     public static class StringPattern extends ScoreElement implements ValueVisitor {
         final Matcher matcher;
@@ -333,7 +333,7 @@ public class ScoreReport {
     /**
      * This class represents a filter to catch specific elements in a table.
      * 
-     * @author piac6784
+     * @author Pierre Cregut
      */
     public static class StringCatcher {
         private final static Pattern sanitizerPattern = Pattern.compile("<[^>]*(>|$)");
@@ -379,7 +379,7 @@ public class ScoreReport {
      * Overload a PrintStream so that it can check if the patterns stored in the
      * score are encountered in the output printed.
      * 
-     * @author piac6784
+     * @author Pierre Cregut
      */
     public static class ScorePrintStream extends PrintStream {
         private PrintStream ps;

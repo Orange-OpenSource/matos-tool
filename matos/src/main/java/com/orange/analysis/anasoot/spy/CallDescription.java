@@ -30,7 +30,7 @@ import soot.jimple.InvokeExpr;
 
 /**
  * Description of a method call to analyze.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class CallDescription {

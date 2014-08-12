@@ -1,5 +1,5 @@
 /*
- * $Id: SpyField.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: SpyField.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.spy;
 
@@ -43,7 +43,7 @@ import com.orange.matos.core.Alert;
 import com.orange.matos.core.XMLStream;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Probe to spy the potential contents of a field
  */
 public class SpyField {

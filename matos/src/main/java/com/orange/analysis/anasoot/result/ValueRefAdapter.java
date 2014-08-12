@@ -23,7 +23,7 @@ package com.orange.analysis.anasoot.result;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Adapter to marshal a value to a value ref for XML printing.
  */
 class ValueRefAdapter extends XmlAdapter<ValueRef,AbsValue> {

@@ -43,7 +43,7 @@ import com.orange.matos.core.Step;
 /**
  * To create statistic charts
  * 
- * @author piac6784 (first version using jfree : vapu8214)
+ * @author Pierre Cregut (first version using jfree : vapu8214)
  */
 public class StatisticTool {
 

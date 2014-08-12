@@ -22,7 +22,7 @@ package com.orange.analysis.headers;
 
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * An attribute mandatory in the manifest.
  */
 public class MandJarAttrChecker extends SimpleAttrChecker {

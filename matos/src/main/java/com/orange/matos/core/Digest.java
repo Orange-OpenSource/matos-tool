@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Message digest.
  */
 public class Digest {

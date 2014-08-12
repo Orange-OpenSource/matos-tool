@@ -29,7 +29,7 @@ import java.io.InputStreamReader;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784 Analyze the file line by line. It is an abstract class. Used
+ * @author Pierre Cregut Analyze the file line by line. It is an abstract class. Used
  *         to find duplicates (that do not show up in the property file
  *         produced) and line separators. It is a low level checker.
  */

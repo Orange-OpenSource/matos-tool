@@ -32,7 +32,7 @@ import java.io.InputStreamReader;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784 Check end of line characters for compatibility with bogus
+ * @author Pierre Cregut Check end of line characters for compatibility with bogus
  *         phones.
  */
 public class EndLineChecker extends Checker {

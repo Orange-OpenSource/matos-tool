@@ -56,14 +56,14 @@ import com.orange.analysis.anasoot.spy.LocalAnalysis;
 import com.orange.analysis.anasoot.spy.P2SAux;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * This is the analysis to get an approximation of the content of a byte array.
  */
 
 /**
  * Performs different kinds of array abstraction.
  * 
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class ArrayAnalysis {

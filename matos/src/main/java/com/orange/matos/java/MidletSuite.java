@@ -26,7 +26,7 @@ import java.util.Properties;
 import com.orange.matos.core.AppDescription;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * A record respresenting a midlet suite
  */
 public class MidletSuite extends AppDescription {

@@ -29,7 +29,7 @@ import com.orange.analysis.anasoot.result.NodeTable;
 
 /**
  * Aggregated result of the analysis. 
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class SpyResult {

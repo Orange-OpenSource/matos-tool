@@ -23,7 +23,7 @@ package com.orange.analysis.headers;
 import java.io.File;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Check mandatory attributes that must be present in both JAD and JAR 
  * but may be different.
  */

@@ -23,7 +23,7 @@ package com.orange.analysis.headers;
 import java.io.File;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Mandatory JAD checker. Some with a regexp as they can be parameterized.
  */
 public class MandJadAttrChecker extends SimpleAttrChecker {

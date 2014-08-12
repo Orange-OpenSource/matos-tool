@@ -32,7 +32,7 @@ import com.orange.analysis.anasoot.result.JavaResult;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Conjunction report. The output of this report is just the concatenation of the output of
  * its member reports.
  */

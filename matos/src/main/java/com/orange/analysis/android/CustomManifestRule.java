@@ -25,7 +25,7 @@ import java.util.Properties;
 import com.orange.matos.android.APKDescr;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Interface of a custom checker on the manifest.
  */
 public interface CustomManifestRule {

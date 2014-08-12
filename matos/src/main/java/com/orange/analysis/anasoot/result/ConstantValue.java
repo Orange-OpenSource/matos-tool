@@ -39,7 +39,7 @@ import com.orange.matos.core.XMLStream;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Representation of a constant simple value (primitive) */
 @XmlRootElement
 public class ConstantValue extends AbsValue {

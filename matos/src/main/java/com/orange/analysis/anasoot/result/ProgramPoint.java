@@ -27,7 +27,7 @@ import soot.tagkit.BytecodeOffsetTag;
 import com.orange.matos.core.XMLStream;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class ProgramPoint {

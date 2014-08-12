@@ -1,5 +1,5 @@
 /*
- * $Id: SpyReturn.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: SpyReturn.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.spy;
 
@@ -40,7 +40,7 @@ import com.orange.matos.core.XMLStream;
 
 /**
  * Performs a points-to analysis on the returned results of a method.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class SpyReturn {

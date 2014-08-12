@@ -27,7 +27,7 @@ import com.orange.matos.core.Alert;
 import com.orange.matos.core.RuleFile;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Description of analysis rules for an Android profile.
  * 
  */

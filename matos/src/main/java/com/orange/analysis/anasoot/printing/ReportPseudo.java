@@ -34,7 +34,7 @@ import com.orange.matos.core.Alert;
 import com.orange.matos.core.XMLStream;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * A report to print if a given result coresponds to a pseudo constant
  * or is in fact more complex. Pseudo constants are a way to ensure 
  * analysis of string succeeds.

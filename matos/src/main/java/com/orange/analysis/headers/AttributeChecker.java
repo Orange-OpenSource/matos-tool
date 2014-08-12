@@ -23,7 +23,7 @@ package com.orange.analysis.headers;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Check an attribute in the manifest or in the jar.
  */
 public abstract class AttributeChecker extends Checker {

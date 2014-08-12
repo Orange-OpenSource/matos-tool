@@ -33,7 +33,7 @@ import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.jimple.toolkits.callgraph.Edge;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Recursion analysis (part of the loop analysis on recursion)
  */
 public class RecAnalysis {
@@ -42,7 +42,7 @@ public class RecAnalysis {
 
 	/**
 	 * Wrapper for the Soot callgraph for Tarjan.
-	 * @author piac6784
+	 * @author Pierre Cregut
 	 *
 	 */
 	public static class CGraph implements Tarjan.Graph <SootMethod> {

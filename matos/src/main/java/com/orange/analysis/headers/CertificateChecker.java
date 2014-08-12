@@ -35,7 +35,7 @@ import com.orange.matos.core.Alert;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Verification of properties of the signature of a midlet 
  */
 public class CertificateChecker extends RegexpAttributeChecker {
@@ -110,7 +110,7 @@ public class CertificateChecker extends RegexpAttributeChecker {
 	}
 	
 	/**
-	 * @author piac6784
+	 * @author Pierre Cregut
 	 * A certification path is a chain of certificates.
 	 */
 	public static class CertificatePath{
@@ -153,7 +153,7 @@ public class CertificateChecker extends RegexpAttributeChecker {
 	
 	/**
 	 * Represents a certificate in the chain.
-	 * @author piac6784
+	 * @author Pierre Cregut
 	 *
 	 */
 	public static class Certification{

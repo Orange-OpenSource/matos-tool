@@ -29,7 +29,7 @@ import com.orange.analysis.anasoot.printing.JavaReport;
 
 /**
  * Description of an analysis rule (generic).
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public abstract class JavaRule {

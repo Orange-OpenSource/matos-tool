@@ -21,7 +21,7 @@ package com.orange.analysis.headers;
  */
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Check that some attributes are not defined in the JAR manifest
  */
 public class ForbiddenJarAttrChecker extends SimpleAttrChecker {

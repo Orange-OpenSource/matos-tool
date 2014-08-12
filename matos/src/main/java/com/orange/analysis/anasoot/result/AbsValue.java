@@ -1,5 +1,5 @@
 /*
- * $Id: AbsValue.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: AbsValue.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.result;
 
@@ -40,11 +40,11 @@ import com.orange.matos.core.XMLStream;
 
 /**
  * An AbsValue represents an approximation of the contents of a variable.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 /**
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 @XmlRootElement
@@ -196,14 +196,14 @@ public abstract class AbsValue  {
 	}
 	
 	/**
-	 * @author piac6784
+	 * @author Pierre Cregut
 	 * Thrown when there are too many iterations in printing
 	 */
 	@SuppressWarnings("serial")
 	public static class LoopException extends Exception { }
 	
 	/**
-	 * @author piac6784
+	 * @author Pierre Cregut
 	 * Hack to get out of the loop
 	 */
 	public static class LoopBreaker {

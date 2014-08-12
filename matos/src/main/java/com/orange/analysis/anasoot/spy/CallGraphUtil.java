@@ -32,7 +32,7 @@ import soot.jimple.toolkits.callgraph.CallGraph;
 import soot.jimple.toolkits.callgraph.Edge;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * 
  * Utility functions on callgraphs
  *
@@ -40,7 +40,7 @@ import soot.jimple.toolkits.callgraph.Edge;
 public class CallGraphUtil {
 
 	/**
-	 * @author piac6784
+	 * @author Pierre Cregut
 	 * Specification of an edge visitor
 	 */
 	public interface Visitor {

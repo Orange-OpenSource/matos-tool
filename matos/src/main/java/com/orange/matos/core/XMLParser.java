@@ -1,5 +1,5 @@
 /*
- * $Id: XMLParser.java 2285 2013-12-13 13:07:22Z piac6784 $
+ * $Id: XMLParser.java 2285 2013-12-13 13:07:22Z Pierre Cregut $
  */
 package com.orange.matos.core;
 

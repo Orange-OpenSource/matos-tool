@@ -66,7 +66,7 @@ import com.orange.matos.core.Out;
 /**
  * The core of the analysis. It contains live tables representing the rules and calls the identified checker
  * on the elements of the code. 
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class ProgramSpy {

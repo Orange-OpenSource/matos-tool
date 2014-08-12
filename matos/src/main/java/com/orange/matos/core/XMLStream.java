@@ -26,7 +26,7 @@ import java.util.Stack;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Abstract a stram for producing compliant XML
  */
 public class XMLStream {

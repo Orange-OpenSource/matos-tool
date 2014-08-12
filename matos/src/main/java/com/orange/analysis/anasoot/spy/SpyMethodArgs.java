@@ -64,7 +64,7 @@ import com.orange.matos.core.Alert;
 import com.orange.matos.core.XMLStream;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Probe on the arguments of a method.
  */
 public class SpyMethodArgs implements SpyMethod {

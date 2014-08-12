@@ -23,7 +23,7 @@ package com.orange.analysis.headers;
 import java.io.File;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Should be present in both JAD and JAR and identical.
  */
 public class MandJadJarIdentAttrChecker extends MandJadJarAttrChecker{

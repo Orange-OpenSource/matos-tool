@@ -30,7 +30,7 @@ import com.orange.matos.core.XMLStream;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Represents a constant string.
  */
 @XmlRootElement(name="String")

@@ -23,7 +23,7 @@ package com.orange.analysis.headers;
 import java.io.File;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Check that the indicated JAR size is correct.
  */
 public class JarSizeAttrChecker extends MandJadAttrChecker {

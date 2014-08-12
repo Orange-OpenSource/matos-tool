@@ -30,7 +30,7 @@ import com.orange.matos.core.Alert;
  * <li> it can be raised in a transform where regular alerts are exchanged with RuntimeAlert
  * <li> it must be caught inside AnasootPhase and changed back to an alert.
  * </ul>
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 

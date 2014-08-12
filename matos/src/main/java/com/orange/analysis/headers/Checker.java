@@ -27,7 +27,7 @@ import java.util.Set;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Generic representation of a check on headers of JAD or Manifest file
  */
 public abstract class Checker {

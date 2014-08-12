@@ -32,7 +32,7 @@ import com.orange.matos.core.RuleFile;
 
 /**
  * Soot Transformation that performs an analysis of the presence of loops.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class LoopTransform extends SceneTransformer {

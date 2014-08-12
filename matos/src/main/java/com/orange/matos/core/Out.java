@@ -1,5 +1,5 @@
 /*
- * $Id: Out.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: Out.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 
 package com.orange.matos.core;
@@ -66,7 +66,7 @@ public class Out {
 		public static PrintStream getLog() { return log; }
 		
 		/**
-		 * @author piac6784
+		 * @author Pierre Cregut
 		 * A stream for log
 		 */
 		public static class LogPrintStream extends PrintStream {

@@ -1,5 +1,5 @@
 /*
- * $Id: IgnoreEdge.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: IgnoreEdge.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.main;
 

@@ -28,7 +28,7 @@ import com.orange.analysis.anasoot.printing.JavaReport;
 /**
  * The Class ReturnRule.
  *
- * @author piac6784
+ * @author Pierre Cregut
  */
 public class ReturnRule extends JavaRule {
 	

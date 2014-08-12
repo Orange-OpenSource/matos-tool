@@ -41,7 +41,7 @@ import com.orange.matos.utils.HtmlOutput;
 /**
  * Display the report about API uses from what was 
  * registered in ApplicationApiUse
- * @author tkdn3113
+ * @author Laurent Sebag
  */
 public class ApiUseReport {
 

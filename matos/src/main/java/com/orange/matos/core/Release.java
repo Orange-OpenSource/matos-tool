@@ -21,7 +21,7 @@ package com.orange.matos.core;
  */
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class Release {

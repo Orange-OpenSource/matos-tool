@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Properties with a backing origin. Used for differentiating properties from JAD or manifest.
  */
 @SuppressWarnings("serial")

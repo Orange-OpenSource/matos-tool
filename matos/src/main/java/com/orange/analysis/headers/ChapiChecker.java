@@ -42,7 +42,7 @@ import com.orange.matos.java.MidletKind;
  * <li> descriptor.chapiIdRegexp defines an optional constraint on the chapi id used to
  * retrieve the handler.
  * </ul>
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class ChapiChecker extends RegexpAttributeChecker {

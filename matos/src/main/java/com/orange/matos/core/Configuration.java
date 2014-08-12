@@ -1,5 +1,5 @@
 /*
- * $Id: Configuration.java 2285 2013-12-13 13:07:22Z piac6784 $
+ * $Id: Configuration.java 2285 2013-12-13 13:07:22Z Pierre Cregut $
  */
 
 package com.orange.matos.core;
@@ -44,7 +44,7 @@ import com.orange.matos.utils.HtmlOutput;
  * This class contains the generic part of the context of MATOS during the
  * analysis of a given midletsuite.
  * 
- * @author piac6784
+ * @author Pierre Cregut
  */
 public class Configuration {
     
@@ -250,7 +250,7 @@ public class Configuration {
      * The asynchronous way of cleaning up the application. A hook to register
      * with the runtime system.
      * 
-     * @author piac6784
+     * @author Pierre Cregut
      */
     static class ShutdownHook implements Runnable {
         File file;

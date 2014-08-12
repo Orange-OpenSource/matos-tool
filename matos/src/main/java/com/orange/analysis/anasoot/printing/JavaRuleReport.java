@@ -39,7 +39,7 @@ import com.orange.matos.utils.HtmlOutput;
 
 /**
  * Represents a rule for creating a report after the analysis of a midlet. 
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 
@@ -67,7 +67,7 @@ public class JavaRuleReport extends JavaReport {
 
     /**
      * The different cases that makes a report.
-     * @author piac6784
+     * @author Pierre Cregut
      *
      */
     public static class Filter {

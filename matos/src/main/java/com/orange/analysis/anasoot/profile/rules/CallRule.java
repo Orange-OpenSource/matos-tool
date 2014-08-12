@@ -30,7 +30,7 @@ import com.orange.analysis.anasoot.printing.JavaReport;
 /**
  * The Class CallRule.
  *
- * @author piac6784
+ * @author Pierre Cregut
  */
 public class CallRule extends JavaRule {
 	

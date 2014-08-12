@@ -39,7 +39,7 @@ import com.orange.matos.utils.Downloader;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Main class for the definition of the command line interface for MIDP
  */
 public class JavaCoreCLI {

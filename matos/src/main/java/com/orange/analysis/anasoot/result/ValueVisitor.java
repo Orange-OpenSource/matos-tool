@@ -21,7 +21,7 @@ package com.orange.analysis.anasoot.result;
  */
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Interface for a visitor of abstract values.
  */
 public interface ValueVisitor {

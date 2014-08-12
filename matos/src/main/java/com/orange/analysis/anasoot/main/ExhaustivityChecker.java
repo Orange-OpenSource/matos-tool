@@ -34,7 +34,7 @@ import soot.jimple.toolkits.callgraph.CallGraph;
  * This class is a debug class that checks that the application is reasonably
  * covered. The main goal is to point out callbacks that have probably been 
  * forgotten.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 

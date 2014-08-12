@@ -1,5 +1,5 @@
 /*
- * $Id: BinopValue.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: BinopValue.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.result;
 
@@ -35,7 +35,7 @@ import com.orange.matos.core.Out;
 import com.orange.matos.core.XMLStream;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Represent a specific binary operation that is kept in abstract value.
  */
 @XmlRootElement(name="Binop")

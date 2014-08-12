@@ -28,7 +28,7 @@ import java.io.InputStream;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Check that separators used in files are the one expected.
  * Depends if it is the jar or the jad. 
  */

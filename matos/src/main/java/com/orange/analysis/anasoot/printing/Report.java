@@ -26,7 +26,7 @@ import com.orange.analysis.anasoot.result.JavaResult;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Represents a report.
  */
 public abstract class Report {

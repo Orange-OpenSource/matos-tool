@@ -29,7 +29,7 @@ import com.orange.analysis.anasoot.result.JavaResult;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Simple messages.
  */
 public class ReportMessage extends JavaReport {

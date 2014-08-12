@@ -48,7 +48,7 @@ import com.orange.matos.core.XMLStream;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Represents the APK file.
  */
 public class APKDescr extends AppDescription {

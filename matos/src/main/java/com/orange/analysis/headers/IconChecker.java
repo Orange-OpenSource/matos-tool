@@ -42,7 +42,7 @@ import com.orange.matos.core.Out;
  * 
  * It uses <code>descriptor.midletSuiteIconSize</code> option.
  * 
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class IconChecker extends SimpleAttrChecker {

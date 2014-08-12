@@ -31,7 +31,7 @@ import com.orange.matos.core.XMLStream;
 
 /**
  * Represents a concatenation of abstract results (strings).
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 @XmlRootElement(name="Concat")

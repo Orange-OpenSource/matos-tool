@@ -1,5 +1,5 @@
 /*
- * $Id: CallContext.java 2279 2013-12-11 14:45:44Z piac6784 $
+ * $Id: CallContext.java 2279 2013-12-11 14:45:44Z Pierre Cregut $
  */
 package com.orange.analysis.anasoot.spy;
 
@@ -33,7 +33,7 @@ import soot.SootField;
 import soot.SootMethod;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Context of a call.
  */
 public class CallContext {

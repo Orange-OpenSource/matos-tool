@@ -34,7 +34,7 @@ import com.orange.matos.core.XMLStream;
 import com.orange.matos.utils.HtmlOutput;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Implements a checker that issue a message as soon as recursion is used.
  */
 public class ForbidRecursion {

@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import com.orange.matos.core.XMLStream;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Mark an element to avoid recursion through it (kept in seen).
  */
 @XmlRootElement(name="Mark")

@@ -23,7 +23,7 @@ package com.orange.analysis.headers;
 import java.io.File;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Check that some attributes are not defined in the JAD
  */
 public class ForbiddenJadAttrChecker extends SimpleAttrChecker {

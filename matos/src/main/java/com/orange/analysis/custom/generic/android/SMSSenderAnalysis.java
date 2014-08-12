@@ -32,7 +32,7 @@ import com.orange.analysis.anasoot.spy.SpyResult;
 import com.orange.matos.core.AppDescription;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Analyse how sending SMS is used in the APK. It is a dumb but sometimes effective approach to check delayed sending.
  */
 public class SMSSenderAnalysis implements CustomSemanticRule, CallGraphUtil.Visitor {

@@ -24,7 +24,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Prints the list of JSR used by the midlet.
  */
 public class UsedJSRReport extends JavaReport{

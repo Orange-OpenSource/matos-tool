@@ -24,7 +24,7 @@ import java.util.Properties;
 
 /**
  * Common base class for all application descriptions whether they are midlet suite APK files
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class AppDescription {

@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.orange.matos.core.XMLStream;
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  * Representation of possible different abstract value (disjunction).
  */
 @XmlRootElement(name="Or")

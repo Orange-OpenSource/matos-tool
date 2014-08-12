@@ -33,7 +33,7 @@ import java.util.Vector;
 import com.orange.matos.core.Alert;
 
 /**
- * @author piac6784 Checks that numbered attributes are defined in a given order
+ * @author Pierre Cregut Checks that numbered attributes are defined in a given order
  *         This is quite stupid but requested by some profiles.
  */
 public class AttributesOrderChecker extends Checker {
