@@ -37,7 +37,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Serves files that are stored in user sessions.
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public class FileServlet extends HttpServlet {

@@ -30,7 +30,7 @@ import java.util.Date;
 /**
  * The Class MatosStep.
  *
- * @author piac6784
+ * @author Pierre Cregut
  * A step defines what must be analyzed and with which profile.
  */
 public class MatosStep implements Serializable {

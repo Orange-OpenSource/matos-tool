@@ -40,7 +40,7 @@ import com.orange.matos.core.Step;
 import com.orange.matos.java.JavaStep;
 
 /**
- * @author piac6784 This is the engine servlet. It is where analysis are
+ * @author Pierre Cregut This is the engine servlet. It is where analysis are
  *         launched. One at a time. It must be synchronized with others and
  *         should probably use some kind of message queue to avoid
  *         synchronization issues.

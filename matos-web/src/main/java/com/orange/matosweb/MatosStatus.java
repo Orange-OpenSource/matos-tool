@@ -23,7 +23,7 @@ package com.orange.matosweb;
  */
 
 /**
- * @author piac6784
+ * @author Pierre Cregut
  *
  */
 public enum MatosStatus {

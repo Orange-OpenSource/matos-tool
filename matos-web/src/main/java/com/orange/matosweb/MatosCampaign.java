@@ -44,7 +44,7 @@ import org.apache.myfaces.custom.fileupload.UploadedFile;
 /**
  * The Class MatosCampaign.
  * 
- * @author piac6784 A campaign is analyzed as a full block.
+ * @author Pierre Cregut A campaign is analyzed as a full block.
  */
 public class MatosCampaign implements Serializable {
 

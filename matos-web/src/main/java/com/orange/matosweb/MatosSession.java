@@ -42,7 +42,7 @@ import javax.servlet.http.HttpSession;
 /**
  * The Class MatosSession.
  *
- * @author piac6784 A session represents all the analysis for a given user.
+ * @author Pierre Cregut A session represents all the analysis for a given user.
  */
 @ManagedBean(name = "matos_session")
 @SessionScoped
