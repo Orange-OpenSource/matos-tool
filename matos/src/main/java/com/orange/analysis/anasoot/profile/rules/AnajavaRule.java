@@ -110,7 +110,7 @@ public class AnajavaRule {
 		unresolvedJSR = new HashMap<String, String>();
 		listOfJSR = new HashMap<String, String>();
 		if (doIt) {
-			File apiDirectory = new File(System.getProperty("LIB")+File.separator+"api");
+			File apiDirectory = new File(System.getProperty("matos.lib")+File.separator+"api");
 			FilenameFilter xmlFilter = new FilenameFilter(){
 				@Override
 				public boolean accept(File dir, String name){
@@ -120,7 +120,7 @@ public class AnajavaRule {
 			String [] xmlFiles = apiDirectory.list(xmlFilter);
 			if (xmlFiles == null) return;
 			for (int i=0; i<xmlFiles.length; i++){
-				String xmlPath = System.getProperty("LIB")+File.separator+"api"+File.separator+xmlFiles[i];
+				String xmlPath = System.getProperty("matos.lib")+File.separator+"api"+File.separator+xmlFiles[i];
 				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 				Document doc_xml = null;
 				try{

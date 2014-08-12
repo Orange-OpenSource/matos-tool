@@ -58,7 +58,7 @@ public class FileServlet extends HttpServlet {
             return;
         }
 
-        File sessionPath = new File(new File(System.getProperty("matos.tmpdir"), "matos"), user);
+        File sessionPath = new File(new File(System.getProperty("matos.temp"), "matos"), user);
 
         if (requestedFile == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.

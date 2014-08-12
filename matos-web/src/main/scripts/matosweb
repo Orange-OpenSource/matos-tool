@@ -71,6 +71,6 @@ TEMP=${TEMP:-/tmp}
 
 mkdir -p ${TEMP}
 
-${JAVA_EXE} -cp "${MATOS_HOME}/lib/*" -Xmx1500m -Dmatos.keystore=${MATOS_HOME}/keystore -Dmatos.authdb=${MATOS_HOME}/auth.db -Dmatos.libdir=${MATOS_HOME} -Dmatos.tmpdir=${TEMP} -jar ${EXEC} -extractDirectory "${MATOS_HOME}/extract" $*
+${JAVA_EXE} -cp "${MATOS_HOME}/lib/*" -Xmx1500m -Dmatos.keystore=${MATOS_HOME}/keystore -Dmatos.authdb=${MATOS_HOME}/auth.db -Dmatos.lib=${MATOS_HOME} -Dmatos.temp=${TEMP} -jar ${EXEC} -extractDirectory "${MATOS_HOME}/extract" $*
 
 

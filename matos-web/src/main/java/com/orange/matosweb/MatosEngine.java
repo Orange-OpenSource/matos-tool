@@ -87,7 +87,7 @@ public class MatosEngine implements Runnable, Serializable {
      */
     @Override
     public void run() {
-        String tmpDir = System.getProperty("matos.tmpdir");
+        String tmpDir = System.getProperty("matos.temp");
         try {
             while (true) {
                 MatosStep step;
@@ -169,7 +169,7 @@ public class MatosEngine implements Runnable, Serializable {
      */
     public File getFolder() {
         if (privateFolder == null) {
-            String tmpDir = System.getProperty("matos.tmpdir");
+            String tmpDir = System.getProperty("matos.temp");
             privateFolder = new File(tmpDir, "matos");
             privateFolder.delete();
             if (! privateFolder.mkdir()) return null;
@@ -200,8 +200,8 @@ public class MatosEngine implements Runnable, Serializable {
      */
     public CoreCLI getMatos() {
         if (matos == null) {
-            String tmpDir = System.getProperty("matos.tmpdir");
-            String libDir = System.getProperty("matos.libdir");
+            String tmpDir = System.getProperty("matos.temp");
+            String libDir = System.getProperty("matos.lib");
             try {
                 matos = new CoreCLI(libDir, tmpDir);
              } catch (Alert e) {

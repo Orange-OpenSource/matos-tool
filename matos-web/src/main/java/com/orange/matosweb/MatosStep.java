@@ -148,7 +148,7 @@ public class MatosStep implements Serializable {
         File parentFile = outFile.getParentFile();
         if (parentFile == null) return null;
         String sessionName = parentFile.getName();
-        return sessionName + "/" + name;
+        return sessionName + File.separator + name;
     }
 
 	/**

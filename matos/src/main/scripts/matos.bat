@@ -45,6 +45,6 @@ set MATOS_JAR=matosweb.jar
 set EXEC=%MATOS_HOME%\lib\%MATOS_JAR%
 
 
-"%JAVA_PATH%\bin\java.exe" -cp "%MATOS_HOME%\lib\*;" -Xmx1500m -DLIB="%MATOS_HOME%" -DTEMP="%TEMP%" com.orange.matos.CoreCLI %*
+"%JAVA_PATH%\bin\java.exe" -cp "%MATOS_HOME%\lib\*;" -Xmx1500m -Dmatos.lib="%MATOS_HOME%" -Dmatos.temp="%TEMP%" com.orange.matos.CoreCLI %*
 
 
