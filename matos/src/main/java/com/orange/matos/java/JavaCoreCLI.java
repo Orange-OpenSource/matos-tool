@@ -78,8 +78,7 @@ public class JavaCoreCLI {
 
 		if (ms.jarFile==null) { 
 			throw Alert.raised(null,"Can't get any JAR file to analyse!"); 
-		}
-		else if (!ms.jarFile.exists()) { throw Alert.raised(null,"The JAR file specified can't be found: "+ms.jarFile.getAbsolutePath()); }
+		} else if (!ms.jarFile.exists()) { throw Alert.raised(null,"The JAR file specified can't be found: "+ms.jarFile.getAbsolutePath()); }
 		else {
 			JavaBase javaBase = new JavaBase(configuration);
 			try {

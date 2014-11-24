@@ -52,7 +52,8 @@ public class AndroidCoreCLI {
 
 			RuleFile rules = new RuleFile(step.getProfileName(), configuration.getProfileManager());
 
-			if (!androidFile.exists()) { throw Alert.raised(null,"The Android file specified can't be found: "+androidFile.getAbsolutePath()); }
+			if (androidFile == null){ throw Alert.raised(null,"Did not find an android file."); }
+			else if (!androidFile.exists()) { throw Alert.raised(null,"The Android file specified can't be found: "+androidFile.getAbsolutePath()); }
 			else {
 				AndroidBase androidBase = new AndroidBase(configuration);
 				// launch android analysis
