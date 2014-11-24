@@ -582,8 +582,9 @@ mvn install
 		<section>
 			<title>MIDP profile</title>
 			<para></para>
+		
 		</section>
-	</chapter>
+    </chapter>
 	<chapter>
 		<title>Developing analysis profiles.</title>
 		<para>
@@ -651,105 +652,455 @@ tag, you're required to specify at least a name for the profile.
 </programlisting>
 
 
+<section>
+	<title>General options</title>
 	<variablelist>
-
-<varlistentry><term><code>anasoot.enabled</code></term><listitem> activate the features usage analysis phase 
-  (boolean: <code>true</code> or <code>false</code>).
-</listitem></varlistentry><varlistentry><term><code>anasoot.android.global</code></term><listitem> makes a global analysis rather than a
-per component analysis of Android applications (boolean: <code>true</code> or
-<code>false</code>, the recommended default is <code>true</code>).
-</listitem></varlistentry><varlistentry><term><code>anasoot.enhancedPointsto</code></term><listitem> use an enhanced pointsto analysis
-that assign new objects to the results of method of the analysed profile. It
-creates more abstract objects and so gives more precise results (boolean:
-<code>true</code> or <code>false</code>).
-</listitem></varlistentry><varlistentry><term><code>anasoot.reportPseudo</code></term><listitem> activate the reporting of pseudo
-  constants (boolean: <code>true</code> or <code>false</code>).
-</listitem></varlistentry><varlistentry><term><code>anasoot.loopAnalysis</code></term><listitem> performs an analyis of recursion for
-profiles that forbid the use of recursion (boolean: <code>true</code> or
-<code>false</code>).
-</listitem></varlistentry><varlistentry><term><code>anasoot.ruleDefaultFile</code></term><listitem> name of the default analysis profile
-  (file name without the extension).
-</listitem></varlistentry><varlistentry><term><code>anasoot.treatConcatenation</code></term><listitem> enable treatment of appended
-  strings (boolean).
-</listitem></varlistentry><varlistentry><term><code>anasoot.treatStringBuffer</code></term><listitem> enable treatment of basic operations on
-  <code>StringBuffer</code> objects, a special kind of string in Java (boolean).
-</listitem></varlistentry><varlistentry><term><code>anasoot.treatValueOf</code></term><listitem> enable treatment of
-  <code>String.valueOf</code> (boolean).
-</listitem></varlistentry><varlistentry><term><code>anasoot.treatProperties</code></term><listitem> enable treatment of
-  <code>getAppProperty</code>, with link to the JAD (boolean).
-</listitem></varlistentry><varlistentry><term><code>anasoot.treatStringOperation</code></term><listitem> enable treatment of basic
-  operations on String objects (<code>trim</code>, <code>replace</code>, etc.) (boolean).
-</listitem></varlistentry><varlistentry><term><code>anasoot.treatFunctions</code></term><listitem> enable treatment of functions in
-  general (followed by name and parameters) (boolean).
-</listitem></varlistentry><varlistentry><term><code>anasoot.treatSpyReturn</code></term><listitem> enable treatment of values returned by
-  user's methods (boolean).
-</listitem></varlistentry><varlistentry><term><code>anasoot.treatSpyParameter</code></term><listitem> enable treatment of arguments passed
-  to user's methods (boolean).
-</listitem></varlistentry><varlistentry><term><code>anasoot.treatSpyField</code></term><listitem> enable treatment of user's class
-  attributes (boolean).
-</listitem></varlistentry><varlistentry><term><code>anasoot.printNodes</code></term><listitem> enable useless mentions of node numbers in
-  report (boolean).
-</listitem></varlistentry><varlistentry><term><code>anasoot.midp-classpath</code></term><listitem> path to libraries which are used in the
-  features usage analysis phase.
-</listitem></varlistentry><varlistentry><term><code>anasoot.rules</code></term><listitem> directory which contains analysis profiles.
-</listitem></varlistentry><varlistentry><term><code>anasoot.loopAnalysis</code></term><listitem> enable (default) or disable the analysis
-that points out recursive method
-</listitem></varlistentry><varlistentry><term><code>anasoot.usedJSR</code></term><listitem> enable (default) or disable the analysis
-that points out the use of a set of MIDP JSR. 
-</listitem></varlistentry><varlistentry><term><code>descriptorsChecking.enabled</code></term><listitem> enable the descriptors conformity check phase (boolean).
-</listitem></varlistentry><varlistentry><term><code>matos.cssFile</code></term><listitem> style sheet (CSS file) to use for the HTML
-  reports (path to a CSS file).
-</listitem></varlistentry><varlistentry><term><code>matos.considerSameName</code></term><listitem> enable to recognize that a JAD file and a JAR
-  file are relative to the same MIDlet suite if they have the same name, when
-  you add all MIDlet suite of a directory (boolean). 
-</listitem></varlistentry><varlistentry><term><code>matos.xmlFormat</code></term><listitem> allow XML formatting of results (boolean). 
-</listitem></varlistentry><varlistentry><term><code>descriptor.jad.endline</code></term><listitem> comma separated list of authorized
- characters to mark the end of line in the JAD file.
-</listitem></varlistentry><varlistentry><term><code>descriptor.jar.endline</code></term><listitem>gives authorized characters to mark the
- end of line in the JAR manifest file.
-</listitem></varlistentry><varlistentry><term><code>descriptor.mandatorChapiId</code></term><listitem>boolean value (default false)
- specifying if JSR 211 content-handler must have an explicit ID
-</listitem></varlistentry><varlistentry><term><code>descriptor.chapiContentTypesRegexp</code></term><listitem>optional regular expression
- defining constraints on the each content-type mentioned in a JSR 211 handler 
-</listitem></varlistentry><varlistentry><term><code>descriptor.chapiActionsRegexp</code></term><listitem>optional regular expression
- defining constraints on the each action mentioned in a JSR 211 handler
-</listitem></varlistentry><varlistentry><term><code>descriptor.chapiSuffixesRegexp</code></term><listitem>optional regular expression
- defining constraints on the each file suffix mentioned in a JSR 211 handler
-</listitem></varlistentry><varlistentry><term><code>descriptor.midletSuiteNameRegexp</code></term><listitem>optional regular expression
- defining constraints on the name of the midlet suite
-</listitem></varlistentry><varlistentry><term><code>descriptor.vendorNameRegexp</code></term><listitem>optional regular expression
- defining constraints on the name of the vendor of the midlet suite
-</listitem></varlistentry><varlistentry><term><code>descriptor.jad.attributesorder</code></term><listitem>comma separated list defining
- the order of jad attributes (useful for some download portal that cannot
- handler attributes in random order)
-</listitem></varlistentry><varlistentry><term><code>descriptor.jar.attributesorder</code></term><listitem>comma separated list defining
- the order of jar attributes (useful for some download portal that cannot
- handler attributes in random order)
-</listitem></varlistentry><varlistentry><term><code>descriptor.jad.forbidden</code></term><listitem> additional list of attributes
- forbidden in the JAD
-</listitem></varlistentry><varlistentry><term><code>descriptor.jad.mandatory</code></term><listitem> additional list of attributes 
- mandatory in the JAD
-</listitem></varlistentry><varlistentry><term><code>descriptor.jar.mandatory</code></term><listitem> additional list of attributes
- forbidden in the JAR manifest
-</listitem></varlistentry><varlistentry><term><code>descriptor.jar.forbidden</code></term><listitem> additional list of attributes
- mandatory in the JAR manifest
-</listitem></varlistentry><varlistentry><term><code>descriptor.midletSuiteIconSize</code></term><listitem>optional comma delimited list of
- authorized sizes for the midlet suite icons (as <parameter>width</parameter>x<parameter>height</parameter>)
-</listitem></varlistentry><varlistentry><term><code>descriptor.maxMidlets</code></term><listitem> Optional constraint defining the maximum
- number of visible services (midlets) defined by the suite.
-</listitem></varlistentry><varlistentry><term><code>descriptor.midletNameRegexp</code></term><listitem>optional regular expression
-defining constraints on the names of midlets (services) provided by the suite.
-</listitem></varlistentry><varlistentry><term><code>descriptor.midletIconSize</code></term><listitem>optional comma delimited list of
-authorized sizes for midlet icons (as <parameter>width</parameter>x<parameter>height</parameter>)
-</listitem></varlistentry><varlistentry><term><code>descriptor.pushURLRegexp</code></term><listitem>optional regular expression
-defining constraints on the URL defined for static push registry
-</listitem></varlistentry><varlistentry><term><code>descriptor.pushRestrictionRegexp</code></term><listitem>optional regular expression
-defining constraints on the restrictions imposed for static push registry.
-</listitem></varlistentry>
-
-	    
-	    
+		<varlistentry>
+			<term>
+				<code>anasoot.enabled</code>
+			</term>
+			<listitem><para>
+				activate the features usage analysis phase
+				(boolean:
+				<code>true</code>
+				or
+				<code>false</code>
+				).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.enhancedPointsto</code>
+			</term>
+			<listitem><para>
+				use an enhanced pointsto analysis
+				that assign new objects to the results of method of the analysed
+				profile. It
+				creates more abstract objects and so gives more precise results (boolean:
+				<code>true</code>
+				or
+				<code>false</code>
+				).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.reportPseudo</code>
+			</term>
+			<listitem><para>
+				activate the reporting of pseudo
+				constants (boolean:
+				<code>true</code>
+				or
+				<code>false</code>
+				).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.loopAnalysis</code>
+			</term>
+			<listitem><para>
+				performs an analyis of recursion for
+				profiles that forbid the use of recursion (boolean:
+				<code>true</code>
+				or
+				<code>false</code>
+				).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.ruleDefaultFile</code>
+			</term>
+			<listitem><para>
+				name of the default analysis profile
+				(file name without the extension).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.treatConcatenation</code>
+			</term>
+			<listitem><para>
+				enable treatment of appended
+				strings (boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.treatStringBuffer</code>
+			</term>
+			<listitem><para>
+				enable treatment of basic operations on
+				<code>StringBuffer</code>
+				objects, a special kind of string in Java (boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.treatValueOf</code>
+			</term>
+			<listitem><para>
+				enable treatment of
+				<code>String.valueOf</code>
+				(boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.treatStringOperation</code>
+			</term>
+			<listitem><para>
+				enable treatment of basic
+				operations on String objects (
+				<code>trim</code>
+				,
+				<code>replace</code>
+				, etc.) (boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.treatFunctions</code>
+			</term>
+			<listitem><para>
+				enable treatment of functions in
+				general (followed by name and parameters) (boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.treatSpyReturn</code>
+			</term>
+			<listitem><para>
+				enable treatment of values returned by
+				user's methods (boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.treatSpyParameter</code>
+			</term>
+			<listitem><para>
+				enable treatment of arguments passed
+				to user's methods (boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.treatSpyField</code>
+			</term>
+			<listitem><para>
+				enable treatment of user's class
+				attributes (boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.printNodes</code>
+			</term>
+			<listitem><para>
+				enable useless mentions of node numbers in
+				report (boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.rules</code>
+			</term>
+			<listitem><para>
+				directory which contains analysis profiles.
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>anasoot.loopAnalysis</code>
+			</term>
+			<listitem><para>
+				enable (default) or disable the analysis
+				that points out recursive method
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>descriptorsChecking.enabled</code>
+			</term>
+			<listitem><para>
+				enable the descriptors conformity check phase (boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>matos.cssFile</code>
+			</term>
+			<listitem><para>
+				style sheet (CSS file) to use for the HTML
+				reports (path to a CSS file).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>matos.considerSameName</code>
+			</term>
+			<listitem><para>
+				enable to recognize that a JAD file and a JAR
+				file are relative to the same MIDlet suite if they have the same name,
+				when you add all MIDlet suite of a directory (boolean).
+			</para></listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>
+				<code>matos.xmlFormat</code>
+			</term>
+			<listitem><para>
+				allow XML formatting of results (boolean).
+			</para></listitem>
+		</varlistentry>
 	</variablelist>
+</section>
+	<section>
+		<title>MIDP options</title>
+		<variablelist>
+		   <varlistentry>
+			<term>
+				<code>anasoot.midp-classpath</code>
+			</term>
+			<listitem><para>
+				path to libraries which are used in the
+				features usage analysis phase.
+			</para></listitem>
+		</varlistentry>
+
+			<varlistentry>
+				<term>
+					<code>anasoot.usedJSR</code>
+				</term>
+				<listitem><para>
+					enable (default) or disable the analysis
+					that points out the use of a set of MIDP JSR.
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>anasoot.treatProperties</code>
+				</term>
+				<listitem><para>
+					enable treatment of
+					<code>getAppProperty</code>
+					, with link to the JAD (boolean).
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.jad.endline</code>
+				</term>
+				<listitem><para>
+					comma separated list of authorized
+					characters to mark the end of line in the JAD file.
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.jar.endline</code>
+				</term>
+				<listitem><para>
+					gives authorized characters to mark the
+					end of line in the JAR manifest file.Typical values are
+					<code>&amp;#x000D;</code>
+					<code>&amp;#x000A</code>
+					and
+					<code>&amp;#x000D;&amp;#x000A</code>
+					. You can specify several values by separating them with a comma.
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.mandatoryChapiId</code>
+				</term>
+				<listitem><para>
+					boolean value (default false)
+					specifying if JSR 211 content-handler must have an explicit ID
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.chapiContentTypesRegexp</code>
+				</term>
+				<listitem><para>
+					optional regular expression
+					defining constraints on the each content-type mentioned in a JSR 211
+					handler
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.chapiActionsRegexp</code>
+				</term>
+				<listitem><para>
+					optional regular expression
+					defining constraints on the each action mentioned in a JSR 211 handler
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.chapiSuffixesRegexp</code>
+				</term>
+				<listitem><para>
+					optional regular expression
+					defining constraints on the each file suffix mentioned in a JSR 211 handler
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.midletSuiteNameRegexp</code>
+				</term>
+				<listitem><para>
+					optional regular expression
+					defining constraints on the name of the midlet suite
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.vendorNameRegexp</code>
+				</term>
+				<listitem><para>
+					optional regular expression
+					defining constraints on the name of the vendor of the midlet suite
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.jad.attributesorder</code>
+				</term>
+				<listitem><para>
+					comma separated list defining
+					the order of jad attributes (useful for some download portal that
+					cannot handle attributes in random order)
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.jar.attributesorder</code>
+				</term>
+				<listitem><para>
+					comma separated list defining
+					the order of jar attributes (useful for some download portal that
+					cannot handle attributes in random order)
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.jad.mandatory</code>
+				</term>
+				<listitem><para>
+					additional list of attributes
+					mandatory in the JAD. Use a comma separated list of attributes.
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.jad.forbidden</code>
+				</term>
+				<listitem><para>
+					additional list of attributes
+					forbidden in the JAD. Use a comma separated list of attributes.
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.jar.mandatory</code>
+				</term>
+				<listitem><para>
+					additional list of attributes
+					forbidden in the JAR manifest. Use a comma separated list of attributes.
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.jar.forbidden</code>
+				</term>
+				<listitem><para>
+					additional list of attributes
+					forbidden in the JAR manifest. Use a comma separated list of attributes.
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.midletSuiteIconSize</code>
+				</term>
+				<listitem><para>
+					optional comma delimited list of
+					authorized sizes for the midlet suite icons (as
+					<parameter>width</parameter>x<parameter>height</parameter>
+					)
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.maxMidlets</code>
+				</term>
+				<listitem><para>
+					Optional constraint defining the maximum
+					number of visible services (midlets) defined by the suite.
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.midletNameRegexp</code>
+				</term>
+				<listitem><para>
+					optional regular expression
+					defining constraints on the names of midlets (services) provided by the
+					suite.
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.midletIconSize</code>
+				</term>
+				<listitem><para>
+					optional comma delimited list of authorized sizes for midlet icons (as
+					<parameter>width</parameter>x<parameter>height</parameter>)
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.pushURLRegexp</code>
+				</term>
+				<listitem><para>
+					optional regular expression
+					defining constraints on the URL defined for static push registry
+				</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>
+					<code>descriptor.pushRestrictionRegexp</code>
+				</term>
+				<listitem><para>
+					optional regular expression
+					defining constraints on the restrictions imposed for static push registry.
+				</para></listitem>
+			</varlistentry>
+		</variablelist>
+	</section>
+				<section>
+				    <title>Android options</title>
+					<variablelist>
+						<varlistentry>
+							<term>
+								<code>anasoot.android.global</code>
+							</term>
+							<listitem><para>
+								makes a global analysis rather than a per component analysis of Android applications (boolean:
+								<code>true</code> or <code>false</code>, the recommended default is	<code>true</code>).
+							</para></listitem>
+						</varlistentry>
+						<varlistentry><term><code>anasoot.androidApiUse</code></term><listitem><para>
+						    Enables the Api use analysis.
+						</para></listitem></varlistentry>
+					</variablelist>
+				</section>
 			</section>
 		</section>
 		<section>
