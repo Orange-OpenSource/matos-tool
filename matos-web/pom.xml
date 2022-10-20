@@ -10,7 +10,7 @@
   <properties>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
-    <tomcat.version>7.0.32</tomcat.version>
+    <tomcat.version>7.0.81</tomcat.version>
   </properties>
 
   <repositories>
